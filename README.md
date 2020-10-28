@@ -2,15 +2,13 @@
 
 A new Flutter project.
 
-## Getting Started
+Branching and deployment information:
 
-This project is a starting point for a Flutter application.
+android-prod : android apk produced from this branch. Create android version tags.
 
-A few resources to get you started if this is your first Flutter project:
+ios-prod: ios ipa produced from this branch. Create ios version tags.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+wip : Work in progress
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+develop: Merge wip into develop before merging "develop" into "android-prod" or "ios-prod".
+
