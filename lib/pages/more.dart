@@ -8,6 +8,6 @@ class More extends StatefulWidget {
 class _MoreState extends State<More> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(child: Text("more"));
   }
 }
