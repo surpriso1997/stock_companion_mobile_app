@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:stock_companion/pages/news.dart';
+import 'package:stock_companion/pages/pages.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -7,25 +9,77 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  BottomNavigationBarItem _buildBottomNavItem({IconData icon, String text}) {
-    return BottomNavigationBarItem(
-      icon: Icon(icon),
-      label: text,
+  int _currentIndex = 0;
+
+  Color _activeIconColor;
+  Color _activeTextColor;
+
+  Widget _buildBottomNavItem(int index, {IconData icon, String text}) {
+    var theme = Theme.of(context);
+
+    var color =
+        _currentIndex == index ? theme.textSelectionColor : Colors.white;
+    return InkWell(
+      onTap: () => _onPressItem(index),
+      child: Column(
+        children: [
+          Icon(icon, color: color),
+          Text(text, style: TextStyle(color: color))
+        ],
+      ),
     );
+  }
+
+  PageController _pageController = PageController();
+
+  Widget _pages() {
+    return PageView(
+      controller: _pageController,
+      children: [
+        Market(),
+        News(),
+        Dashboard(),
+        Wishlist(),
+        More(),
+      ],
+    );
+  }
+
+  _onPressItem(index) {
+    _currentIndex = index;
+    _pageController.jumpToPage(index);
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-      items: [
-        _buildBottomNavItem(
-            icon: MaterialCommunityIcons.google_analytics, text: "Market"),
-        _buildBottomNavItem(icon: Entypo.news, text: "News"),
-        _buildBottomNavItem(icon: Icons.dashboard, text: "Dashboard"),
-        _buildBottomNavItem(icon: Icons.favorite_outline, text: "Wishlist"),
-        _buildBottomNavItem(icon: Feather.menu, text: "More")
-      ],
-    ));
+      body: _pages(),
+      bottomNavigationBar: Container(
+        height: kBottomNavigationBarHeight,
+        color: theme.bottomNavigationBarTheme.backgroundColor,
+        child: Center(
+          child: Container(
+            height: kBottomNavigationBarHeight - 10,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                _buildBottomNavItem(0,
+                    icon: MaterialCommunityIcons.google_analytics,
+                    text: "Market"),
+                _buildBottomNavItem(1, icon: Entypo.news, text: "News"),
+                _buildBottomNavItem(2,
+                    icon: Icons.dashboard, text: "Dashboard"),
+                _buildBottomNavItem(3,
+                    icon: Icons.favorite_outline, text: "Wishlist"),
+                _buildBottomNavItem(4, icon: Feather.menu, text: "More")
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
