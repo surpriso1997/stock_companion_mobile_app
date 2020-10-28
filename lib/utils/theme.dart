@@ -9,6 +9,7 @@ final font_family = "Roboto";
 
 final _baseTheme = ThemeData(
     primaryColor: primay_color,
+    buttonTheme: ButtonThemeData(),
     primaryColorDark: primary_color_dark,
     textSelectionColor: primary_text_highlight_color,
     fontFamily: font_family,

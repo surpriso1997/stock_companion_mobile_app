@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stock_companion/bloc/cubit/theme_cubit.dart';
 
 import 'package:flutter/material.dart';
+import 'package:stock_companion/bloc/theme_cubit/theme_cubit.dart';
 import 'package:stock_companion/data/repository/market_summary_repository.dart';
 
 class MultiBlocProviders extends StatelessWidget {
