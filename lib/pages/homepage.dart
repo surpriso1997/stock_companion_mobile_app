@@ -11,9 +11,6 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   int _currentIndex = 0;
 
-  Color _activeIconColor;
-  Color _activeTextColor;
-
   Widget _buildBottomNavItem(int index, {IconData icon, String text}) {
     var theme = Theme.of(context);
 
@@ -22,6 +19,7 @@ class _HomepageState extends State<Homepage> {
     return InkWell(
       onTap: () => _onPressItem(index),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon, color: color),
           Text(text, style: TextStyle(color: color))
@@ -35,6 +33,7 @@ class _HomepageState extends State<Homepage> {
   Widget _pages() {
     return PageView(
       controller: _pageController,
+      physics: NeverScrollableScrollPhysics(),
       children: [
         Market(),
         News(),
@@ -59,25 +58,18 @@ class _HomepageState extends State<Homepage> {
       bottomNavigationBar: Container(
         height: kBottomNavigationBarHeight,
         color: theme.bottomNavigationBarTheme.backgroundColor,
-        child: Center(
-          child: Container(
-            height: kBottomNavigationBarHeight - 10,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                _buildBottomNavItem(0,
-                    icon: MaterialCommunityIcons.google_analytics,
-                    text: "Market"),
-                _buildBottomNavItem(1, icon: Entypo.news, text: "News"),
-                _buildBottomNavItem(2,
-                    icon: Icons.dashboard, text: "Dashboard"),
-                _buildBottomNavItem(3,
-                    icon: Icons.favorite_outline, text: "Wishlist"),
-                _buildBottomNavItem(4, icon: Feather.menu, text: "More")
-              ],
-            ),
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            _buildBottomNavItem(0,
+                icon: MaterialCommunityIcons.google_analytics, text: "Market"),
+            _buildBottomNavItem(1, icon: Entypo.news, text: "News"),
+            _buildBottomNavItem(2, icon: Icons.dashboard, text: "Dashboard"),
+            _buildBottomNavItem(3,
+                icon: Icons.favorite_outline, text: "Wishlist"),
+            _buildBottomNavItem(4, icon: Feather.menu, text: "More")
+          ],
         ),
       ),
     );
