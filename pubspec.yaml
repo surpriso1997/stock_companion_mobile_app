@@ -30,6 +30,11 @@ dependencies:
   sqflite:
   shared_preferences:
 
+
+  # utils
+  intl:
+
+
   # network
   dio: ^3.0.10
   dio_http_cache: ^0.2.11
