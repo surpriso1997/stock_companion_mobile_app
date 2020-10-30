@@ -18,20 +18,17 @@ class MyApp extends StatelessWidget {
       child: MultiBlocProviders(
         child: BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, state) {
-            return Theme(
-              data: state.theme,
-              isMaterialAppTheme: Platform.isAndroid,
-              child: CupertinoApp(
-                builder: DevicePreview.appBuilder,
-                title: AppConfig.of(context).appName,
-                // theme: state.theme,
-                // darkTheme: themeData[AppTheme.Dark],
-                home: Homepage(),
-                debugShowCheckedModeBanner:
-                    AppConfig.of(context).flavor == "dev",
-                routes: Routes.routes,
-                navigatorKey: Navigation.navigationKey,
-              ),
+            // data: state.theme,
+            // isMaterialAppTheme: Platform.isAndroid,
+            return MaterialApp(
+              // builder: DevicePreview.appBuilder,
+              title: AppConfig.of(context).appName,
+              theme: state.theme,
+              darkTheme: themeData[AppTheme.Dark],
+              home: Homepage(),
+              debugShowCheckedModeBanner: AppConfig.of(context).flavor == "dev",
+              routes: Routes.routes,
+              navigatorKey: Navigation.navigationKey,
             );
           },
         ),
