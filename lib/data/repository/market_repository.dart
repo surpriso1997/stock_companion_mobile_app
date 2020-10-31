@@ -4,8 +4,22 @@ class MarketRepository {
   getNotification() {}
   getMarketDepth() {}
 
+  getIndexHistoru() {}
+
+  ///    /nots/market-summary/
+  getMarketSummary() {}
+
   getSubIndicList() {}
 
+  /// nots/top-ten/transaction?all=true
+  getTopTenTransactions() {}
+
+  getTopTen() {}
+
+  getDailyTradeStat() {}
+  getNepseIndices() {}
+
+  getLiveData() {}
   getIndexGraphData(
     int indexId,
   ) {}
@@ -16,6 +30,12 @@ class MarketRepository {
 
   getBrokersList() {}
   getListedStocks() {}
+
+  getPurposed() {}
+  getSebonIssues() {}
+  getBullion() {}
+  getForex() {}
+  getOpenings() {}
 }
 
 enum IndexType {
