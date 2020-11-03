@@ -40,3 +40,8 @@ class WrongInputException {
   final String message;
   const WrongInputException({@required this.message});
 }
+
+class ApiException {
+  final String message;
+  const ApiException({@required this.message});
+}
