@@ -36,13 +36,13 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
         String value,
         String diff,
         String per,
-        Color backgrounColor,
+        Color bgColor,
         Color textColor,
         ThemeData theme,
         bool isTableHeading}) {
       return Container(
         height: 40,
-        color: backgrounColor,
+        color: bgColor,
         child: Row(
           children: [
             SizedBox(width: 10),
@@ -69,17 +69,21 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
         double value,
         double diff,
         double per,
-        Color backgrounColor,
+        Color bgColor,
         ThemeData theme,
         bool isTableHeading}) {
-      final _textColor = theme.dataTableTheme.headingTextStyle
-          .copyWith(color: whiteC, fontWeight: FontWeight.normal);
+      bgColor = (diff < 0) ? Color(0xffFF0909) : Color(0xff21F595);
 
-      backgrounColor = (diff < 0) ? Colors.red : backgrounColor;
+      if (per == 0.0) bgColor = whiteC;
+
+      final _textColor = theme.dataTableTheme.headingTextStyle.copyWith(
+        color: bgColor,
+        fontWeight: FontWeight.normal,
+      );
 
       return Container(
         height: 40,
-        color: backgrounColor,
+        color: Color(0xff2A2c2c),
         child: Row(
           children: [
             SizedBox(width: 10),
@@ -92,9 +96,13 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
                 children: [
                   Text(value.toString(), style: _textColor),
                   Text(diff.toString(),
-                      style: _textColor.copyWith(fontWeight: FontWeight.bold)),
-                  Text(per.toString(),
-                      style: _textColor.copyWith(fontWeight: FontWeight.bold)),
+                      style: _textColor.copyWith(
+                          fontWeight: FontWeight.bold, color: bgColor)),
+                  Text(
+                    per.toString(),
+                    style: _textColor.copyWith(
+                        fontWeight: FontWeight.bold, color: bgColor),
+                  )
                 ],
               ),
             ),
@@ -239,7 +247,7 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
                         diff: "+/-",
                         per: "%",
                         theme: theme,
-                        backgrounColor: primaryColor,
+                        bgColor: primaryColor,
                         textColor: theme.textSelectionColor,
                       ),
                       Column(children: [
@@ -252,7 +260,7 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
                             diff: _singleIndex.change,
                             per: _singleIndex.perChange,
                             theme: theme,
-                            backgrounColor: Colors.green,
+                            bgColor: Colors.green,
                           );
                         }),
                       ])
@@ -288,7 +296,7 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
                         diff: "+/-",
                         per: "%",
                         theme: theme,
-                        backgrounColor: primaryColor,
+                        bgColor: primaryColor,
                         textColor: theme.textSelectionColor,
                       ),
                       Column(children: [
@@ -301,7 +309,7 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
                             diff: _singleIndex.change,
                             per: _singleIndex.perChange,
                             theme: theme,
-                            backgrounColor: Colors.green,
+                            bgColor: Colors.green,
                           );
                         }),
                       ])
