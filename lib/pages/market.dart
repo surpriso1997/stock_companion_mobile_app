@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
 import 'package:stock_companion/utils/index_chart_data.dart';
+import 'package:stock_companion/utils/util_functions.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../utils/utils.dart';
 
@@ -15,6 +18,13 @@ class IndexData {
 }
 
 class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<MarketSummaryCubit>(context).add(FetchNepseIndices());
+    BlocProvider.of<MarketSummaryCubit>(context).add(FetchSubIndices());
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -55,14 +65,17 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
 
     _buildTableRowCell(
         {String title,
-        String value,
-        String diff,
-        String per,
+        double value,
+        double diff,
+        double per,
         Color backgrounColor,
         ThemeData theme,
         bool isTableHeading}) {
-      final _textColor =
-          theme.dataTableTheme.headingTextStyle.copyWith(color: whiteC);
+      final _textColor = theme.dataTableTheme.headingTextStyle
+          .copyWith(color: whiteC, fontWeight: FontWeight.normal);
+
+      backgrounColor = (diff < 0) ? Colors.red : backgrounColor;
+
       return Container(
         height: 40,
         color: backgrounColor,
@@ -70,16 +83,16 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
           children: [
             SizedBox(width: 10),
             Expanded(
-              child: Text(title, style: _textColor),
+              child: Text(processIndexTitle(title), style: _textColor),
             ),
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(value, style: _textColor),
-                  Text(diff,
+                  Text(value.toString(), style: _textColor),
+                  Text(diff.toString(),
                       style: _textColor.copyWith(fontWeight: FontWeight.bold)),
-                  Text(per,
+                  Text(per.toString(),
                       style: _textColor.copyWith(fontWeight: FontWeight.bold)),
                 ],
               ),
@@ -178,40 +191,103 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
             SizedBox(height: 20),
             //maket indices
 
-            Column(
-              children: [
-                _buildTableRowTitle(
-                  title: "Indices",
-                  value: "Value",
-                  diff: "+/-",
-                  per: "%",
-                  theme: theme,
-                  backgrounColor: primaryColor,
-                  textColor: theme.textSelectionColor,
-                ),
-                Column(children: [
-                  ...List.generate(2, (index) {
-                    return _buildTableRowCell(
-                      title: "ADBL",
-                      value: "490",
-                      diff: "10",
-                      per: "2%",
-                      theme: theme,
-                      backgrounColor: Colors.green,
-                    );
-                  }),
-                  ...List.generate(2, (index) {
-                    return _buildTableRowCell(
-                      title: "ADBL",
-                      value: "1132",
-                      diff: "10",
-                      per: "2%",
-                      theme: theme,
-                      backgrounColor: Colors.red,
-                    );
-                  }),
-                ])
-              ],
+            BlocBuilder<MarketSummaryCubit, MarketSummaryState>(
+              buildWhen: (oldState, newState) {
+                if (newState is MIndicesLoading ||
+                    newState is MIndicesFetched) {
+                  return true;
+                }
+                return false;
+              },
+              builder: (context, state) {
+                print(state);
+
+                if (state is MIndicesLoading) {
+                  return showLoadingIndicator();
+                } else if (state is MIndicesError) {
+                  return Text(state.error);
+                } else if (state is MIndicesFetched) {
+                  var indices = state.index;
+
+                  return Column(
+                    children: [
+                      _buildTableRowTitle(
+                        title: "Indices",
+                        value: "Value",
+                        diff: "+/-",
+                        per: "%",
+                        theme: theme,
+                        backgrounColor: primaryColor,
+                        textColor: theme.textSelectionColor,
+                      ),
+                      Column(children: [
+                        ...List.generate(indices.length, (index) {
+                          var _singleIndex = indices[index];
+
+                          return _buildTableRowCell(
+                            title: _singleIndex.index,
+                            value: _singleIndex.currentValue,
+                            diff: _singleIndex.change,
+                            per: _singleIndex.perChange,
+                            theme: theme,
+                            backgrounColor: Colors.green,
+                          );
+                        }),
+                      ])
+                    ],
+                  );
+                } else
+                  return Container();
+              },
+            ),
+
+            SizedBox(height: 30),
+            BlocBuilder<MarketSummaryCubit, MarketSummaryState>(
+              buildWhen: (newState, oldState) {
+                if (newState is MSubIndicesFetched ||
+                    newState is MSubIndicesLoading) {
+                  return true;
+                }
+                return false;
+              },
+              builder: (context, state) {
+                if (state is MSubIndicesLoading) {
+                  return showLoadingIndicator();
+                } else if (state is MSubIndicesError) {
+                  return Text(state.error);
+                } else if (state is MSubIndicesFetched) {
+                  var indices = state.subIndices;
+
+                  return Column(
+                    children: [
+                      _buildTableRowTitle(
+                        title: "Indices",
+                        value: "Value",
+                        diff: "+/-",
+                        per: "%",
+                        theme: theme,
+                        backgrounColor: primaryColor,
+                        textColor: theme.textSelectionColor,
+                      ),
+                      Column(children: [
+                        ...List.generate(indices.length, (index) {
+                          var _singleIndex = indices[index];
+
+                          return _buildTableRowCell(
+                            title: _singleIndex.index,
+                            value: _singleIndex.currentValue,
+                            diff: _singleIndex.change,
+                            per: _singleIndex.perChange,
+                            theme: theme,
+                            backgrounColor: Colors.green,
+                          );
+                        }),
+                      ])
+                    ],
+                  );
+                } else
+                  return Container();
+              },
             ),
           ],
         ),
@@ -221,4 +297,11 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
 
   @override
   bool get wantKeepAlive => true;
+}
+
+showLoadingIndicator() {
+  return CircularProgressIndicator(
+    strokeWidth: 0.8,
+    valueColor: AlwaysStoppedAnimation(Colors.blue),
+  );
 }
