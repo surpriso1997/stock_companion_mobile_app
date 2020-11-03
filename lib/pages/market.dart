@@ -40,22 +40,28 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
         Color textColor,
         ThemeData theme,
         bool isTableHeading}) {
+      var headingStyle = theme.dataTableTheme.headingTextStyle;
+
       return Container(
         height: 40,
-        color: bgColor,
+
+        // TODO: to fix the theme of the heading
+        color: MediaQuery.of(context).platformBrightness == Brightness.dark
+            ? whiteC
+            : bgColor,
         child: Row(
           children: [
             SizedBox(width: 10),
             Expanded(
-              child: Text(title, style: theme.dataTableTheme.headingTextStyle),
+              child: Text(title, style: headingStyle),
             ),
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(value, style: TextStyle(color: textColor, fontSize: 18)),
-                  Text(diff, style: TextStyle(color: textColor, fontSize: 18)),
-                  Text(per, style: TextStyle(color: textColor, fontSize: 18)),
+                  Text(value, style: headingStyle),
+                  Text(diff, style: headingStyle),
+                  Text(per, style: headingStyle),
                 ],
               ),
             ),
