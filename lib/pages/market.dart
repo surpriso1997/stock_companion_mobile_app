@@ -29,6 +29,7 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final primaryColor = theme.primaryColor;
+    final textSelctionColor = theme.textSelectionColor;
 
     _buildTableRowTitle(
         {String title,
@@ -106,13 +107,34 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("NEPSE: 1115.11",
-                style: TextStyle(color: Theme.of(context).textSelectionColor)),
-            Text("-10(2.8%)", style: TextStyle(color: Colors.red))
-          ],
+        title: BlocBuilder<MarketSummaryCubit, MarketSummaryState>(
+          buildWhen: (o, n) => (n is MIndicesLoading || n is MIndicesFetched),
+          builder: (context, state) {
+            if (state is MIndicesLoading)
+              return Text("Nepal Stock",
+                  style: TextStyle(color: textSelctionColor));
+            else if (state is MIndicesFetched) {
+              var nepse = state.index[3];
+              var indexValue = nepse.currentValue;
+              var change = nepse.change;
+              var per = nepse.perChange;
+              var color = (nepse.change < 0) ? Colors.red : Colors.green;
+
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("NEPSE: $indexValue",
+                      style: TextStyle(
+                          color: Theme.of(context).textSelectionColor)),
+                  Text("$change($per%)", style: TextStyle(color: color))
+                ],
+              );
+            } else
+              return Text(
+                "Nepal Stock",
+                style: TextStyle(color: textSelctionColor),
+              );
+          },
         ),
       ),
       body: SingleChildScrollView(
