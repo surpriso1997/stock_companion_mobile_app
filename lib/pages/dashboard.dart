@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:stock_companion/utils/utils.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -10,33 +11,37 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     _buildGridViewItem({String title, IconData icon, Function onPressed}) {
-      return Container(
-        decoration: BoxDecoration(
-            color: Theme.of(context).textSelectionColor,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(width: 1, color: Theme.of(context).primaryColor),
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).primaryColor,
-                offset: Offset(3, 3),
-                spreadRadius: 0.5,
-                blurRadius: 2.0,
+      return InkWell(
+        onTap: onPressed,
+        child: Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).textSelectionColor,
+              borderRadius: BorderRadius.circular(10),
+              border:
+                  Border.all(width: 1, color: Theme.of(context).primaryColor),
+              boxShadow: [
+                BoxShadow(
+                  color: Theme.of(context).primaryColor,
+                  offset: Offset(3, 3),
+                  spreadRadius: 0.5,
+                  blurRadius: 2.0,
+                )
+              ]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 35, color: Theme.of(context).primaryColor),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).primaryColor,
+                ),
               )
-            ]),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 35, color: Theme.of(context).primaryColor),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                color: Theme.of(context).primaryColor,
-              ),
-            )
-          ],
+            ],
+          ),
         ),
       );
     }
@@ -67,7 +72,9 @@ class _DashboardState extends State<Dashboard> {
           _buildGridViewItem(
               icon: MaterialCommunityIcons.timer_sand,
               title: 'Live Nepse',
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.live_marekt);
+              }),
           _buildGridViewItem(
               icon: AntDesign.barchart, title: 'Top Trades', onPressed: () {}),
           _buildGridViewItem(
