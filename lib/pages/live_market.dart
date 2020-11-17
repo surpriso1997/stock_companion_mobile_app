@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:stock_companion/utils/scaling.dart';
 import 'package:stock_companion/utils/utils.dart';
 
 class LiveMarket extends StatefulWidget {
@@ -139,26 +141,59 @@ class _LiveMarketState extends State<LiveMarket> {
     }
 
     return Scaffold(
+      floatingActionButton: CircleAvatar(
+        radius: SizeConfig.isTablet ? 25 : 30,
+        backgroundColor: Theme.of(context).primaryColor,
+        child: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            SimpleLineIcons.refresh,
+            color: whiteC,
+          ),
+        ),
+      ),
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(
+              AntDesign.left,
+              color: whiteC,
+            )),
         title: Text("Live Share"),
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.timer,
+                color: whiteC,
+              ),
+              onPressed: () {})
+        ],
         elevation: 0.0,
       ),
       body: Column(
         children: [
           _buildTitleRow(),
-          ...List.generate(
-              10,
-              (index) => _builtTableChild(
-                  theme: _theme,
-                  per: 1,
-                  diff: 1.04,
-                  open: '475',
-                  symbol: 'ADBL',
-                  high: '484',
-                  low: '475',
-                  ltp: '484',
-                  previousClose: '479',
-                  quantity: '86382')),
+          Flexible(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  ...List.generate(
+                      50,
+                      (index) => _builtTableChild(
+                          theme: _theme,
+                          per: 1,
+                          diff: 1.04,
+                          open: '475',
+                          symbol: 'ADBL',
+                          high: '484',
+                          low: '475',
+                          ltp: '484',
+                          previousClose: '479',
+                          quantity: '86382')),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
