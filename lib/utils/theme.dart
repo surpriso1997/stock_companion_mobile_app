@@ -18,13 +18,14 @@ final symmetricHzPadding = 10.0;
 
 final _baseTheme = ThemeData(
   primaryColor: primary_color,
+  appBarTheme: AppBarTheme(color: primary_color),
   primaryColorLight: primary_color,
   backgroundColor: Colors.white,
   buttonTheme: ButtonThemeData(),
   primaryColorDark: primary_color_dark,
   textSelectionColor: primary_text_highlight_color,
   fontFamily: font_family,
-  scaffoldBackgroundColor: Colors.black87,
+  scaffoldBackgroundColor: Colors.black54,
   dataTableTheme: DataTableThemeData(
     headingRowColor:
         MaterialStateProperty.resolveWith((states) => primary_color),
@@ -44,7 +45,7 @@ final _baseTheme = ThemeData(
     headline6: _baseTextStyle.copyWith(),
     bodyText1: _baseTextStyle.copyWith(),
     bodyText2: _baseTextStyle.copyWith(),
-    button: _baseTextStyle.copyWith(),
+    button: _baseTextStyle.copyWith(fontSize: 18),
     subtitle1: _baseTextStyle.copyWith(),
     subtitle2: _baseTextStyle.copyWith(),
   ),
@@ -55,7 +56,16 @@ final _baseTheme = ThemeData(
 
 final themeData = {
   AppTheme.Dark: _baseTheme.copyWith(
-    scaffoldBackgroundColor: Colors.black87,
+    scaffoldBackgroundColor: primary_color,
+    dataTableTheme: DataTableThemeData(
+      headingRowColor: MaterialStateProperty.resolveWith((states) => whiteC),
+      headingTextStyle: _baseTextStyle.copyWith(
+        fontWeight: FontWeight.bold,
+        color: primary_color,
+        fontSize: 16,
+      ),
+      dataTextStyle: _baseTextStyle.copyWith(fontSize: 16),
+    ),
     cardTheme: CardTheme(),
   ),
   AppTheme.Light: _baseTheme.copyWith(
