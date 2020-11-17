@@ -20,7 +20,7 @@ dependencies:
   pull_to_refresh: ^1.6.2
 
   # state
-  flutter_bloc: ^6.0.6
+  flutter_bloc: ^6.1.0
   riverpod:
   device_preview: ^0.4.8
   equatable:
