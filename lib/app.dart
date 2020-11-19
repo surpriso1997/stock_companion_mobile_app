@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             // builder: DevicePreview.appBuilder,
             title: AppConfig.of(context).appName,
             theme: state.theme,
-            darkTheme: themeData[AppTheme.Dark],
+            // darkTheme: themeData[AppTheme.Dark],
             home: Homepage(),
             debugShowCheckedModeBanner: AppConfig.of(context).flavor == "dev",
             routes: Routes.routes,
