@@ -76,7 +76,11 @@ class _DashboardState extends State<Dashboard> {
                 Navigator.pushNamed(context, Routes.live_marekt);
               }),
           _buildGridViewItem(
-              icon: AntDesign.barchart, title: 'Top Trades', onPressed: () {}),
+              icon: AntDesign.barchart,
+              title: 'Top Trades',
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.top_trades_page);
+              }),
           _buildGridViewItem(
               icon: Entypo.line_graph, title: 'Stock Price', onPressed: () {}),
           _buildGridViewItem(
