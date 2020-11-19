@@ -4,7 +4,11 @@ import '../../utils/utils.dart';
 
 class Api {}
 
-getRequest({@required url, Options options, var params}) async {
+getRequest(
+    {@required url,
+    Options options,
+    var params,
+    bool isRefreshRequest = false}) async {
   Dio _dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
   try {
     var res = await _dio.get(url, options: options, queryParameters: params);
