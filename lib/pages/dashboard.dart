@@ -50,7 +50,7 @@ class _DashboardState extends State<Dashboard> {
       top: true,
       child: GridView(
         // itemCount: 10,
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           childAspectRatio: 0.93,
