@@ -8,5 +8,5 @@ export 'wishlist.dart';
 export 'market.dart';
 export 'more.dart';
 export 'live_market.dart';
-export 'top_trades.dart';
+export 'top_trades/top_trades.dart';
 export 'company.dart';
