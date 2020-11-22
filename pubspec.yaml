@@ -27,6 +27,9 @@ dependencies:
 
   path_provider:
 
+
+  flutter_screenutil: ^3.2.0
+
   #  data persistence
   sqflite:
   shared_preferences:
