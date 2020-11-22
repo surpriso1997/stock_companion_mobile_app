@@ -28,6 +28,11 @@ class MultiBlocProviders extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
+            create: (context) => ThemeCubit(),
+          ),
+          BlocProvider(
+              create: (context) => GainersBloc(repository: _iTopTradesRepo)),
+          BlocProvider(
               create: (context) => BrokersBloc(repository: _iTopTradesRepo)),
           BlocProvider(
               create: (context) => LosersBloc(repository: _iTopTradesRepo)),
