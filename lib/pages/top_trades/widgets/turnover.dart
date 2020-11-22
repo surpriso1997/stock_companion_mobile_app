@@ -25,12 +25,28 @@ class _TurnoverState extends State<Turnover> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<TurnoverBloc>(context).add(FetchItems());
+    // BlocProvider.of<TurnoverBloc>(context).add(FetchItems());
   }
 
   @override
   Widget build(BuildContext context) {
     final _theme = Theme.of(context);
+
+    final width = MediaQuery.of(context).size.width;
+
+    getDataColumnMargin(width) {
+      print(width);
+      if (width < 350) {
+        return 25.0;
+      } else if (width > 350 && width < 375) {
+        return 40.0;
+      } else if (width > 375) {
+        return 65.0;
+      } else if (width > 500) {
+        return 150.0;
+      }
+    }
+
     return BlocBuilder<TurnoverBloc, CommonState>(builder: (context, state) {
       if (state is FetchingItemsState) {
         return progressIndicator();
@@ -44,8 +60,7 @@ class _TurnoverState extends State<Turnover> {
           Flexible(
             child: SingleChildScrollView(
                 child: DataTable(
-                    // horizontalMargin: 0.1,
-
+                    columnSpacing: getDataColumnMargin(width),
                     headingTextStyle: Theme.of(context)
                         .dataTableTheme
                         .headingTextStyle
@@ -55,7 +70,10 @@ class _TurnoverState extends State<Turnover> {
                       DataColumn(label: Text('Turnover(Cr.)')),
                       DataColumn(label: Text('LTP')),
                     ],
-                    rows: List.generate(state.listItems.length, (index) {
+                    rows: List.generate(
+                        state.listItems.length > 20
+                            ? 20
+                            : state.listItems.length, (index) {
                       TopItem _item = state.listItems[index];
                       final _style = _theme.dataTableTheme.dataTextStyle;
                       return DataRow(cells: [
