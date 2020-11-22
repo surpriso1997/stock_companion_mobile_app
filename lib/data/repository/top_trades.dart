@@ -17,6 +17,12 @@ class ITopTradesRepo {
   List<TopItem> _turnovers = [];
   List<TopItem> get turnovers => _turnovers;
 
+  List<TopItem> _sharesTraded = [];
+  List<TopItem> get sharesTraded => _sharesTraded;
+
+  List<TopItem> _transactions = [];
+  List<TopItem> get transactions => _transactions;
+
   Future<List<TopItem>> getTopGainers(
       {bool isRefreshRequest = false, int size = 10}) async {
     final url = "$_baseUrl/nots/top-ten/top-gainer";
@@ -89,7 +95,75 @@ class ITopTradesRepo {
     }
   }
 
-  getSharesTraded() async {}
-  getTransactions() async {}
-  getBrokers() async {}
+  Future<List<TopItem>> getTopSharesTraded(
+      {bool isRefreshRequest = false, int size = 10}) async {
+    final url = "$_baseUrl/nots/top-ten/trade";
+
+    var time = DateTime.now();
+    if (time.hour > 15 || time.hour < 11) {
+      isRefreshRequest = false;
+    }
+
+    try {
+      final res = (await getRequest(
+        url: url,
+        params: {'all': true, 'size': size},
+      )) as List;
+
+      var topItems = res.map<TopItem>((e) => TopItem.fromJson(e)).toList();
+      _sharesTraded.clear();
+      _sharesTraded.addAll(topItems);
+      return _sharesTraded;
+    } catch (e) {
+      throw ApiException(message: e?.message ?? Constants.error_error);
+    }
+  }
+
+  Future<List<TopItem>> getTopTransactions(
+      {bool isRefreshRequest = false, int size = 10}) async {
+    final url = "$_baseUrl/nots/top-ten/transaction";
+
+    var time = DateTime.now();
+    if (time.hour > 15 || time.hour < 11) {
+      isRefreshRequest = false;
+    }
+
+    try {
+      final res = (await getRequest(
+        url: url,
+        params: {'all': true, 'size': size},
+      )) as List;
+
+      var topItems = res.map<TopItem>((e) => TopItem.fromJson(e)).toList();
+      _transactions.clear();
+      _transactions.addAll(topItems);
+      return _transactions;
+    } catch (e) {
+      throw ApiException(message: e?.message ?? Constants.error_error);
+    }
+  }
+
+  Future<List<TopItem>> getTopBrokers(
+      {bool isRefreshRequest = false, int size = 10}) async {
+    final url = "$_baseUrl/nots/top-ten/transaction";
+
+    var time = DateTime.now();
+    if (time.hour > 15 || time.hour < 11) {
+      isRefreshRequest = false;
+    }
+
+    try {
+      final res = (await getRequest(
+        url: url,
+        params: {'all': true, 'size': size},
+      )) as List;
+
+      var topItems = res.map<TopItem>((e) => TopItem.fromJson(e)).toList();
+      _transactions.clear();
+      _transactions.addAll(topItems);
+      return _transactions;
+    } catch (e) {
+      throw ApiException(message: e?.message ?? Constants.error_error);
+    }
+  }
 }
