@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:stock_companion/utils/utils.dart';
-import 'package:stock_companion/widgets/fucntional_widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stock_companion/bloc/bloc/common_event.dart';
+import 'package:stock_companion/bloc/top_trades/top_trades_blocs.dart';
 
 import 'widgets/widgets.dart';
 
@@ -29,6 +30,12 @@ class _TopTradesState extends State<TopTrades>
     super.initState();
     _tabController =
         TabController(vsync: this, initialIndex: 0, length: _tabsTitles.length);
+
+    BlocProvider.of<GainersBloc>(context).add(FetchItems());
+    BlocProvider.of<LosersBloc>(context).add(FetchItems());
+    BlocProvider.of<TurnoverBloc>(context).add(FetchItems());
+    BlocProvider.of<SharesTradedBloc>(context).add(FetchItems());
+    BlocProvider.of<TransactionsBloc>(context).add(FetchItems());
   }
 
   @override
@@ -52,13 +59,13 @@ class _TopTradesState extends State<TopTrades>
                   _tabsTitles.length, (index) => Text(_tabsTitles[index]))
             ]),
       ),
-      body: PageView(
+      body: TabBarView(
         // itemCount: _tabsTitles.length,
-        controller: _pageController,
-        onPageChanged: (index) {
-          _tabController.animateTo(index,
-              duration: kTabScrollDuration, curve: Curves.easeIn);
-        },
+        controller: _tabController,
+        // onPageChanged: (index) {
+        //   _tabController.animateTo(index,
+        //       duration: kTabScrollDuration, curve: Curves.easeIn);
+        // },
 
         children: [
           Gainers(),
@@ -68,27 +75,6 @@ class _TopTradesState extends State<TopTrades>
           Transactions(),
           Brokers(),
         ],
-        // itemBuilder: (context, index) => Container(
-        //   child: Column(
-        //     children: [
-        //       Container(
-        //         color: blackC,
-        //         height: 40,
-        //         child: PaddingChild(
-        //           child: Row(
-        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //             children: [
-        //               TableTitleText('SY'),
-        //               TableTitleText("LTP"),
-        //               TableTitleText("+/-"),
-        //               TableTitleText("%"),
-        //             ],
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
       ),
     );
   }
