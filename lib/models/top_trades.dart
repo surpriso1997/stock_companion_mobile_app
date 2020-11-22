@@ -29,8 +29,6 @@ class TopItem {
   final String lastTradedPrice;
 
   factory TopItem.fromJson(Map<String, dynamic> json) {
-    print(json['turnover']);
-
     return TopItem(
       symbol: json["symbol"] ?? "",
       ltp: json["ltp"] == null ? "" : json["ltp"].toString(),
