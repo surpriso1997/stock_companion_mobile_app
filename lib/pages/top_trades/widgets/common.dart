@@ -1,36 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:stock_companion/utils/utils.dart';
-import 'package:stock_companion/widgets/fucntional_widgets.dart';
 
-class TabViewBodyItem extends StatefulWidget {
-  @override
-  _TabViewBodyItemState createState() => _TabViewBodyItemState();
-}
-
-class _TabViewBodyItemState extends State<TabViewBodyItem> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton:
-          buildFloatingActionButton(onPressed: () {}, context: context),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-              children: List.generate(10, (index) {
-            return Container(
-              child: Row(children: [
-                Text('ADBL'),
-                Text('200'),
-                Text('150'),
-                Text('2.1'),
-                Text('1.1'),
-              ]),
-            );
-          })),
-        ),
+buildTitleRow(List<String> texts) {
+  return Row(
+      children: List.generate(texts.length, (index) {
+    return Padding(
+      padding: EdgeInsets.only(
+          left: index == 0 ? 12.0 : 0.0,
+          right: index == texts.length - 1 ? 12.0 : 0.0),
+      child: TableTitleText(
+        texts[index],
       ),
     );
-  }
+  }));
 }
 
 class PaddingChild extends StatelessWidget {
@@ -55,7 +37,8 @@ class TableTitleText extends StatelessWidget {
   final String _text;
   final TextStyle _textStyle;
   final TextAlign _textAlign;
-  const TableTitleText(String text, {TextStyle style, TextAlign textAlign})
+  const TableTitleText(String text,
+      {TextStyle style, TextAlign textAlign = TextAlign.left})
       : _text = text,
         _textStyle = style,
         _textAlign = textAlign;
