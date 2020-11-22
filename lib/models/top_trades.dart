@@ -16,9 +16,9 @@ class TopItem {
   });
 
   final String symbol;
-  final double ltp;
-  final double pointChange;
-  final double percentageChange;
+  final String ltp;
+  final String pointChange;
+  final String percentageChange;
   final String securityName;
   final int securityId;
 
@@ -28,17 +28,29 @@ class TopItem {
   final String shareTraded;
   final String lastTradedPrice;
 
-  factory TopItem.fromJson(Map<String, dynamic> json) => TopItem(
-        symbol: json["symbol"] ?? "",
-        ltp: json["ltp"].toDouble() ?? "",
-        pointChange: json["pointChange"].toDouble() ?? '',
-        percentageChange: json["percentageChange"].toDouble() ?? '',
-        securityName: json["securityName"] ?? '',
-        securityId: json["securityId"] ?? '',
-        totalTrades: json['totalTrades'] ?? '',
-        closingPrice: json['closingPrice'] ?? '',
-        turnover: json['turnover'] ?? '',
-        shareTraded: json['shareTraded'] ?? '',
-        lastTradedPrice: json['lastTradedPrice'] ?? '',
-      );
+  factory TopItem.fromJson(Map<String, dynamic> json) {
+    print(json['turnover']);
+
+    return TopItem(
+      symbol: json["symbol"] ?? "",
+      ltp: json["ltp"] == null ? "" : json["ltp"].toString(),
+      pointChange:
+          json["pointChange"] == null ? "" : json["pointChange"].toString(),
+      percentageChange: json["percentageChange"] == null
+          ? ""
+          : json["percentageChange"].toString(),
+      securityName: json["securityName"] == null ? "" : json["securityName"],
+      securityId: json["securityId"] ?? -1,
+      totalTrades:
+          json['totalTrades'] == null ? "" : json['totalTrades'].toString(),
+      closingPrice:
+          json['closingPrice'] == null ? "" : json['closingPrice'].toString(),
+      turnover: json['turnover'] == null ? "" : json['turnover'].toString(),
+      shareTraded:
+          json['shareTraded'] == null ? "" : json['shareTraded'].toString(),
+      lastTradedPrice: json['lastTradedPrice'] == null
+          ? ""
+          : json['lastTradedPrice'].toString(),
+    );
+  }
 }
