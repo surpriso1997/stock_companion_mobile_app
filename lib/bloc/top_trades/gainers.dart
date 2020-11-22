@@ -41,7 +41,7 @@ class GainersBloc extends Bloc<CommonEvent, CommonState> {
     } else if (state is RefreshErrorState) {
       yield RefreshingItems(items: _repo.gainers);
       try {
-        var res = await _repo.getTopGainers();
+        var res = await _repo.getTopGainers(isRefreshRequest: true);
         if (res.isNotEmpty) {
           yield FetchedItemsState(items: res);
         }
