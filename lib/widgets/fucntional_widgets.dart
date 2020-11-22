@@ -17,3 +17,23 @@ Widget buildFloatingActionButton(
     ),
   );
 }
+
+Widget progressIndicator() {
+  return Center(child: CircularProgressIndicator());
+}
+
+Widget errorWidget(String message, Function onPressed) {
+  return Column(
+    children: [
+      Text(message),
+      RaisedButton(
+        onPressed: onPressed,
+        child: Text("Try again"),
+      )
+    ],
+  );
+}
+
+Widget noDataFound({String message}) {
+  return Text(message ?? "No data available");
+}
