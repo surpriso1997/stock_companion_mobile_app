@@ -6,7 +6,7 @@ final primary_color = Color(0xff0D023B);
 final primary_color_dark = Color(0xff253559);
 final primary_text_highlight_color = Color(0xffF6B129);
 final font_family = "Roboto";
-
+final bold = FontWeight.bold;
 final whiteC = Colors.white;
 final blackC = Colors.black;
 final greenC = Colors.green;
@@ -34,7 +34,7 @@ final _baseTheme = ThemeData(
       color: primary_text_highlight_color,
       fontSize: 16,
     ),
-    dataTextStyle: _baseTextStyle.copyWith(fontSize: 16),
+    dataTextStyle: _baseTextStyle.copyWith(fontSize: 14, color: blackC),
   ),
   textTheme: TextTheme(
     headline1: _baseTextStyle.copyWith(),
@@ -73,5 +73,6 @@ final themeData = {
       backgroundColor: Colors.black,
       textSelectionColor: primary_text_highlight_color,
       scaffoldBackgroundColor: Colors.white,
+      // scaffoldBackgroundColor: Color(0xff2A2c2c),
       cardTheme: CardTheme())
 };
