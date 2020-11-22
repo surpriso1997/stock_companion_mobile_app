@@ -29,7 +29,8 @@ class ErrorState extends CommonState {
   const ErrorState({this.message});
 }
 
-class RefreshErrorState extends CommonState {
+class RefreshErrorState<T> extends CommonState {
   final String message;
-  const RefreshErrorState({this.message});
+  final List<T> items;
+  const RefreshErrorState({this.message, this.items}) : super(listItems: items);
 }
