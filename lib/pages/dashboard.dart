@@ -84,7 +84,11 @@ class _DashboardState extends State<Dashboard> {
           _buildGridViewItem(
               icon: Entypo.line_graph, title: 'Stock Price', onPressed: () {}),
           _buildGridViewItem(
-              icon: Icons.analytics, title: 'Floorsheet', onPressed: () {}),
+              icon: Icons.analytics,
+              title: 'Floorsheet',
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.floorsheet);
+              }),
           _buildGridViewItem(
               icon: AntDesign.piechart,
               title: 'Market Indices',
