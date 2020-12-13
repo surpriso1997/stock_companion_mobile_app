@@ -21,7 +21,7 @@ class TotalInfo {
 
   factory TotalInfo.fromJson(Map json) {
     return TotalInfo(
-      totalAmount: json['json[' '],'],
+      totalAmount: json['totalAmount'],
       totalQty: json['totalQty'],
       totalTrades: json['totalTrades'],
     );
@@ -29,13 +29,13 @@ class TotalInfo {
 }
 
 class PageInfo {
-  final int totalPages;
-  final int totalElements;
-  final bool last;
-  final int size;
-  final int number;
-  final int numberOfElements;
-  final bool sorted;
+  final totalPages;
+  final totalElements;
+  final last;
+  final size;
+  final number;
+  final numberOfElements;
+  final sorted;
 
   const PageInfo({
     this.totalElements,
@@ -61,52 +61,57 @@ class PageInfo {
 }
 
 class Details {
-  final int id;
+  final id;
   final contractId;
   final contracyType;
   final stockSymbol;
-  final int buyerMemberId;
-  final int sellerMemberId;
-  final int contractQuantity;
-  final double contractRate;
-  final String businessDate;
+  final buyerMemberId;
+  final sellerMemberId;
+  final contractQuantity;
+  final contractRate;
+  final businessDate;
   final tradeBookId;
   final stockId;
   final buyerBrokerName;
   final sellerBrokerName;
   final securityName;
+  final contractAmount;
 
-  const Details(
-      {this.id,
-      this.contractId,
-      this.contractQuantity,
-      this.contracyType,
-      this.stockSymbol,
-      this.buyerMemberId,
-      this.sellerMemberId,
-      this.contractRate,
-      this.businessDate,
-      this.tradeBookId,
-      this.stockId,
-      this.buyerBrokerName,
-      this.sellerBrokerName,
-      this.securityName});
+  const Details({
+    this.id,
+    this.contractId,
+    this.contractQuantity,
+    this.contracyType,
+    this.stockSymbol,
+    this.buyerMemberId,
+    this.sellerMemberId,
+    this.contractRate,
+    this.businessDate,
+    this.tradeBookId,
+    this.stockId,
+    this.buyerBrokerName,
+    this.sellerBrokerName,
+    this.securityName,
+    this.contractAmount,
+  });
 
   factory Details.fromJson(Map json) {
     return Details(
-        id: json['id'],
-        contractId: json['contractId'],
-        contractQuantity: json['contractQuantity'],
-        contracyType: json['contracyType'],
-        stockSymbol: json['stockSymbol'],
-        buyerMemberId: json['buyerMemberId'],
-        sellerMemberId: json['sellerMemberId'],
-        contractRate: json['contractRate'],
-        businessDate: json['businessDate'],
-        tradeBookId: json['tradeBookId'],
-        stockId: json['stockId'],
-        buyerBrokerName: json['buyerBrokerName'],
-        sellerBrokerName: json['sellerBrokerName'],
-        securityName: json['securityName']);
+      id: json['id'],
+      contractId: json['contractId'],
+      contractQuantity: json['contractQuantity'],
+      contracyType: json['contracyType'],
+      stockSymbol: json['stockSymbol'],
+      buyerMemberId: json['buyerMemberId'],
+      sellerMemberId: json['sellerMemberId'],
+      contractRate: json['contractRate'],
+      businessDate: json['businessDate'],
+      tradeBookId: json['tradeBookId'],
+      stockId: json['stockId'],
+      buyerBrokerName: json['buyerBrokerName'],
+      sellerBrokerName: json['sellerBrokerName'],
+      securityName: json['securityName'],
+      contractAmount: json['contractAmount'],
+    );
   }
 }
