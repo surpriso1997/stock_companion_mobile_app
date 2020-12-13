@@ -18,4 +18,12 @@ class RefreshItems extends CommonEvent {}
 
 class DeleteItems extends CommonEvent {}
 
-class FetchPaginatedItems extends CommonEvent {}
+class FetchMoreItems<T> extends CommonEvent {
+  final List<T> items;
+  const FetchMoreItems({this.items});
+}
+
+class FilterItems<T> extends CommonEvent {
+  final Map<String, dynamic> filters;
+  const FilterItems({this.filters});
+}

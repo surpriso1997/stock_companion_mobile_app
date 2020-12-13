@@ -34,8 +34,3 @@ class RefreshErrorState<T> extends CommonState {
   final List<T> items;
   const RefreshErrorState({this.message, this.items}) : super(listItems: items);
 }
-
-class FetchMoreItems<T> extends CommonState {
-  final List<T> items;
-  const FetchMoreItems({this.items});
-}
