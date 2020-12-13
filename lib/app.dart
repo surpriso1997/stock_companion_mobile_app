@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stock_companion/bloc/theme_cubit/theme_cubit.dart';
+import 'package:stock_companion/data/repository/floorsheet_repo.dart';
 import 'package:stock_companion/data/repository/market_repository.dart';
 import 'package:stock_companion/data/repository/top_trades.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProviders(
       marketReposity: IMarketReposity(baseUrl: appconfig.baseUrl),
       topTradedRepository: ITopTradesRepo(baseUrl: appconfig.baseUrl),
+      floorSheetRepository: IFloorSheetRepo(baseUrl: appconfig.baseUrl),
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
           // data: state.theme,
