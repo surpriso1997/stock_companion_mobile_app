@@ -9,6 +9,7 @@ class IFloorSheetRepo {
   TotalInfo _totalInfo;
 
   List<Details> _floorSheetList = [];
+  List<Details> get floorSheetList => _floorSheetList;
   PageInfo _pageInfo;
 
   IFloorSheetRepo({String baseUrl}) : _baseUrl = baseUrl;
@@ -32,18 +33,20 @@ class IFloorSheetRepo {
         _currentPage += 1;
       }
 
-      final res = await getRequest(url: url, params: {
+      var _params = {
         'size': size ?? 30,
-        'stockId': stockId,
-        'buyerBroker': buyerId,
-        'sellerBroker': sellerId,
         'sort': 'contractId,desc',
         'page': _currentPage
-      });
+      };
+      if (stockId != null) _params['stockId'] = stockId;
+      if (buyerId != null) _params['buyerBroker'] = buyerId;
+      if (sellerId != null) _params['sellerBroker'] = sellerId;
+
+      final res = await getRequest(url: url, params: _params);
 
       var _sheetData = res['floorsheets']['content'];
       _totalInfo = TotalInfo.fromJson(res);
-      _pageInfo = PageInfo.fromJsons(res);
+      _pageInfo = PageInfo.fromJsons(res['floorsheets']);
 
       var _data =
           _sheetData.map<Details>((item) => Details.fromJson(item)).toList();
@@ -53,8 +56,11 @@ class IFloorSheetRepo {
       }
 
       _floorSheetList.addAll(_data);
+
+      return _floorSheetList;
     } catch (e) {
-      throw ApiException(message: e?.mesage ?? Constants.error_error);
+      print(e);
+      throw ApiException(message: e.toString() ?? Constants.error_error);
     }
   }
 }
