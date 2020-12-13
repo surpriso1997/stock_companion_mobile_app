@@ -61,7 +61,7 @@ class _TransactionsState extends State<Transactions> {
                     // horizontalMargin: 44,
                     columns: [
                       DataColumn(label: Text('SN')),
-                      DataColumn(label: Text('Total Trades')),
+                      DataColumn(label: Text('Total\nTrades')),
                       DataColumn(label: Text('LTP')),
                     ],
                     rows: List.generate(

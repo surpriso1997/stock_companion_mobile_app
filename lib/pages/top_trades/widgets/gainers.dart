@@ -22,11 +22,6 @@ class _GainersState extends State<Gainers> {
     // BlocProvider.of<GainersBloc>(context).add(FetchItems());
   }
 
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
-    final width = MediaQuery.of(context).size.width;
   getDataColumnMargin(width) {
     print(width);
     if (width < 350) {
@@ -38,6 +33,26 @@ class _GainersState extends State<Gainers> {
     } else if (width > 500) {
       return 150.0;
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    final width = MediaQuery.of(context).size.width;
+    getDataColumnMargin(width) {
+      print(width);
+      if (width < 350) {
+        return 30.0;
+      } else if (width > 350 && width < 375) {
+        return 40.0;
+      } else if (width > 375) {
+        return 60.0;
+      } else if (width > 500) {
+        return 150.0;
+      }
+    }
+
     return BlocBuilder<GainersBloc, CommonState>(builder: (context, state) {
       if (state is FetchingItemsState) {
         return progressIndicator();
@@ -45,46 +60,47 @@ class _GainersState extends State<Gainers> {
         return errorWidget(state.message, () {});
       } else if (state is NoDataState) {
         return noDataFound();
-      } else if (state is RefreshingItems || state is FetchedItemsState) {}
-      return Column(
-        children: [
-          Flexible(
-            child: SingleChildScrollView(
-                child: DataTable(
-                    headingRowColor: MaterialStateProperty.resolveWith(
-                        (states) => Colors.green),
-                    headingTextStyle: Theme.of(context)
-                        .dataTableTheme
-                        .headingTextStyle
-                        .copyWith(color: whiteC),
-                    columnSpacing:
-                        //  SizeConfig.blockSizeHorizontal * 8,
-                       getDataColumnMargin(width),
-                    columns: [
-                      DataColumn(label: Text('SN')),
-                      DataColumn(label: Text('LTP')),
-                      DataColumn(label: Text('Change')),
-                    ],
-                    rows: List.generate(
-                        state.listItems.length > 20
-                            ? 20
-                            : state.listItems.length, (index) {
-                      TopItem _item = state.listItems[index];
-                      final _style = TextStyle(color: blackC, fontSize: 16);
-                      return DataRow(cells: [
-                        DataCell(Text(
-                          _item.symbol,
-                          style: _style,
-                        )),
-                        DataCell(Text(_item.ltp.toString(), style: _style)),
-                        DataCell(Text(
-                            "${_item.pointChange} (${_item.percentageChange} %)",
-                            style: _style.copyWith(fontWeight: bold))),
-                      ]);
-                    }))),
-          ),
-        ],
-      );
+      } else if (state is RefreshingItems || state is FetchedItemsState) {
+        return Column(
+          children: [
+            Flexible(
+              child: SingleChildScrollView(
+                  child: DataTable(
+                      headingRowColor: MaterialStateProperty.resolveWith(
+                          (states) => Colors.green),
+                      headingTextStyle: Theme.of(context)
+                          .dataTableTheme
+                          .headingTextStyle
+                          .copyWith(color: whiteC),
+                      columnSpacing:
+                          //  SizeConfig.blockSizeHorizontal * 8,
+                          getDataColumnMargin(width),
+                      columns: [
+                        DataColumn(label: Text('SN')),
+                        DataColumn(label: Text('LTP')),
+                        DataColumn(label: Text('Change')),
+                      ],
+                      rows: List.generate(
+                          state.listItems.length > 20
+                              ? 20
+                              : state.listItems.length, (index) {
+                        TopItem _item = state.listItems[index];
+                        final _style = TextStyle(color: blackC, fontSize: 16);
+                        return DataRow(cells: [
+                          DataCell(Text(
+                            _item.symbol,
+                            style: _style,
+                          )),
+                          DataCell(Text(_item.ltp.toString(), style: _style)),
+                          DataCell(Text(
+                              "${_item.pointChange} (${_item.percentageChange} %)",
+                              style: _style.copyWith(fontWeight: bold))),
+                        ]);
+                      }))),
+            ),
+          ],
+        );
+      }
     });
   }
 }
