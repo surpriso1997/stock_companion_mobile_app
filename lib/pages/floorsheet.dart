@@ -9,6 +9,12 @@ class Floorsheet extends StatefulWidget {
 class _FloorsheetState extends State<Floorsheet> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: AppBar(
+        title: Text("Floorsheet"),
+      ),
+      body: Container(),
+    );
   }
 }
