@@ -59,34 +59,36 @@ class _TurnoverState extends State<Turnover> {
         children: [
           Flexible(
             child: SingleChildScrollView(
-                child: DataTable(
-                    columnSpacing: getDataColumnMargin(width),
-                    headingTextStyle: Theme.of(context)
-                        .dataTableTheme
-                        .headingTextStyle
-                        .copyWith(color: whiteC),
-                    columns: [
-                      DataColumn(label: Text('SY')),
-                      DataColumn(label: Text('Turnover(Cr.)')),
-                      DataColumn(label: Text('LTP')),
-                    ],
-                    rows: List.generate(
-                        state.listItems.length > 20
-                            ? 20
-                            : state.listItems.length, (index) {
-                      TopItem _item = state.listItems[index];
-                      final _style = _theme.dataTableTheme.dataTextStyle;
-                      return DataRow(cells: [
-                        DataCell(Text(
-                          _item.symbol,
-                          style: _style.copyWith(fontWeight: FontWeight.bold),
-                        )),
-                        DataCell(Text(getTurnover(_item.turnover.toString()),
-                            style: _style)),
-                        DataCell(
-                            Text(_item.closingPrice.toString(), style: _style)),
-                      ]);
-                    }))),
+                child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                  columnSpacing: getDataColumnMargin(width),
+                  headingTextStyle: Theme.of(context)
+                      .dataTableTheme
+                      .headingTextStyle
+                      .copyWith(color: whiteC),
+                  columns: [
+                    DataColumn(label: Text('SY')),
+                    DataColumn(label: Text('Turnover(Cr.)')),
+                    DataColumn(label: Text('LTP')),
+                  ],
+                  rows: List.generate(
+                      state.listItems.length > 20 ? 20 : state.listItems.length,
+                      (index) {
+                    TopItem _item = state.listItems[index];
+                    final _style = _theme.dataTableTheme.dataTextStyle;
+                    return DataRow(cells: [
+                      DataCell(Text(
+                        _item.symbol,
+                        style: _style.copyWith(fontWeight: FontWeight.bold),
+                      )),
+                      DataCell(Text(getTurnover(_item.turnover.toString()),
+                          style: _style)),
+                      DataCell(
+                          Text(_item.closingPrice.toString(), style: _style)),
+                    ]);
+                  })),
+            )),
           ),
         ],
       );

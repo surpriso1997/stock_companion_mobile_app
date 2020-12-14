@@ -65,38 +65,41 @@ class _GainersState extends State<Gainers> {
           children: [
             Flexible(
               child: SingleChildScrollView(
-                  child: DataTable(
-                      headingRowColor: MaterialStateProperty.resolveWith(
-                          (states) => Colors.green),
-                      headingTextStyle: Theme.of(context)
-                          .dataTableTheme
-                          .headingTextStyle
-                          .copyWith(color: whiteC),
-                      columnSpacing:
-                          //  SizeConfig.blockSizeHorizontal * 8,
-                          getDataColumnMargin(width),
-                      columns: [
-                        DataColumn(label: Text('SN')),
-                        DataColumn(label: Text('LTP')),
-                        DataColumn(label: Text('Change')),
-                      ],
-                      rows: List.generate(
-                          state.listItems.length > 20
-                              ? 20
-                              : state.listItems.length, (index) {
-                        TopItem _item = state.listItems[index];
-                        final _style = TextStyle(color: blackC, fontSize: 16);
-                        return DataRow(cells: [
-                          DataCell(Text(
-                            _item.symbol,
-                            style: _style,
-                          )),
-                          DataCell(Text(_item.ltp.toString(), style: _style)),
-                          DataCell(Text(
-                              "${_item.pointChange} (${_item.percentageChange} %)",
-                              style: _style.copyWith(fontWeight: bold))),
-                        ]);
-                      }))),
+                  child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
+                    headingRowColor: MaterialStateProperty.resolveWith(
+                        (states) => Colors.green),
+                    headingTextStyle: Theme.of(context)
+                        .dataTableTheme
+                        .headingTextStyle
+                        .copyWith(color: whiteC),
+                    columnSpacing:
+                        //  SizeConfig.blockSizeHorizontal * 8,
+                        getDataColumnMargin(width),
+                    columns: [
+                      DataColumn(label: Text('SN')),
+                      DataColumn(label: Text('LTP')),
+                      DataColumn(label: Text('Change')),
+                    ],
+                    rows: List.generate(
+                        state.listItems.length > 20
+                            ? 20
+                            : state.listItems.length, (index) {
+                      TopItem _item = state.listItems[index];
+                      final _style = TextStyle(color: blackC, fontSize: 16);
+                      return DataRow(cells: [
+                        DataCell(Text(
+                          _item.symbol,
+                          style: _style,
+                        )),
+                        DataCell(Text(_item.ltp.toString(), style: _style)),
+                        DataCell(Text(
+                            "${_item.pointChange} (${_item.percentageChange} %)",
+                            style: _style.copyWith(fontWeight: bold))),
+                      ]);
+                    })),
+              )),
             ),
           ],
         );

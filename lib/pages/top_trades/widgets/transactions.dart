@@ -51,36 +51,38 @@ class _TransactionsState extends State<Transactions> {
         children: [
           Flexible(
             child: SingleChildScrollView(
-                child: DataTable(
-                    headingTextStyle: Theme.of(context)
-                        .dataTableTheme
-                        .headingTextStyle
-                        .copyWith(color: whiteC),
-                    // columnSpacing: 60,
-                    columnSpacing: getDataColumnMargin(width),
-                    // horizontalMargin: 44,
-                    columns: [
-                      DataColumn(label: Text('SN')),
-                      DataColumn(label: Text('Total\nTrades')),
-                      DataColumn(label: Text('LTP')),
-                    ],
-                    rows: List.generate(
-                        state.listItems.length > 20
-                            ? 20
-                            : state.listItems.length, (index) {
-                      TopItem _item = state.listItems[index];
-                      final _style = _theme.dataTableTheme.dataTextStyle
-                          .copyWith(fontSize: 16);
-                      return DataRow(cells: [
-                        DataCell(Text(
-                          _item.symbol,
-                          style: _style.copyWith(fontWeight: FontWeight.bold),
-                        )),
-                        DataCell(Text(_item.totalTrades, style: _style)),
-                        DataCell(Text(_item.lastTradedPrice.toString(),
-                            style: _style)),
-                      ]);
-                    }))),
+                child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                  headingTextStyle: Theme.of(context)
+                      .dataTableTheme
+                      .headingTextStyle
+                      .copyWith(color: whiteC),
+                  // columnSpacing: 60,
+                  columnSpacing: getDataColumnMargin(width),
+                  // horizontalMargin: 44,
+                  columns: [
+                    DataColumn(label: Text('SN')),
+                    DataColumn(label: Text('Total\nTrades')),
+                    DataColumn(label: Text('LTP')),
+                  ],
+                  rows: List.generate(
+                      state.listItems.length > 20 ? 20 : state.listItems.length,
+                      (index) {
+                    TopItem _item = state.listItems[index];
+                    final _style = _theme.dataTableTheme.dataTextStyle
+                        .copyWith(fontSize: 16);
+                    return DataRow(cells: [
+                      DataCell(Text(
+                        _item.symbol,
+                        style: _style.copyWith(fontWeight: FontWeight.bold),
+                      )),
+                      DataCell(Text(_item.totalTrades, style: _style)),
+                      DataCell(Text(_item.lastTradedPrice.toString(),
+                          style: _style)),
+                    ]);
+                  })),
+            )),
           ),
         ],
       );

@@ -51,32 +51,34 @@ class _SharesTradedState extends State<SharesTraded> {
         children: [
           Flexible(
             child: SingleChildScrollView(
-                child: DataTable(
-                    horizontalMargin: 30,
-                    headingTextStyle: Theme.of(context)
-                        .dataTableTheme
-                        .headingTextStyle
-                        .copyWith(color: whiteC),
-                    columnSpacing: getDataColumnMargin(width),
-                    showCheckboxColumn: false,
-                    columns: [
-                      DataColumn(label: Text('SY')),
-                      DataColumn(label: Text('Shares Traded')),
-                      DataColumn(label: Text('LTP')),
-                    ],
-                    rows: List.generate(
-                        state.listItems.length > 20
-                            ? 20
-                            : state.listItems.length, (index) {
-                      TopItem _item = state.listItems[index];
-                      final _style = TextStyle(color: blackC, fontSize: 16);
-                      return DataRow(cells: [
-                        DataCell(Text(_item.symbol, style: _style)),
-                        DataCell(Text(_item.shareTraded, style: _style)),
-                        DataCell(
-                            Text(_item.closingPrice.toString(), style: _style)),
-                      ]);
-                    }))),
+                child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                  horizontalMargin: 30,
+                  headingTextStyle: Theme.of(context)
+                      .dataTableTheme
+                      .headingTextStyle
+                      .copyWith(color: whiteC),
+                  columnSpacing: getDataColumnMargin(width),
+                  showCheckboxColumn: false,
+                  columns: [
+                    DataColumn(label: Text('SY')),
+                    DataColumn(label: Text('Shares Traded')),
+                    DataColumn(label: Text('LTP')),
+                  ],
+                  rows: List.generate(
+                      state.listItems.length > 20 ? 20 : state.listItems.length,
+                      (index) {
+                    TopItem _item = state.listItems[index];
+                    final _style = TextStyle(color: blackC, fontSize: 16);
+                    return DataRow(cells: [
+                      DataCell(Text(_item.symbol, style: _style)),
+                      DataCell(Text(_item.shareTraded, style: _style)),
+                      DataCell(
+                          Text(_item.closingPrice.toString(), style: _style)),
+                    ]);
+                  })),
+            )),
           ),
         ],
       );
