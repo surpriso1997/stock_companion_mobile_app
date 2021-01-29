@@ -31,12 +31,14 @@ class FloorsheetBloc extends Bloc<CommonEvent, FloorsheetState> {
       } on ApiException catch (e) {
         yield ErrorState(message: e.message);
       }
-    } else if (state is FetchMoreItems) {
+    } else if (event is FetchMoreItems) {
       try {
+        yield RefreshingItems(items: _repo.floorSheetList);
         await _repo.getFloorSheetData(
           isRefreshRequest: false,
           isLoadMore: true,
         );
+
         yield FetchedItemsState(items: _repo.floorSheetList);
       } on ApiException catch (e) {
         yield FetchedItemsState(items: _repo.floorSheetList);

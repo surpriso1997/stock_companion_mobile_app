@@ -1,3 +1,5 @@
+import 'package:stock_companion/models/company_list_model.dart';
+
 class FloorSheetData {
   final PageInfo pageInfo;
   final List<Details> details;
@@ -112,6 +114,21 @@ class Details {
       sellerBrokerName: json['sellerBrokerName'],
       securityName: json['securityName'],
       contractAmount: json['contractAmount'],
+    );
+  }
+
+  CompanyListModel get toCompany {
+    return CompanyListModel(
+      id: this.id,
+      companyName: this.securityName,
+      symbol: this.stockSymbol,
+      securityName: this.securityName,
+      status: "",
+      companyEmail: "",
+      website: "",
+      sectorName: "",
+      regulatoryBody: "",
+      instrumentType: "",
     );
   }
 }

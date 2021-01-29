@@ -15,6 +15,7 @@ class IFloorSheetRepo {
   IFloorSheetRepo({String baseUrl}) : _baseUrl = baseUrl;
 
   int _currentPage = 1;
+  int _totalPages = 1;
 
   getFloorSheetData({
     int size,
@@ -33,9 +34,11 @@ class IFloorSheetRepo {
         _currentPage += 1;
       }
 
+      if (_currentPage > _totalPages) return;
+
       var _params = {
-        'size': size ?? 30,
-        'sort': 'contractId,desc',
+        'size': size ?? 50,
+        // 'sort': 'contractId,desc',
         'page': _currentPage
       };
       if (stockId != null) _params['stockId'] = stockId;
@@ -47,6 +50,7 @@ class IFloorSheetRepo {
       var _sheetData = res['floorsheets']['content'];
       _totalInfo = TotalInfo.fromJson(res);
       _pageInfo = PageInfo.fromJsons(res['floorsheets']);
+      _totalPages = _pageInfo.totalPages;
 
       var _data =
           _sheetData.map<Details>((item) => Details.fromJson(item)).toList();
