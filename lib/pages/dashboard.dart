@@ -138,13 +138,19 @@ class _DashboardState extends State<Dashboard> {
           _buildGridViewItem(
               icon: FontAwesome.institution,
               title: 'Listed Stocks',
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.companies_list);
+              }),
           _buildGridViewItem(
               icon: MaterialCommunityIcons.office_building,
               title: 'Listed Brokers',
               onPressed: () {}),
           _buildGridViewItem(
-              icon: Icons.calculate, title: 'Calculator', onPressed: () {}),
+              icon: Icons.calculate,
+              title: 'Calculator',
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.calculator);
+              }),
         ],
       ),
     );
