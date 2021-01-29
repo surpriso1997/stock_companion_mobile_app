@@ -1,10 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
+import 'package:stock_companion/bloc/company/company_bloc.dart';
 import 'package:stock_companion/bloc/floorsheet/floorsheet_bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
 import 'package:stock_companion/bloc/theme_cubit/theme_cubit.dart';
 import 'package:stock_companion/bloc/top_trades/top_trades_blocs.dart';
+import 'package:stock_companion/data/repository/company_repo.dart';
 import 'package:stock_companion/data/repository/floorsheet_repo.dart';
 import 'package:stock_companion/data/repository/market_repository.dart';
 import 'package:stock_companion/data/repository/top_trades.dart';
@@ -15,20 +17,25 @@ class MultiBlocProviders extends StatelessWidget {
       {this.child,
       @required IMarketReposity marketReposity,
       @required ITopTradesRepo topTradedRepository,
-      @required IFloorSheetRepo floorSheetRepository})
+      @required IFloorSheetRepo floorSheetRepository,
+      @required ICompanyRepo companyRepository})
       : _iMarketReposity = marketReposity,
         _iTopTradesRepo = topTradedRepository,
-        _iFloorSheetBloc = floorSheetRepository;
+        _iFloorSheetBloc = floorSheetRepository,
+        _iCompanyRepository = companyRepository;
 
   final IMarketReposity _iMarketReposity;
   final ITopTradesRepo _iTopTradesRepo;
   final IFloorSheetRepo _iFloorSheetBloc;
+  final ICompanyRepo _iCompanyRepository;
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: _iMarketReposity),
+        RepositoryProvider.value(value: _iCompanyRepository),
+        RepositoryProvider.value(value: _iTopTradesRepo),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -57,6 +64,9 @@ class MultiBlocProviders extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   FloorsheetBloc(repository: _iFloorSheetBloc)),
+          BlocProvider(
+              create: (context) =>
+                  CompanyBloc(repository: _iCompanyRepository)),
         ],
         child: child,
       ),
