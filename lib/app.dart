@@ -5,6 +5,7 @@ import 'package:stock_companion/bloc/theme_cubit/theme_cubit.dart';
 import 'package:stock_companion/data/repository/company_repo.dart';
 import 'package:stock_companion/data/repository/floorsheet_repo.dart';
 import 'package:stock_companion/data/repository/market_repository.dart';
+import 'package:stock_companion/data/repository/stock_price_repo.dart';
 import 'package:stock_companion/data/repository/top_trades.dart';
 
 import 'package:stock_companion/services/services.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       topTradedRepository: ITopTradesRepo(baseUrl: appconfig.baseUrl),
       floorSheetRepository: IFloorSheetRepo(baseUrl: appconfig.baseUrl),
       companyRepository: ICompanyRepo(baseUrl: appconfig.baseUrl),
+      stockPriceRepository: IStockPriceRepo(baseUrl: appconfig.baseUrl),
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
           // data: state.theme,
