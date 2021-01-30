@@ -1,47 +1,55 @@
 import 'package:flutter/foundation.dart';
 
-class NoInternetException {
+class CustomApiExcception {
   final String message;
 
-  const NoInternetException({@required this.message});
+  const CustomApiExcception({this.message});
 }
 
-class UnAunthicatedException {
+class NoInternetException extends CustomApiExcception {
   final String message;
-  const UnAunthicatedException({@required this.message});
+
+  const NoInternetException({@required this.message}) : super(message: message);
 }
 
-class ServerSideException {
+class UnAunthicatedException extends CustomApiExcception {
   final String message;
-  const ServerSideException({@required this.message});
+  const UnAunthicatedException({@required this.message})
+      : super(message: message);
 }
 
-class NoDataException {
+class ServerSideException extends CustomApiExcception {
   final String message;
-  const NoDataException({@required this.message});
+  const ServerSideException({@required this.message}) : super(message: message);
 }
 
-class UnknownException {
+class NoDataException extends CustomApiExcception {
   final String message;
-  const UnknownException({@required this.message});
+  const NoDataException({@required this.message}) : super(message: message);
 }
 
-class Exception404 {
+class UnknownException extends CustomApiExcception {
   final String message;
-  const Exception404({@required this.message});
+  const UnknownException({@required this.message}) : super(message: message);
 }
 
-class ConnectionTimeOutException {
+class Exception404 extends CustomApiExcception {
   final String message;
-  const ConnectionTimeOutException({@required this.message});
+  const Exception404({@required this.message}) : super(message: message);
 }
 
-class WrongInputException {
+class ConnectionTimeOutException extends CustomApiExcception {
   final String message;
-  const WrongInputException({@required this.message});
+  const ConnectionTimeOutException({@required this.message})
+      : super(message: message);
 }
 
-class ApiException {
+class WrongInputException extends CustomApiExcception {
   final String message;
-  const ApiException({@required this.message});
+  const WrongInputException({@required this.message}) : super(message: message);
+}
+
+class ApiException extends CustomApiExcception {
+  final String message;
+  const ApiException({@required this.message}) : super(message: message);
 }
