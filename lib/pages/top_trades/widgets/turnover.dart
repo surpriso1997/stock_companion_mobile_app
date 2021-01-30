@@ -62,7 +62,7 @@ class _TurnoverState extends State<Turnover> {
                 child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
-                  columnSpacing: getDataColumnMargin(width),
+                  // columnSpacing: getDataColumnMargin(width),
                   headingTextStyle: Theme.of(context)
                       .dataTableTheme
                       .headingTextStyle

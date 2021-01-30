@@ -59,7 +59,7 @@ class _SharesTradedState extends State<SharesTraded> {
                       .dataTableTheme
                       .headingTextStyle
                       .copyWith(color: whiteC),
-                  columnSpacing: getDataColumnMargin(width),
+                  // columnSpacing: getDataColumnMargin(width),
                   showCheckboxColumn: false,
                   columns: [
                     DataColumn(label: Text('SY')),

@@ -59,7 +59,7 @@ class _TransactionsState extends State<Transactions> {
                       .headingTextStyle
                       .copyWith(color: whiteC),
                   // columnSpacing: 60,
-                  columnSpacing: getDataColumnMargin(width),
+                  // columnSpacing: getDataColumnMargin(width),
                   // horizontalMargin: 44,
                   columns: [
                     DataColumn(label: Text('SN')),
