@@ -53,14 +53,14 @@ class _CompanyState extends State<Company> {
                                   )));
                     },
                     title: Text(
-                      _item.companyName,
+                      _item.securityName,
                       style: TextStyle(color: blackC),
                     ),
                     leading: Text(
                       _item.symbol,
                       style: TextStyle(color: blackC),
                     ),
-                    subtitle: Text(_item.sectorName),
+                    subtitle: Text(""),
                   );
                 },
               );
