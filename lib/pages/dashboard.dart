@@ -82,7 +82,11 @@ class _DashboardState extends State<Dashboard> {
                 Navigator.pushNamed(context, Routes.top_trades_page);
               }),
           _buildGridViewItem(
-              icon: Entypo.line_graph, title: 'Stock Price', onPressed: () {}),
+              icon: Entypo.line_graph,
+              title: 'Stock Price',
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.stock_price);
+              }),
           _buildGridViewItem(
               icon: Icons.analytics,
               title: 'Floorsheet',
@@ -113,10 +117,10 @@ class _DashboardState extends State<Dashboard> {
               onPressed: () {}),
           _buildGridViewItem(
               icon: Feather.globe, title: 'SEBON Issues', onPressed: () {}),
-          _buildGridViewItem(
-              icon: Icons.forum, title: 'Forum', onPressed: () {}),
-          _buildGridViewItem(
-              icon: Icons.new_releases, title: 'News', onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: Icons.forum, title: 'Forum', onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: Icons.new_releases, title: 'News', onPressed: () {}),
           _buildGridViewItem(
               icon: FontAwesome.mortar_board,
               title: 'Stock Education',
