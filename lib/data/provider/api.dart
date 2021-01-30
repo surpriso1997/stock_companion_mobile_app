@@ -7,7 +7,7 @@ class Api {}
 getRequest(
     {@required url,
     Options options,
-    var params,
+    Map<String, dynamic> params,
     bool isRefreshRequest = false}) async {
   Dio _dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
   try {
@@ -18,7 +18,8 @@ getRequest(
   }
 }
 
-postRequest({@required url, Options options, var params}) async {
+postRequest(
+    {@required url, Options options, Map<String, dynamic> params}) async {
   Dio _dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
   try {
     var res = await _dio.post(url, options: options, queryParameters: params);
