@@ -4,30 +4,36 @@ import 'package:flutter/material.dart';
 import 'package:stock_companion/bloc/company/company_bloc.dart';
 import 'package:stock_companion/bloc/floorsheet/floorsheet_bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
+import 'package:stock_companion/bloc/stock_price/stock_price.dart';
 import 'package:stock_companion/bloc/theme_cubit/theme_cubit.dart';
 import 'package:stock_companion/bloc/top_trades/top_trades_blocs.dart';
 import 'package:stock_companion/data/repository/company_repo.dart';
 import 'package:stock_companion/data/repository/floorsheet_repo.dart';
 import 'package:stock_companion/data/repository/market_repository.dart';
+import 'package:stock_companion/data/repository/stock_price_repo.dart';
 import 'package:stock_companion/data/repository/top_trades.dart';
 
 class MultiBlocProviders extends StatelessWidget {
   final Widget child;
-  MultiBlocProviders(
-      {this.child,
-      @required IMarketReposity marketReposity,
-      @required ITopTradesRepo topTradedRepository,
-      @required IFloorSheetRepo floorSheetRepository,
-      @required ICompanyRepo companyRepository})
-      : _iMarketReposity = marketReposity,
+
+  MultiBlocProviders({
+    this.child,
+    @required IMarketReposity marketReposity,
+    @required ITopTradesRepo topTradedRepository,
+    @required IFloorSheetRepo floorSheetRepository,
+    @required ICompanyRepo companyRepository,
+    @required IStockPriceRepo stockPriceRepository,
+  })  : _iMarketReposity = marketReposity,
         _iTopTradesRepo = topTradedRepository,
         _iFloorSheetBloc = floorSheetRepository,
-        _iCompanyRepository = companyRepository;
+        _iCompanyRepository = companyRepository,
+        _iStockPriceRepository = stockPriceRepository;
 
   final IMarketReposity _iMarketReposity;
   final ITopTradesRepo _iTopTradesRepo;
   final IFloorSheetRepo _iFloorSheetBloc;
   final ICompanyRepo _iCompanyRepository;
+  final IStockPriceRepo _iStockPriceRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +73,9 @@ class MultiBlocProviders extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   CompanyBloc(repository: _iCompanyRepository)),
+          BlocProvider(
+              create: (context) =>
+                  StockPriceBloc(repository: _iStockPriceRepository)),
         ],
         child: child,
       ),
