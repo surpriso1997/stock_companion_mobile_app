@@ -2,6 +2,7 @@ import 'package:stock_companion/pages/calculator.dart';
 import 'package:stock_companion/pages/company_details.dart';
 import 'package:stock_companion/pages/floorsheet.dart';
 import 'package:stock_companion/pages/pages.dart';
+import 'package:stock_companion/pages/stock_prices.dart';
 
 class Routes {
   static const splash_page = "splash_page";
@@ -16,6 +17,7 @@ class Routes {
   static const companies_list = "companies_list";
   static const company_details = "company_details";
   static const calculator = "calculator";
+  static const stock_price = "stock_price";
 
   static var routes = {
     splash_page: (context) => Splash(),
@@ -29,6 +31,7 @@ class Routes {
     floorsheet: (context) => Floorsheet(),
     companies_list: (context) => Company(),
     company_details: (context) => CompanyDetails(),
-    calculator: (context) => Calculator()
+    calculator: (context) => Calculator(),
+    stock_price: (context) => StockPrices()
   };
 }
