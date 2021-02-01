@@ -14,4 +14,9 @@ class Constants {
   static const error_mdg_422 = "Could not process your request at the moment";
   static const error_error = "An error occured!";
   static const unauthorized_error = "User is unauthorized";
+
+  static const int dpFee = 25;
+
+  static const int capitalGainIndividual = 5;
+  static const int capitalGainCompany = 10;
 }
