@@ -1,9 +1,9 @@
-export "splash.dart";
+export 'intro/splash.dart';
 export 'dashboard/homepage.dart';
 export 'dashboard/dashboard.dart';
 export 'market/market.dart';
 export 'news/news.dart';
-export 'splash.dart';
+export 'intro/splash.dart';
 export 'user/wishlist.dart';
 export 'market/market.dart';
 export 'dashboard/more.dart';
