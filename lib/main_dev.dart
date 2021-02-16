@@ -14,6 +14,6 @@ void main() {
     child: MyApp(),
   );
 
-  runApp(configApp);
-  // runApp(DevicePreview(builder: (context) => configApp));
+  // runApp(configApp);
+  runApp(DevicePreview(builder: (context) => configApp));
 }

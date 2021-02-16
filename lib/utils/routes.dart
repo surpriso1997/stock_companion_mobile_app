@@ -1,8 +1,8 @@
-import 'package:stock_companion/pages/calculator.dart';
-import 'package:stock_companion/pages/company_details.dart';
-import 'package:stock_companion/pages/floorsheet.dart';
+import 'package:stock_companion/pages/calulator/calculator.dart';
+import 'package:stock_companion/pages/company/company_details.dart';
+import 'package:stock_companion/pages/market/floorsheet.dart';
 import 'package:stock_companion/pages/pages.dart';
-import 'package:stock_companion/pages/stock_prices.dart';
+import 'package:stock_companion/pages/company/stock_prices.dart';
 
 class Routes {
   static const splash_page = "splash_page";

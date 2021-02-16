@@ -4,7 +4,7 @@ import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
 import 'package:stock_companion/utils/index_chart_data.dart';
 import 'package:stock_companion/utils/util_functions.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import '../utils/utils.dart';
+import '../../utils/utils.dart';
 
 class Market extends StatefulWidget {
   @override

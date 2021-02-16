@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:stock_companion/pages/news.dart';
+import 'package:stock_companion/pages/news/news.dart';
 import 'package:stock_companion/pages/pages.dart';
 
 class Homepage extends StatefulWidget {

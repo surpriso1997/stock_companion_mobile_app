@@ -5,12 +5,12 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:stock_companion/bloc/bloc/common_event.dart';
 import 'package:stock_companion/bloc/floorsheet/floorsheet_bloc.dart';
 import 'package:stock_companion/models/models.dart';
-import 'package:stock_companion/pages/company_details.dart';
+import 'package:stock_companion/pages/company/company_details.dart';
 import 'package:stock_companion/pages/pages.dart';
 import 'package:stock_companion/utils/scaling.dart';
 import 'package:stock_companion/utils/utils.dart';
 import 'package:stock_companion/widgets/fucntional_widgets.dart';
-import '../bloc/floorsheet/floorsheet_state.dart';
+import '../../bloc/floorsheet/floorsheet_state.dart';
 
 class Floorsheet extends StatefulWidget {
   @override

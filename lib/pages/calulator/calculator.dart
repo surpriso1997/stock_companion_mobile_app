@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:stock_companion/pages/calulator/selling.dart';
 import 'package:stock_companion/utils/utils.dart';
 
-import 'calulator/buying.dart';
+import 'buying.dart';
 
 class Calculator extends StatefulWidget {
   @override

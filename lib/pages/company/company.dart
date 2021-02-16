@@ -5,7 +5,7 @@ import 'package:stock_companion/bloc/bloc/common_event.dart';
 import 'package:stock_companion/bloc/bloc/common_state.dart';
 import 'package:stock_companion/bloc/company/company_bloc.dart';
 import 'package:stock_companion/models/company_list_model.dart';
-import 'package:stock_companion/pages/company_details.dart';
+import 'package:stock_companion/pages/company/company_details.dart';
 import 'package:stock_companion/utils/utils.dart';
 import 'package:stock_companion/widgets/fucntional_widgets.dart';
 
