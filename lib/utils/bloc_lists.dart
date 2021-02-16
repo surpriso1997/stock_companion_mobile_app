@@ -12,31 +12,30 @@ import 'package:stock_companion/data/repository/floorsheet_repo.dart';
 import 'package:stock_companion/data/repository/market_repository.dart';
 import 'package:stock_companion/data/repository/stock_price_repo.dart';
 import 'package:stock_companion/data/repository/top_trades.dart';
+import 'package:stock_companion/utils/utils.dart';
 
 class MultiBlocProviders extends StatelessWidget {
   final Widget child;
 
   MultiBlocProviders({
     this.child,
-    @required IMarketReposity marketReposity,
-    @required ITopTradesRepo topTradedRepository,
-    @required IFloorSheetRepo floorSheetRepository,
-    @required ICompanyRepo companyRepository,
-    @required IStockPriceRepo stockPriceRepository,
-  })  : _iMarketReposity = marketReposity,
-        _iTopTradesRepo = topTradedRepository,
-        _iFloorSheetBloc = floorSheetRepository,
-        _iCompanyRepository = companyRepository,
-        _iStockPriceRepository = stockPriceRepository;
-
-  final IMarketReposity _iMarketReposity;
-  final ITopTradesRepo _iTopTradesRepo;
-  final IFloorSheetRepo _iFloorSheetBloc;
-  final ICompanyRepo _iCompanyRepository;
-  final IStockPriceRepo _iStockPriceRepository;
+  });
 
   @override
   Widget build(BuildContext context) {
+    var appconfig = AppConfig.of(context);
+
+    final IMarketReposity _iMarketReposity =
+        IMarketReposity(baseUrl: appconfig.baseUrl);
+    final ITopTradesRepo _iTopTradesRepo =
+        ITopTradesRepo(baseUrl: appconfig.baseUrl);
+    final IFloorSheetRepo _iFloorSheetBloc =
+        IFloorSheetRepo(baseUrl: appconfig.baseUrl);
+    final ICompanyRepo _iCompanyRepository =
+        ICompanyRepo(baseUrl: appconfig.baseUrl);
+    final IStockPriceRepo _iStockPriceRepository =
+        IStockPriceRepo(baseUrl: appconfig.baseUrl);
+
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: _iMarketReposity),
