@@ -13,7 +13,7 @@ class Buying extends StatefulWidget {
 }
 
 class _BuyingState extends State<Buying> {
-  int _shareAmount = 0;
+  double _shareAmount = 0;
   double _sebonComm = 0;
   double _brokerComm = 0;
 
@@ -67,8 +67,8 @@ class _BuyingState extends State<Buying> {
                   ? "0"
                   : widget.priceController.text;
 
-              var price = int.parse(_price);
-              var units = int.parse(_units);
+              var price = double.parse(_price);
+              var units = double.parse(_units);
               var _total = (price * units);
 
               _shareAmount = _total;

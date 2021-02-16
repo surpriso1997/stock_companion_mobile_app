@@ -10,7 +10,7 @@ processIndexTitle(String title) {
   return title;
 }
 
-double getBrokerCommission(int totalAmount) {
+double getBrokerCommission(double totalAmount) {
   //// Rates:
   /// 1: up to 50,000       : 0.4
   /// 2: 50,000-500,000     : 0.37
@@ -37,14 +37,14 @@ double getBrokerCommission(int totalAmount) {
   }
 }
 
-double getSebonCommission(int amount) {
+double getSebonCommission(double amount) {
   const double sebonCommission = 0.015;
 
   return amount * sebonCommission / 100;
 }
 
 double getCapitalGainTax(
-    int purchaseAmount, int sellAmount, bool isIndividual) {
+    double purchaseAmount, double sellAmount, bool isIndividual) {
   if (purchaseAmount <= sellAmount) {
     return 0;
   } else {
