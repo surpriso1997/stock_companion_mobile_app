@@ -47,12 +47,14 @@ class _CalculatorState extends State<Calculator>
     final _theme = Theme.of(context);
     final _height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
-          top: true,
-          child: Column(
-            children: [
-              Container(
+      body: SafeArea(
+        top: true,
+        bottom: true,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 9,
+              child: Container(
                 height: _height - 80,
                 child: TabBarView(controller: _tabController, children: [
                   // Container(color: whiteC),
@@ -64,11 +66,14 @@ class _CalculatorState extends State<Calculator>
                     buyController: _buytPriceSellController,
                     unitsController: _sellUnitsController,
                   ),
-                  Container(color: Colors.red),
-                  Container(color: Colors.pink),
+                  BonusShareAdjustMent(),
+                  BonusShareAdjustMent(),
                 ]),
               ),
-              Container(
+            ),
+            Flexible(
+              flex: 1,
+              child: Container(
                 height: 80,
                 color: Colors.yellow,
                 child: AppBar(
@@ -91,9 +96,89 @@ class _CalculatorState extends State<Calculator>
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class BonusShareAdjustMent extends StatefulWidget {
+  @override
+  _BonusShareAdjustMentState createState() => _BonusShareAdjustMentState();
+}
+
+class _BonusShareAdjustMentState extends State<BonusShareAdjustMent> {
+  TextEditingController _priceController;
+  TextEditingController _percentageController;
+
+  int _paidUpPerValue = 100;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _priceController = TextEditingController();
+    _percentageController = TextEditingController();
+  }
+
+  getAdjustPrice() {
+    var _price = _priceController.text ?? "0";
+    var _percent = _percentageController.text ?? "0";
+
+    var __percent = double.parse(_percent) / 100;
+
+    return int.parse(_price) / (1 + __percent);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          TextField(
+            keyboardType: TextInputType.number,
+            controller: _priceController,
+            onSubmitted: (value) {},
+            decoration: InputDecoration(
+              hintText: "Market Price Before Book Closure",
+            ),
+          ),
+          TextField(
+            keyboardType: TextInputType.number,
+            controller: _percentageController,
+            onSubmitted: (value) {},
+            decoration: InputDecoration(
+              hintText: "Percentage",
+            ),
+          ),
+
+          Text("Paid up Value per share"),
+          DropdownButton(
+            value: _paidUpPerValue,
+            onChanged: (value) {
+              _paidUpPerValue = value;
+            },
+            items: [100, 10]
+                .map(
+                  (e) => DropdownMenuItem(
+                    value: e,
+                    child: Text(
+                      e.toString(),
+                      style: TextStyle(color: blackC),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+          Text(
+            "Price After AdjustMent ",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          // Text("Rs . ${getAdjustPrice()}")
+        ],
       ),
     );
   }
