@@ -74,9 +74,9 @@ class _GainersState extends State<Gainers> {
                         .dataTableTheme
                         .headingTextStyle
                         .copyWith(color: whiteC),
-                    columnSpacing:
-                        //  SizeConfig.blockSizeHorizontal * 8,
-                        getDataColumnMargin(width),
+                    // columnSpacing:
+                    //     //  SizeConfig.blockSizeHorizontal * 8,
+                    //     getDataColumnMargin(width),
                     columns: [
                       DataColumn(label: Text('SN')),
                       DataColumn(label: Text('LTP')),

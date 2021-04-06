@@ -17,19 +17,19 @@ class LiveData {
     @required this.previousClose,
   });
 
-  final String securityId;
-  final String securityName;
-  final String symbol;
-  final int indexId;
-  final int openPrice;
-  final int highPrice;
-  final int lowPrice;
-  final int totalTradeQuantity;
-  final int lastTradedPrice;
-  final double percentageChange;
-  final DateTime lastUpdatedDateTime;
-  final dynamic lastTradedVolume;
-  final int previousClose;
+  String securityId;
+  String securityName;
+  String symbol;
+  int indexId;
+  var openPrice;
+  var highPrice;
+  var lowPrice;
+  var totalTradeQuantity;
+  var lastTradedPrice;
+  double percentageChange;
+  DateTime lastUpdatedDateTime;
+  dynamic lastTradedVolume;
+  var previousClose;
 
   LiveData copyWith({
     String securityId,

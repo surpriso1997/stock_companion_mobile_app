@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stock_companion/bloc/bloc/common_event.dart';
 import 'package:stock_companion/bloc/bloc/common_state.dart';
 import 'package:stock_companion/bloc/top_trades/top_trades_blocs.dart';
 import 'package:stock_companion/models/models.dart';
@@ -61,6 +60,7 @@ class _TransactionsState extends State<Transactions> {
                   // columnSpacing: 60,
                   // columnSpacing: getDataColumnMargin(width),
                   // horizontalMargin: 44,
+                  //
                   columns: [
                     DataColumn(label: Text('SN')),
                     DataColumn(label: Text('Total\nTrades')),

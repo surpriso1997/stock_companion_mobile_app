@@ -25,19 +25,6 @@ class _LosersState extends State<Losers> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    getDataColumnMargin(width) {
-      print(width);
-      if (width < 350) {
-        return 25.0;
-      } else if (width > 350 && width < 375) {
-        return 40.0;
-      } else if (width > 375) {
-        return 65.0;
-      } else if (width > 500) {
-        return 150.0;
-      }
-    }
-
     final _theme = Theme.of(context);
     return BlocBuilder<LosersBloc, CommonState>(builder: (context, state) {
       if (state is FetchingItemsState) {
@@ -54,7 +41,6 @@ class _LosersState extends State<Losers> {
                 child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
-                  columnSpacing: getDataColumnMargin(width),
                   headingRowColor:
                       MaterialStateProperty.resolveWith((states) => Colors.red),
                   headingTextStyle: Theme.of(context)

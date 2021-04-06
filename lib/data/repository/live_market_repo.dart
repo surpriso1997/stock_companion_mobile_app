@@ -14,18 +14,35 @@ class ILiveMarketRepository {
   List<LiveData> get liveData => _liveData;
 
   Future getLiveData(
-      {bool isRefreshRequest = false, String businessDate}) async {
+      {bool isRefreshRequest = false,
+      String businessDate,
+      bool isLoadMore = false,
+      int securityId}) async {
     // date format: 2020-10-10
-    final url = '$_baseUrl/nots/securityDailyTradeStat/58/58';
+    var url = '$_baseUrl/nots/securityDailyTradeStat/58/';
+
+    if (securityId != null) {
+      url = url + "$securityId";
+    }
+
+    if (isLoadMore) {
+      _currentPage++;
+    }
+
     try {
       var res = await getRequest(url: url, params: {
-        "size": 30,
+        "size": 100,
         'page': _currentPage,
         'businessDate': businessDate
       });
+
       var data = res.map<LiveData>((e) => LiveData.fromJson(e)).toList();
 
-      return data;
+      if (!isLoadMore) {
+        _liveData.addAll(data);
+      }
+
+      return _liveData;
     } catch (e) {
       throw ApiException(message: e?.message ?? Constants.error_error);
     }
