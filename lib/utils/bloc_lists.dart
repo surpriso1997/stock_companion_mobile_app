@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stock_companion/bloc/company/company_bloc.dart';
 import 'package:stock_companion/bloc/floorsheet/floorsheet_bloc.dart';
 import 'package:stock_companion/bloc/live_market/live_market_bloc.dart';
+import 'package:stock_companion/bloc/market_depth/bloc/market_depth_bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
 import 'package:stock_companion/bloc/stock_price/stock_price.dart';
 import 'package:stock_companion/bloc/theme_cubit/theme_cubit.dart';
@@ -11,6 +12,7 @@ import 'package:stock_companion/bloc/top_trades/top_trades_blocs.dart';
 import 'package:stock_companion/data/repository/company_repo.dart';
 import 'package:stock_companion/data/repository/floorsheet_repo.dart';
 import 'package:stock_companion/data/repository/live_market_repo.dart';
+import 'package:stock_companion/data/repository/market_depth_repo.dart';
 import 'package:stock_companion/data/repository/market_repository.dart';
 import 'package:stock_companion/data/repository/stock_price_repo.dart';
 import 'package:stock_companion/data/repository/top_trades.dart';
@@ -40,6 +42,8 @@ class MultiBlocProviders extends StatelessWidget {
 
     final ILiveMarketRepository _iLiveMarketRepository =
         ILiveMarketRepository(baseUrl: appconfig.baseUrl);
+    final IMarketDepthRepository _iMarketDepthRepository =
+        IMarketDepthRepository(appconfig.baseUrl);
 
     return MultiRepositoryProvider(
       providers: [
@@ -82,6 +86,8 @@ class MultiBlocProviders extends StatelessWidget {
                   StockPriceBloc(repository: _iStockPriceRepository)),
           BlocProvider(
               create: (context) => LiveMarketBloc(_iLiveMarketRepository)),
+          BlocProvider(
+              create: (context) => MarketDepthBloc(_iMarketDepthRepository)),
         ],
         child: child,
       ),

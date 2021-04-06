@@ -1,5 +1,5 @@
-class MarketDepth {
-  MarketDepth({
+class MarketDepthData {
+  MarketDepthData({
     this.totalBuyQty,
     this.marketDepth,
     this.totalSellQty,
@@ -9,7 +9,8 @@ class MarketDepth {
   MarketDepthClass marketDepth;
   int totalSellQty;
 
-  factory MarketDepth.fromJson(Map<String, dynamic> json) => MarketDepth(
+  factory MarketDepthData.fromJson(Map<String, dynamic> json) =>
+      MarketDepthData(
         totalBuyQty: json["totalBuyQty"],
         marketDepth: MarketDepthClass.fromJson(json["marketDepth"]),
         totalSellQty: json["totalSellQty"],
