@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:stock_companion/pages/market_depth/market_depth.dart';
 import 'package:stock_companion/utils/utils.dart';
 
 class Dashboard extends StatefulWidget {
@@ -98,15 +100,20 @@ class _DashboardState extends State<Dashboard> {
               title: 'Market Indices',
               onPressed: () {}),
           _buildGridViewItem(
-              icon: Feather.target, title: 'Market Depth', onPressed: () {}),
+              icon: Feather.target,
+              title: 'Market Depth',
+              onPressed: () {
+                Navigator.push(
+                    context, CupertinoPageRoute(builder: (_) => MarketDepth()));
+              }),
           _buildGridViewItem(
               icon: AntDesign.eyeo, title: 'Watchlist', onPressed: () {}),
           _buildGridViewItem(
               icon: Icons.notification_important_outlined,
               title: 'Stock Alert',
               onPressed: () {}),
-          _buildGridViewItem(
-              icon: SimpleLineIcons.notebook, title: 'Notes', onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: SimpleLineIcons.notebook, title: 'Notes', onPressed: () {}),
           _buildGridViewItem(
               icon: MaterialIcons.next_week,
               title: 'Proposed',
@@ -121,24 +128,24 @@ class _DashboardState extends State<Dashboard> {
           //     icon: Icons.forum, title: 'Forum', onPressed: () {}),
           // _buildGridViewItem(
           //     icon: Icons.new_releases, title: 'News', onPressed: () {}),
-          _buildGridViewItem(
-              icon: FontAwesome.mortar_board,
-              title: 'Stock Education',
-              onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: FontAwesome.mortar_board,
+          //     title: 'Stock Education',
+          //     onPressed: () {}),
           _buildGridViewItem(
               icon: AntDesign.notification, title: 'Notices', onPressed: () {}),
-          _buildGridViewItem(
-              icon: FontAwesome.handshake_o,
-              title: 'Mero Share',
-              onPressed: () {}),
-          _buildGridViewItem(
-              icon: MaterialCommunityIcons.ring,
-              title: 'Gold Silver',
-              onPressed: () {}),
-          _buildGridViewItem(
-              icon: Feather.dollar_sign,
-              title: 'Exchange Rates',
-              onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: FontAwesome.handshake_o,
+          //     title: 'Mero Share',
+          //     onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: MaterialCommunityIcons.ring,
+          //     title: 'Gold Silver',
+          //     onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: Feather.dollar_sign,
+          //     title: 'Exchange Rates',
+          //     onPressed: () {}),
           _buildGridViewItem(
               icon: FontAwesome.institution,
               title: 'Listed Stocks',
