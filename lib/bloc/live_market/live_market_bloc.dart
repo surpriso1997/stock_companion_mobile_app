@@ -7,9 +7,6 @@ import 'package:stock_companion/bloc/bloc/common_state.dart';
 import 'package:stock_companion/data/repository/live_market_repo.dart';
 import 'package:stock_companion/utils/utils.dart';
 
-part 'live_market_event.dart';
-part 'live_market_state.dart';
-
 class LiveMarketBloc extends Bloc<CommonEvent, CommonState> {
   LiveMarketBloc(ILiveMarketRepository repository)
       : _repo = repository,
