@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:stock_companion/pages/market/market_indices.dart';
 import 'package:stock_companion/pages/market_depth/market_depth.dart';
 import 'package:stock_companion/utils/utils.dart';
 
@@ -98,20 +99,23 @@ class _DashboardState extends State<Dashboard> {
           _buildGridViewItem(
               icon: AntDesign.piechart,
               title: 'Market Indices',
-              onPressed: () {}),
-          _buildGridViewItem(
-              icon: Feather.target,
-              title: 'Market Depth',
               onPressed: () {
-                Navigator.push(
-                    context, CupertinoPageRoute(builder: (_) => MarketDepth()));
+                Navigator.push(context,
+                    CupertinoPageRoute(builder: (_) => MarketIndices()));
               }),
+          // _buildGridViewItem(
+          //     icon: Feather.target,
+          //     title: 'Market Depth',
+          //     onPressed: () {
+          //       Navigator.push(
+          //           context, CupertinoPageRoute(builder: (_) => MarketDepth()));
+          //     }),
           _buildGridViewItem(
               icon: AntDesign.eyeo, title: 'Watchlist', onPressed: () {}),
-          _buildGridViewItem(
-              icon: Icons.notification_important_outlined,
-              title: 'Stock Alert',
-              onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: Icons.notification_important_outlined,
+          //     title: 'Stock Alert',
+          //     onPressed: () {}),
           // _buildGridViewItem(
           //     icon: SimpleLineIcons.notebook, title: 'Notes', onPressed: () {}),
           _buildGridViewItem(
