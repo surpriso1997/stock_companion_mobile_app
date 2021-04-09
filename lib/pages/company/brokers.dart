@@ -26,6 +26,7 @@ class _BrokersState extends State<Brokers> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Brokers"),
+        actions: [Icon(Icons.search, color: whiteC)],
       ),
       body: BlocBuilder<BrokersListBloc, CommonState>(
         builder: (context, state) {
@@ -42,7 +43,10 @@ class _BrokersState extends State<Brokers> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          CupertinoPageRoute(builder: (_) => BrokerSummary()),
+                          CupertinoPageRoute(
+                              builder: (_) => BrokerSummary(
+                                    broker: state.listItems[index],
+                                  )),
                         );
                       },
                       child: Container(
