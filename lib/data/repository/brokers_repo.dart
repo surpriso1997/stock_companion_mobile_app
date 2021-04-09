@@ -10,7 +10,7 @@ class IBrokerRepository {
   List<BrokersModel> get brokers => _brokers;
 
   getBrokers({bool isRefreshRequest = false}) async {
-    var url = _baseUrl + "/nots/member";
+    var url = _baseUrl + "/nots/member?size=100";
 
     try {
       var res = await getRequest(url: url);
