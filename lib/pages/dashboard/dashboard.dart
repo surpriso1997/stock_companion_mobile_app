@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:stock_companion/pages/company/brokers.dart';
 import 'package:stock_companion/pages/market/market_indices.dart';
 import 'package:stock_companion/pages/market_depth/market_depth.dart';
 import 'package:stock_companion/utils/utils.dart';
@@ -159,7 +160,10 @@ class _DashboardState extends State<Dashboard> {
           _buildGridViewItem(
               icon: MaterialCommunityIcons.office_building,
               title: 'Listed Brokers',
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Brokers()));
+              }),
           _buildGridViewItem(
               icon: Icons.calculate,
               title: 'Calculator',
