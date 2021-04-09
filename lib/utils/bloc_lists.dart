@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stock_companion/bloc/brokers/brokers_bloc.dart';
 import 'package:stock_companion/bloc/company/company_bloc.dart';
 import 'package:stock_companion/bloc/floorsheet/floorsheet_bloc.dart';
+import 'package:stock_companion/bloc/index_graph/index_graph_bloc.dart';
 import 'package:stock_companion/bloc/live_market/live_market_bloc.dart';
 import 'package:stock_companion/bloc/market_depth/bloc/market_depth_bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:stock_companion/bloc/top_trades/top_trades_blocs.dart';
 import 'package:stock_companion/data/repository/brokers_repo.dart';
 import 'package:stock_companion/data/repository/company_repo.dart';
 import 'package:stock_companion/data/repository/floorsheet_repo.dart';
+import 'package:stock_companion/data/repository/index_graph_repository.dart';
 import 'package:stock_companion/data/repository/live_market_repo.dart';
 import 'package:stock_companion/data/repository/market_depth_repo.dart';
 import 'package:stock_companion/data/repository/market_repository.dart';
@@ -49,6 +51,9 @@ class MultiBlocProviders extends StatelessWidget {
 
     final IBrokerRepository _iBrokerRepository =
         IBrokerRepository(baseUrl: appconfig.baseUrl);
+
+    final _indexGraphRepository =
+        IIndexGraphRepository(baseUrl: appconfig.baseUrl);
 
     return MultiRepositoryProvider(
       providers: [
@@ -96,6 +101,8 @@ class MultiBlocProviders extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   BrokersListBloc(repository: _iBrokerRepository)),
+          BlocProvider(
+              create: (context) => IndexGraphBloc(_indexGraphRepository)),
         ],
         child: child,
       ),
