@@ -10,16 +10,17 @@ class IBrokerRepository {
   List<BrokersModel> get brokers => _brokers;
 
   getBrokers({bool isRefreshRequest = false}) async {
-    var url = _baseUrl + "nots/member";
+    var url = _baseUrl + "/nots/member";
 
     try {
-      var res = getRequest(url: url);
+      var res = await getRequest(url: url);
 
       var data = res['content'] as List;
 
       _brokers.clear();
       _brokers =
           data.map<BrokersModel>((e) => BrokersModel.fromJson(e)).toList();
+      return _brokers;
     } catch (e) {
       throw ApiException(message: "Error occurred");
     }
