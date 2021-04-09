@@ -12,7 +12,7 @@ class IndexGraphInitial extends IndexGraphState {}
 class FetchingGraph extends IndexGraphState {}
 
 class FetchedGraph extends IndexGraphState {
-  final data;
+  final List<List<num>> data;
   const FetchedGraph({this.data});
 }
 

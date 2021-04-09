@@ -7,19 +7,19 @@ abstract class IndexGraphEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetGraph {
+class GetGraph extends IndexGraphEvent {
   final int index;
 
   const GetGraph({this.index});
 }
 
-class RefreshGraph {
+class RefreshGraph extends IndexGraphEvent {
   final int index;
 
   const RefreshGraph({this.index});
 }
 
-class ConvertGraphToCandle {
+class ConvertGraphToCandle extends IndexGraphEvent {
   final int index;
 
   const ConvertGraphToCandle({this.index});

@@ -18,7 +18,7 @@ class IndexGraphBloc extends Bloc<IndexGraphEvent, IndexGraphState> {
   Stream<IndexGraphState> mapEventToState(
     IndexGraphEvent event,
   ) async* {
-    if (state is GetGraph) {
+    if (event is GetGraph) {
       try {
         await _repo.getIndexChartData();
 
@@ -31,10 +31,10 @@ class IndexGraphBloc extends Bloc<IndexGraphEvent, IndexGraphState> {
     }
 
     ///
-    else if (state is RefreshGraph) {
+    else if (event is RefreshGraph) {
     }
 
     ///
-    else if (state is ConvertGraphToCandle) {}
+    else if (event is ConvertGraphToCandle) {}
   }
 }
