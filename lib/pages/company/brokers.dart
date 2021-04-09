@@ -37,27 +37,60 @@ class _BrokersState extends State<Brokers> {
                 itemBuilder: (context, index) {
                   BrokersModel item = state.listItems[index];
                   return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                     child: InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                                builder: (_) => BrokerSummary()));
+                          context,
+                          CupertinoPageRoute(builder: (_) => BrokerSummary()),
+                        );
                       },
                       child: Container(
-                        decoration: BoxDecoration(boxShadow: [
-                          BoxShadow(
-                              color: blackC.withOpacity(0.3),
-                              blurRadius: 3,
-                              offset: Offset(5, 5))
-                        ]),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: blackC),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: blackC.withOpacity(0.3),
+                                blurRadius: 1,
+                                offset: Offset(5, 5),
+                              ),
+                            ]),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(item.memberName),
-                            Text("Broker code: " + item.memberCode),
-                            Text("Phone no: " +
-                                item.authorizedContactPersonNumber),
-                            Text(item.tmsLink),
+                            Text(
+                              item.memberName,
+                              style: TextStyle(
+                                  color: blackC,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Broker code: " + item.memberCode,
+                              style: TextStyle(
+                                color: blackC,
+                                fontSize: 14,
+                              ),
+                            ),
+                            Text(
+                              "Phone no: " + item.authorizedContactPersonNumber,
+                              style: TextStyle(
+                                color: blackC,
+                                fontSize: 14,
+                              ),
+                            ),
+                            Text(
+                              item.tmsLink,
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                color: blackC,
+                                fontSize: 14,
+                              ),
+                            ),
                           ],
                         ),
                       ),
