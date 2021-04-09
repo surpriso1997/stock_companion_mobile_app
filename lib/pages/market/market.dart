@@ -117,6 +117,11 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
       );
     }
 
+    clickableText(String text, Function onPressed) {
+      return InkWell(
+          onTap: onPressed, child: Text(text, style: TextStyle(color: blackC)));
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -204,11 +209,11 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("1D"),
-                      Text("1W"),
-                      Text("1M"),
-                      Text("1y"),
-                      Text("MAX")
+                      clickableText("1D", () {}),
+                      clickableText("1W", () {}),
+                      clickableText("1M", () {}),
+                      clickableText("1y", () {}),
+                      clickableText("MAX", () {}),
                     ],
                   ),
                 ),
@@ -226,105 +231,6 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
             ),
             SizedBox(height: 20),
             //maket indices
-
-            BlocBuilder<MarketSummaryCubit, MarketSummaryState>(
-              buildWhen: (oldState, newState) {
-                if (newState is MIndicesLoading ||
-                    newState is MIndicesFetched) {
-                  return true;
-                }
-                return false;
-              },
-              builder: (context, state) {
-                print(state);
-
-                if (state is MIndicesLoading) {
-                  return showLoadingIndicator();
-                } else if (state is MIndicesError) {
-                  return Text(state.error);
-                } else if (state is MIndicesFetched) {
-                  var indices = state.index;
-
-                  return Column(
-                    children: [
-                      _buildTableRowTitle(
-                        title: "Indices",
-                        value: "Value",
-                        diff: "+/-",
-                        per: "%",
-                        theme: theme,
-                        bgColor: primaryColor,
-                        textColor: theme.textSelectionColor,
-                      ),
-                      Column(children: [
-                        ...List.generate(indices.length, (index) {
-                          var _singleIndex = indices[index];
-
-                          return _buildTableRowCell(
-                            title: _singleIndex.index,
-                            value: _singleIndex.currentValue,
-                            diff: _singleIndex.change,
-                            per: _singleIndex.perChange,
-                            theme: theme,
-                            bgColor: Colors.green,
-                          );
-                        }),
-                      ])
-                    ],
-                  );
-                } else
-                  return Container();
-              },
-            ),
-
-            SizedBox(height: 30),
-            BlocBuilder<MarketSummaryCubit, MarketSummaryState>(
-              buildWhen: (newState, oldState) {
-                if (newState is MSubIndicesFetched ||
-                    newState is MSubIndicesLoading) {
-                  return true;
-                }
-                return false;
-              },
-              builder: (context, state) {
-                if (state is MSubIndicesLoading) {
-                  return showLoadingIndicator();
-                } else if (state is MSubIndicesError) {
-                  return Text(state.error);
-                } else if (state is MSubIndicesFetched) {
-                  var indices = state.subIndices;
-
-                  return Column(
-                    children: [
-                      _buildTableRowTitle(
-                        title: "Indices",
-                        value: "Value",
-                        diff: "+/-",
-                        per: "%",
-                        theme: theme,
-                        bgColor: primaryColor,
-                        textColor: theme.textSelectionColor,
-                      ),
-                      Column(children: [
-                        ...List.generate(indices.length, (index) {
-                          var _singleIndex = indices[index];
-
-                          return _buildTableRowCell(
-                            title: _singleIndex.index,
-                            value: _singleIndex.currentValue,
-                            diff: _singleIndex.change,
-                            per: _singleIndex.perChange,
-                            theme: theme,
-                            bgColor: Colors.green,
-                          );
-                        }),
-                      ])
-                    ],
-                  );
-                } else
-                  return Container();
-              },
-            ),
           ],
         ),
       ),
@@ -337,7 +243,7 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
 
 showLoadingIndicator() {
   return CircularProgressIndicator(
-    strokeWidth: 0.8,
+    strokeWidth: 0.98,
     valueColor: AlwaysStoppedAnimation(Colors.blue),
   );
 }
