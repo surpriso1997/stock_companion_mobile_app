@@ -57,3 +57,8 @@ double getCapitalGainTax(
     }
   }
 }
+
+int getEpochFromDate(DateTime now, int days) {
+  var oldDate = now.subtract(Duration(days: days));
+  return oldDate.millisecondsSinceEpoch;
+}
