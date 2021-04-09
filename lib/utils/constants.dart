@@ -19,4 +19,11 @@ class Constants {
 
   static const int capitalGainIndividual = 5;
   static const int capitalGainCompany = 10;
+
+  static const maxDateEpoch = 1000170000;
+
+  static const NEPSE = "NEPSE";
+  static const FLOAT = "FLOAT";
+  static const SENSITIVE = "SENSITIVE";
+  static const SENFLOAT = "SENFLOAT";
 }
