@@ -1,14 +1,6 @@
 # stock_companion
 
-A new Flutter project.
+Stock companion is an application aimed to help the investors of Nepal Stock Market. We aim to provide data visualization, floorsheet data, technical analysis free of cost. Stock companion is a part of our final year project of Bachelors in computer science.
 
-Branching and deployment information:
 
-android-prod : android apk produced from this branch. Create android version tags.
-
-ios-prod: ios ipa produced from this branch. Create ios version tags.
-
-wip : Work in progress
-
-develop: Merge wip into develop before merging "develop" into "android-prod" or "ios-prod".
 
