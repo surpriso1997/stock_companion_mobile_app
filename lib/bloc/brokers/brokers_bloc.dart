@@ -6,8 +6,8 @@ import 'package:stock_companion/bloc/bloc/common_state.dart';
 import 'package:stock_companion/data/repository/brokers_repo.dart';
 import 'package:stock_companion/utils/utils.dart';
 
-class BrokersBloc extends Bloc<CommonEvent, CommonState> {
-  BrokersBloc({IBrokerRepository repository})
+class BrokersListBloc extends Bloc<CommonEvent, CommonState> {
+  BrokersListBloc({IBrokerRepository repository})
       : _repo = repository,
         super(FetchingItemsState());
 
