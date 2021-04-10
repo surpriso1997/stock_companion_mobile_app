@@ -46,7 +46,7 @@ double getSebonCommission(double amount) {
 
 double getCapitalGainTax(
     double purchaseAmount, double sellAmount, bool isIndividual) {
-  if (purchaseAmount <= sellAmount) {
+  if (purchaseAmount >= sellAmount) {
     return 0;
   } else {
     if (isIndividual)
