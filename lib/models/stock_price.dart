@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+import 'package:stock_companion/models/models.dart';
 
 class StockPrice {
   StockPrice({
@@ -64,4 +65,18 @@ class StockPrice {
         averageTradedPrice: json["averageTradedPrice"],
         marketCapitalization: json["marketCapitalization"],
       );
+
+  CompanyListModel gCompanyFromStockPrice() {
+    return CompanyListModel(
+        id: this.id,
+        companyName: this.securityName,
+        symbol: symbol,
+        securityName: this.securityName,
+        status: "",
+        companyEmail: "",
+        website: "",
+        sectorName: "",
+        regulatoryBody: "",
+        instrumentType: "");
+  }
 }
