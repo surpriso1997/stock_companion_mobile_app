@@ -19,8 +19,9 @@ class IndexGraphBloc extends Bloc<IndexGraphEvent, IndexGraphState> {
     IndexGraphEvent event,
   ) async* {
     if (event is GetGraph) {
+      yield FetchingGraph();
       try {
-        await _repo.getIndexChartData();
+        await _repo.getIndexChartData(from: event.endDate, to: event.startDate);
 
         if (_repo.chartData != null) {
           yield FetchedGraph(data: _repo.chartData);

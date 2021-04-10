@@ -9,8 +9,10 @@ abstract class IndexGraphEvent extends Equatable {
 
 class GetGraph extends IndexGraphEvent {
   final int index;
+  final String startDate;
+  final String endDate;
 
-  const GetGraph({this.index});
+  const GetGraph({this.index, this.startDate, this.endDate});
 }
 
 class RefreshGraph extends IndexGraphEvent {

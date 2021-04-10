@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:stock_companion/data/provider/api.dart';
+import 'package:stock_companion/models/index_history.dart';
 import 'package:stock_companion/utils/utils.dart';
 
 class IIndexGraphRepository {
@@ -16,37 +17,54 @@ class IIndexGraphRepository {
   getIndexChartData({
     var duration,
     String indexType = Constants.NEPSE,
-    int from,
-    int to,
+    String from,
+    String to,
     int indexId = 58,
   }) async {
-    var url = _baseUrl + "/nots/graph/index/$indexId";
+    var url = _baseUrl + "/nots/graph/index";
 
     if (from == null) {
-      from =
-          DateTime.now().subtract(Duration(days: 365)).millisecondsSinceEpoch;
-      from = (from / 1000).floor();
+      //for nepse alpha
+      // from =
+      //     DateTime.now().subtract(Duration(days: 365)).millisecondsSinceEpoch;
+      // from = (from / 1000).floor();
     }
     if (to == null) {
-      to = DateTime.now().millisecondsSinceEpoch;
-      to = (to / 1000).floor();
+      // for nepse alpha
+      // to = DateTime.now().millisecondsSinceEpoch;
+      // to = (to / 1000).floor();
     }
 
     // var url =
     //     "https://nepsealpha.com/trading/1/history?symbol=$indexData&resoluion=1D&from=$from&to=$to";
 
-    var params = {
-      "symbol": indexType,
-      "resolution": "1D",
-      "from": (from / 1000).floor(),
-      "to": (to / 1000).floor()
+    Map<String, dynamic> params = {
+      /// the recent date of format 2021-04-10
+      "endDate": to,
+
+      /// the older date
+      "startDate": from
     };
+
+    if (from != null || to != null) {
+      params['indexCode'] = indexId;
+    } else {
+      url = url + "/$indexId";
+    }
+
+    ///NEPSSE ALPHA params
+    // var params = {
+    //   "symbol": indexType,
+    //   "resolution": "1D",
+    //   "from": (from / 1000).floor(),
+    //   "to": (to / 1000).floor()
+    // };
     print(params);
 
     try {
       List res = await getRequest(
         url: url,
-        // params: params,
+        params: params,
       );
       print(res.toString());
 
@@ -66,7 +84,7 @@ class IIndexGraphRepository {
         //   data.add(_data);
         // }
         //
-
+        _chartData.clear();
         _chartData = res.map<List<num>>((e) {
           List<num> _a = [];
 
