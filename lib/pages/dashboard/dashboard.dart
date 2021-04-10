@@ -19,10 +19,13 @@ class _DashboardState extends State<Dashboard> {
         onTap: onPressed,
         child: Container(
           decoration: BoxDecoration(
-              color: Theme.of(context).textSelectionColor,
+              // color: Theme.of(context).textSelectionColor,
+              color: Color(0xff5acf9a),
               borderRadius: BorderRadius.circular(10),
-              border:
-                  Border.all(width: 1, color: Theme.of(context).primaryColor),
+              border: Border.all(
+                width: 1,
+                color: Theme.of(context).primaryColor,
+              ),
               boxShadow: [
                 BoxShadow(
                   color: Theme.of(context).primaryColor,
@@ -35,7 +38,8 @@ class _DashboardState extends State<Dashboard> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, size: 35, color: Theme.of(context).primaryColor),
+              Icon(icon, size: 35, color: Colors.black),
+              SizedBox(height: 10),
               Text(
                 title,
                 textAlign: TextAlign.center,
@@ -104,13 +108,13 @@ class _DashboardState extends State<Dashboard> {
                 Navigator.push(context,
                     CupertinoPageRoute(builder: (_) => MarketIndices()));
               }),
-          // _buildGridViewItem(
-          //     icon: Feather.target,
-          //     title: 'Market Depth',
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context, CupertinoPageRoute(builder: (_) => MarketDepth()));
-          //     }),
+          _buildGridViewItem(
+              icon: Feather.target,
+              title: 'Market Depth',
+              onPressed: () {
+                Navigator.push(
+                    context, CupertinoPageRoute(builder: (_) => MarketDepth()));
+              }),
           _buildGridViewItem(
               icon: AntDesign.eyeo, title: 'Watchlist', onPressed: () {}),
           // _buildGridViewItem(
