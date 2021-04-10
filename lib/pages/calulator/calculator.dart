@@ -47,10 +47,13 @@ class _CalculatorState extends State<Calculator>
     final _theme = Theme.of(context);
     final _height = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomPadding: false,
       body: SafeArea(
         top: true,
         bottom: true,
         child: Column(
+          // mainAxisSize: MainAxisSize.min,
           children: [
             Expanded(
               flex: 9,
