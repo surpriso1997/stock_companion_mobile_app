@@ -9,8 +9,8 @@ getRequest(
     Options options,
     Map<String, dynamic> params,
     bool isRefreshRequest = false}) async {
-  Dio _dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
   try {
+    Dio _dio = Dio(BaseOptions(receiveDataWhenStatusError: true));
     var res = await _dio.get(url, options: options, queryParameters: params);
     return res.data;
   } catch (e) {
