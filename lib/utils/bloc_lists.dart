@@ -7,6 +7,8 @@ import 'package:stock_companion/bloc/floorsheet/floorsheet_bloc.dart';
 import 'package:stock_companion/bloc/index_graph/index_graph_bloc.dart';
 import 'package:stock_companion/bloc/live_market/live_market_bloc.dart';
 import 'package:stock_companion/bloc/market_depth/bloc/market_depth_bloc.dart';
+import 'package:stock_companion/bloc/market_summary/market_indices.bloc.dart';
+import 'package:stock_companion/bloc/market_summary/market_subindices.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
 import 'package:stock_companion/bloc/stock_price/stock_price.dart';
 import 'package:stock_companion/bloc/theme_cubit/theme_cubit.dart';
@@ -54,6 +56,8 @@ class MultiBlocProviders extends StatelessWidget {
 
     final _indexGraphRepository =
         IIndexGraphRepository(baseUrl: appconfig.baseUrl);
+
+    final _imarketRepository = IMarketReposity(baseUrl: appconfig.baseUrl);
 
     return MultiRepositoryProvider(
       providers: [
@@ -103,6 +107,12 @@ class MultiBlocProviders extends StatelessWidget {
                   BrokersListBloc(repository: _iBrokerRepository)),
           BlocProvider(
               create: (context) => IndexGraphBloc(_indexGraphRepository)),
+          BlocProvider(
+              create: (context) =>
+                  MarketIndicesBloc(repository: _imarketRepository)),
+          BlocProvider(
+              create: (context) =>
+                  MarketSubIndicesBloc(repository: _imarketRepository)),
         ],
         child: child,
       ),
