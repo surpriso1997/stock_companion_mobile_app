@@ -9,7 +9,7 @@ class DataFilter {
     // currentValue = data[0];
 
     for (var item in data) {
-      if (item[0] - currentValue > 100) {
+      if (item[0] - currentValue > 300) {
         // print("current value: $currentValue");
         currentValue = item[0];
 

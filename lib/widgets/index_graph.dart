@@ -17,13 +17,14 @@ enum DurationType { DAY, WEEK, MONTH, YEAR, MAX }
 
 class _IndexGraphState extends State<IndexGraph> {
   DurationType _durationType = DurationType.DAY;
+  clickableText(String text, Function onPressed) {
+    return InkWell(
+        onTap: onPressed, child: Text(text, style: TextStyle(color: blackC)));
+  }
 
   @override
   Widget build(BuildContext context) {
-    clickableText(String text, Function onPressed) {
-      return InkWell(
-          onTap: onPressed, child: Text(text, style: TextStyle(color: blackC)));
-    }
+    print("rebuild");
 
     return Column(
       children: [
@@ -36,17 +37,17 @@ class _IndexGraphState extends State<IndexGraph> {
             );
           } else if (state is FetchedGraph) {
             // List<List<num>> data = state.data;
-            var dataSource = state.data
-                // DataFilter.filterData(state.data, [])
-                .map<NepseLineGraphData>((e) => NepseLineGraphData(
-                      // open: e.open,
-                      // close: e.close,
-                      // low: e.low,
-                      // high: e.high,
-                      value: e[1],
-                      time: e[0],
-                    ))
-                .toList();
+            // var dataSource = state.data
+            //     // DataFilter.filterData(state.data, [])
+            //     .map<NepseLineGraphData>((e) => NepseLineGraphData(
+            //           // open: e.open,
+            //           // close: e.close,
+            //           // low: e.low,
+            //           // high: e.high,
+            //           value: e[1],
+            //           time: e[0],
+            //         ))
+            //     .toList();
 
             return SfCartesianChart(
                 onZooming: (args) {},
@@ -73,7 +74,29 @@ class _IndexGraphState extends State<IndexGraph> {
                 series: <LineSeries<NepseLineGraphData, dynamic>>[
                   LineSeries<NepseLineGraphData, dynamic>(
                       enableTooltip: true,
-                      dataSource: dataSource,
+                      dataSource: _durationType == DurationType.DAY
+                          ? DataFilter.filterData(state.data, [])
+                              .map<NepseLineGraphData>(
+                                  (e) => NepseLineGraphData(
+                                        // open: e.open,
+                                        // close: e.close,
+                                        // low: e.low,
+                                        // high: e.high,
+                                        value: e[1],
+                                        time: e[0],
+                                      ))
+                              .toList()
+                          : state.data
+                              .map<NepseLineGraphData>(
+                                  (e) => NepseLineGraphData(
+                                        // open: e.open,
+                                        // close: e.close,
+                                        // low: e.low,
+                                        // high: e.high,
+                                        value: e[1],
+                                        time: e[0],
+                                      ))
+                              .toList(),
                       yValueMapper: (a, yValue) => a.value,
                       xValueMapper: (datum, int index) {
                         return DataFilter.parseDate(datum.time,
