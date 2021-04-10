@@ -8,6 +8,8 @@ import 'package:stock_companion/models/models.dart';
 import 'package:stock_companion/utils/utils.dart';
 import 'package:stock_companion/widgets/fucntional_widgets.dart';
 
+import 'company_details.dart';
+
 class StockPrices extends StatefulWidget {
   @override
   _StockPricesState createState() => _StockPricesState();
@@ -69,9 +71,10 @@ class _StockPricesState extends State<StockPrices> {
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: DataTable(
+                              showCheckboxColumn: false,
                               headingRowColor:
                                   MaterialStateProperty.resolveWith(
-                                      (states) => Colors.green),
+                                      (states) => Colors.black),
                               headingTextStyle: Theme.of(context)
                                   .dataTableTheme
                                   .headingTextStyle
@@ -81,9 +84,8 @@ class _StockPricesState extends State<StockPrices> {
                                 DataColumn(label: Text('Open')),
                                 DataColumn(label: Text('High')),
                                 DataColumn(label: Text('Low')),
-                                // DataColumn(label: Text('Close')),
+                                DataColumn(label: Text('Close')),
                                 DataColumn(label: Text('P Close')),
-
                                 DataColumn(label: Text('Traded Qty')),
                                 DataColumn(label: Text('52w HIgh')),
                                 DataColumn(label: Text('52w Low')),
@@ -92,20 +94,41 @@ class _StockPricesState extends State<StockPrices> {
                                   (index) {
                                 StockPrice _item = state.listItems[index];
                                 final _style =
-                                    TextStyle(color: blackC, fontSize: 16);
+                                    TextStyle(color: whiteC, fontSize: 16);
 
                                 return DataRow(
+                                  color:
+                                      MaterialStateProperty.resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                    return _item.closePrice ==
+                                            _item.previousDayClosePrice
+                                        ? Colors.grey
+                                        : _item.closePrice >
+                                                _item.previousDayClosePrice
+                                            ? Colors.green
+                                            : Color(0xffb00000);
+                                  }),
+                                  onSelectChanged: (a) {
+                                    Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                            builder: (_) => CompanyDetails(
+                                                  company: _item
+                                                      .gCompanyFromStockPrice(),
+                                                )));
+                                  },
                                   cells: [
-                                    DataCell(Text(_item.symbol, style: _style)),
+                                    DataCell(Text(_item.symbol,
+                                        style: _style.copyWith(
+                                            fontWeight: FontWeight.bold))),
                                     DataCell(Text(_item.openPrice.toString(),
                                         style: _style)),
                                     DataCell(Text(_item.highPrice.toString(),
                                         style: _style)),
-
                                     DataCell(Text(_item.lowPrice.toString(),
                                         style: _style)),
-                                    // DataCell(Text(_item.closePrice.toString(),
-                                    //     style: _style)),
+                                    DataCell(Text(_item.closePrice.toString(),
+                                        style: _style)),
                                     DataCell(Text(
                                         _item.previousDayClosePrice.toString(),
                                         style: _style)),
