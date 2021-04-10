@@ -18,8 +18,11 @@ Widget buildFloatingActionButton(
   );
 }
 
-Widget progressIndicator() {
-  return Center(child: CircularProgressIndicator());
+Widget progressIndicator({double width = 0.8}) {
+  return Center(
+      child: CircularProgressIndicator(
+    strokeWidth: width,
+  ));
 }
 
 Widget errorWidget(String message, Function onPressed) {
