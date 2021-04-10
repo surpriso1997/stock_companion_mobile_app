@@ -31,16 +31,43 @@ class _HomepageState extends State<Homepage> {
   PageController _pageController = PageController();
 
   Widget _pages() {
-    return PageView(
+    return PageView.builder(
       controller: _pageController,
       physics: NeverScrollableScrollPhysics(),
-      children: [
-        Market(),
-        News(),
-        Dashboard(),
-        Wishlist(),
-        More(),
-      ],
+      itemBuilder: (context, index) {
+        switch (index) {
+          case 0:
+            return Market();
+            break;
+
+          case 1:
+            return News();
+            break;
+
+          case 2:
+            return Dashboard();
+            break;
+
+          case 3:
+            return Wishlist();
+
+            break;
+          case 4:
+            return More();
+
+            break;
+          default:
+            return Container();
+            break;
+        }
+      },
+      // children: [
+      //   Market(),
+      //   News(),
+      //   Dashboard(),
+      //   Wishlist(),
+      //   More(),
+      // ],
     );
   }
 
