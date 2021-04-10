@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stock_companion/bloc/index_graph/index_graph_bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
-import 'package:stock_companion/utils/index_chart_data.dart';
-import 'package:stock_companion/utils/util_functions.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:stock_companion/widgets/index_graph.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../utils/utils.dart';
 
 class Market extends StatefulWidget {
@@ -11,18 +13,23 @@ class Market extends StatefulWidget {
   _MarketState createState() => _MarketState();
 }
 
-class IndexData {
-  final int timestamp;
-  final double indexValue;
-  const IndexData({this.timestamp, this.indexValue});
-}
+// class IndexData {
+//   final int timestamp;
+//   final double indexValue;
+//   const IndexData({this.timestamp, this.indexValue});
+// }
 
 class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
+
     BlocProvider.of<MarketSummaryCubit>(context).add(FetchNepseIndices());
     BlocProvider.of<MarketSummaryCubit>(context).add(FetchSubIndices());
+
+    Timer(Duration(seconds: 8), () {
+      BlocProvider.of<IndexGraphBloc>(context).add(GetGraph(index: 58));
+    });
   }
 
   @override
@@ -30,92 +37,6 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
     final theme = Theme.of(context);
     final primaryColor = theme.primaryColor;
     final textSelctionColor = theme.textSelectionColor;
-
-    _buildTableRowTitle(
-        {String title,
-        String value,
-        String diff,
-        String per,
-        Color bgColor,
-        Color textColor,
-        ThemeData theme,
-        bool isTableHeading}) {
-      var headingStyle = theme.dataTableTheme.headingTextStyle;
-
-      return Container(
-        height: 40,
-
-        // TODO: to fix the theme of the heading
-        color: MediaQuery.of(context).platformBrightness == Brightness.dark
-            ? whiteC
-            : bgColor,
-        child: Row(
-          children: [
-            SizedBox(width: 10),
-            Expanded(
-              child: Text(title, style: headingStyle),
-            ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(value, style: headingStyle),
-                  Text(diff, style: headingStyle),
-                  Text(per, style: headingStyle),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    _buildTableRowCell(
-        {String title,
-        double value,
-        double diff,
-        double per,
-        Color bgColor,
-        ThemeData theme,
-        bool isTableHeading}) {
-      bgColor = (diff < 0) ? Color(0xffFF0909) : Color(0xff21F595);
-
-      if (per == 0.0) bgColor = whiteC;
-
-      final _textColor = theme.dataTableTheme.headingTextStyle.copyWith(
-        color: bgColor,
-        fontWeight: FontWeight.normal,
-      );
-
-      return Container(
-        height: 40,
-        color: Color(0xff2A2c2c),
-        child: Row(
-          children: [
-            SizedBox(width: 10),
-            Expanded(
-              child: Text(processIndexTitle(title), style: _textColor),
-            ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(value.toString(), style: _textColor),
-                  Text(diff.toString(),
-                      style: _textColor.copyWith(
-                          fontWeight: FontWeight.bold, color: bgColor)),
-                  Text(
-                    per.toString(),
-                    style: _textColor.copyWith(
-                        fontWeight: FontWeight.bold, color: bgColor),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    }
 
     clickableText(String text, Function onPressed) {
       return InkWell(
@@ -167,40 +88,14 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
               ],
             ),
             SizedBox(height: 10),
-            SfCartesianChart(
-                onZooming: (args) {},
-                onZoomStart: (args) {},
-                onZoomReset: (args) {},
-                onZoomEnd: (args) {},
-                zoomPanBehavior: ZoomPanBehavior(
-                  enableDoubleTapZooming: false,
-                  maximumZoomLevel: 1,
-                  // TODO: to decide if pannig should be true or not
-                  enablePanning: true,
-                  enablePinching: true,
-                ),
-                trackballBehavior: TrackballBehavior(
-                    shouldAlwaysShow: true,
-                    enable: true,
-                    markerSettings: TrackballMarkerSettings(color: Colors.pink),
-                    activationMode: ActivationMode.singleTap,
-                    lineType: TrackballLineType.vertical),
-                primaryXAxis: CategoryAxis(),
-                series: <LineSeries<IndexData, dynamic>>[
-                  LineSeries<IndexData, dynamic>(
-                      enableTooltip: true,
-                      dataSource: DataFilter.filterData(index_data, [])
-                          .map<IndexData>((e) =>
-                              IndexData(indexValue: e[1], timestamp: e[0]))
-                          .toList(),
-                      yValueMapper: (a, yValue) => a.indexValue,
-                      xValueMapper: (datum, int index) {
-                        return DataFilter.parseDate(datum.timestamp).toString();
-                      },
-                      xAxisName: "Time",
-                      yAxisName: "Nepse"),
-                ]),
 
+            // Container(
+            //   height: 10,
+            //   width: 500,
+            //   child: WebView(
+            //       javascriptMode: JavascriptMode.unrestricted,
+            //       initialUrl: "https://www.nepsealpha.com/trading/chart"),
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -231,6 +126,11 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
             ),
             SizedBox(height: 20),
             //maket indices
+            Container(
+              // color: Colors.red,
+              height: 350,
+              child: IndexGraph(),
+            )
           ],
         ),
       ),
