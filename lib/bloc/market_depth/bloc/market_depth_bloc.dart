@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:stock_companion/data/repository/market_depth_repo.dart';
 import 'package:stock_companion/models/market_depth/market_depth.dart';
+import 'package:stock_companion/utils/utils.dart';
 
 part 'market_depth_event.dart';
 part 'market_depth_state.dart';
@@ -20,16 +21,18 @@ class MarketDepthBloc extends Bloc<MarketDepthEvent, MarketDepthState> {
     MarketDepthEvent event,
   ) async* {
     if (event is GetMarketDepth) {
-      if (state is MarketDepthLoading) {
-        return;
-      }
-
+      // if (state is MarketDepthLoading) {
+      //   return;
+      // }
+      yield MarketDepthLoading();
       try {
         await _repo.getMarketDepth(event.companyId, isRefreshRequest: false);
 
         if (_repo.marketDepth != null) {
           yield MarketDepthFetched(data: _repo.marketDepth);
         }
+      } on MarketClosedException catch (e) {
+        yield MarketClosedState();
       } catch (e) {
         yield MarketDepthError(errorMessage: e.toString());
       }

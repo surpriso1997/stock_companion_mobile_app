@@ -13,19 +13,28 @@ class IMarketDepthRepository {
 
   Future<MarketDepthData> getMarketDepth(int id,
       {bool isRefreshRequest = false}) async {
-    var _url = _baseUrl + "/nots/nepse-data/marketdepth/$id";
+    // var _url = _baseUrl + "/nots/nepse-data/marketdepth/$id";
+
+    var _url = _baseUrl + "/nots/nepse-data/marketdepth/131";
 
     try {
       var res = await getRequest(url: _url);
-      var data = MarketDepthData.fromJson(res);
 
-      return data;
-    } catch (e) {
-      if (e.message != null) {
-        throw ApiException(message: e.message.toString() ?? "An Error occrred");
-      } else {
-        throw ApiException(message: "An error occurred");
+      if (res is Map) {
+        var data = MarketDepthData.fromJson(res);
+
+        return data;
+      } else if (res == "") {
+        throw MarketClosedException();
       }
+    } on CustomApiExcception catch (e) {
+      throw ApiException(message: e.message);
+    } catch (e) {
+      if (e is MarketClosedException) {
+        throw MarketClosedException();
+      }
+
+      throw ApiException(message: e.toString());
     }
   }
 }
