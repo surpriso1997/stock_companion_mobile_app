@@ -13,7 +13,8 @@ class IMarketReposity {
 
   getMarketOpenStatus() async {}
 
-  Future<List<NepseIndex>> getNepseIndex() async {
+  Future<List<NepseIndex>> getNepseIndex(
+      {bool isRefreshRequest = false}) async {
     var _url = _baseUrl + "/nots/nepse-index";
     print("lol");
     try {
