@@ -53,3 +53,5 @@ class ApiException extends CustomApiExcception {
   final String message;
   const ApiException({@required this.message}) : super(message: message);
 }
+
+class MarketClosedException {}
