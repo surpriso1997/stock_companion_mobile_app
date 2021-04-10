@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stock_companion/pages/calulator/buying.dart';
 import 'package:stock_companion/utils/util_functions.dart';
 import 'package:stock_companion/utils/utils.dart';
 
@@ -24,11 +25,6 @@ class _SellingState extends State<Selling> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: blackC,
-            )),
         child: TextField(
           controller: controller,
           keyboardType: TextInputType.number,
@@ -39,7 +35,14 @@ class _SellingState extends State<Selling> {
           decoration: InputDecoration(
               labelText: label,
               hintText: hint,
+              alignLabelWithHint: true,
               border: InputBorder.none,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
               contentPadding: EdgeInsets.only(left: 10)),
         ),
       ),
@@ -48,31 +51,25 @@ class _SellingState extends State<Selling> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          buildTextField(
-              controller: widget.sellController,
-              hint: "Enter Selling price",
-              label: "Selling Price"),
-          buildTextField(
-              controller: widget.buyController,
-              hint: "Enter no of shares",
-              label: "No of shares"),
-          buildTextField(
-              controller: widget.unitsController,
-              hint: "Enter no of  shares",
-              label: "No of shares"),
           Builder(
             builder: (context) {
-              var _buyPrice = widget.buyController.text == ""
+              var _buyPrice = widget.buyController.text == "" ||
+                      widget.buyController.text == null
                   ? "0"
                   : widget.buyController.text;
-              var _sellPrice = widget.buyController.text == ""
+
+              var _sellPrice = widget.sellController.text == "" ||
+                      widget.sellController.text == null
                   ? "0"
                   : widget.sellController.text;
-              var _units = widget.unitsController.text == ""
+
+              var _units = widget.unitsController.text == "" ||
+                      widget.unitsController.text == null
                   ? "0"
                   : widget.unitsController.text;
 
@@ -104,45 +101,66 @@ class _SellingState extends State<Selling> {
                   _capitalGainLossTax;
 
               return Column(children: [
-                CalculatorRow(text: "Share Amount", value: total),
-
-                CalculatorRow(
-                    text: "Broker Commission", value: _brokerComm.toString()),
-                CalculatorRow(
-                    text: "SEBON Commission", value: _sebonComm.toString()),
-
-                CalculatorRow(
-                    text: "DP Fee", value: Constants.dpFee.toString()),
-
-                CalculatorRow(
-                  text: "Capital Gain Tax",
-                  value: _profit.toString(),
+                buildHozCard(
+                  key: "Share Amount:   ",
+                  value: total,
+                  width: width * 0.9,
                 ),
-
-                ///
-                CalculatorRow(
-                    text: "Total Recievable",
-                    value: ((_sellAmount -
-                            _sebonComm -
-                            _brokerComm -
-                            Constants.dpFee))
-                        .toString()),
-                // CalculatorRow(
-                //   text: "Total Payable Amount",
-                //   value: _totalRecievableAmount.toString(),
-                // ),
-
-                Container(
-                  decoration: BoxDecoration(
-                      color: _profit > 0 ? Colors.green : Colors.red),
-                  child: Center(
-                    child: Text(
-                        _profit > 0 ? "Profit: $_profit" : "Loss: $_profit"),
-                  ),
+                buildHozCard(
+                  key: "Broker Commission:   ",
+                  value: _brokerComm.toStringAsFixed(2),
+                  width: width * 0.9,
                 ),
+                buildHozCard(
+                  key: "SEBON Commission:   ",
+                  value: _sebonComm.toStringAsFixed(2),
+                  width: width * 0.9,
+                ),
+                buildHozCard(
+                  key: "DP Fee:   ",
+                  value: Constants.dpFee.toStringAsFixed(2),
+                  width: width * 0.9,
+                ),
+                buildHozCard(
+                  key: "Capital Gain Tax: ",
+                  value: _capitalGainLossTax.toString(),
+                  width: width * 0.9,
+                ),
+                buildHozCard(
+                  key: "Total Recievable:  ",
+                  value: _totalRecievableAmount.toStringAsFixed(2),
+                  width: width * 0.9,
+                ),
+                buildHozCard(
+                    color: _profit > 0 ? Colors.green : Colors.red,
+                    key: _profit > 0 ? "Profit:   " : "Loss:   ",
+                    value: _profit.toStringAsFixed(2),
+                    width: width * 0.9,
+                    verPad: 30.0,
+                    isColumn: true,
+                    valueStyle: TextStyle(
+                        color: whiteC,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold)),
               ]);
             },
-          )
+          ),
+          Column(
+            children: [
+              buildTextField(
+                  controller: widget.buyController,
+                  hint: "Enter buying price ",
+                  label: "BUying Price"),
+              buildTextField(
+                  controller: widget.sellController,
+                  hint: "Enter Selling price",
+                  label: "Selling Price"),
+              buildTextField(
+                  controller: widget.unitsController,
+                  hint: "Enter no of  shares",
+                  label: "No of shares"),
+            ],
+          ),
         ],
       ),
     );

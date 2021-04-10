@@ -20,13 +20,8 @@ class _BuyingState extends State<Buying> {
   Widget buildTextField(
       {TextEditingController controller, String hint, String label}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: blackC,
-            )),
         child: TextField(
           controller: controller,
           keyboardType: TextInputType.number,
@@ -36,8 +31,13 @@ class _BuyingState extends State<Buying> {
           style: TextStyle(color: blackC),
           decoration: InputDecoration(
               labelText: label,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
               hintText: hint,
-              border: InputBorder.none,
               contentPadding: EdgeInsets.only(left: 10)),
         ),
       ),
