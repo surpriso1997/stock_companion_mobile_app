@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stock_companion/bloc/index_graph/index_graph_bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
 import 'package:stock_companion/widgets/index_graph.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import '../../utils/utils.dart';
 
 class Market extends StatefulWidget {
@@ -96,34 +95,7 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
             //       javascriptMode: JavascriptMode.unrestricted,
             //       initialUrl: "https://www.nepsealpha.com/trading/chart"),
             // ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      clickableText("1D", () {}),
-                      clickableText("1W", () {}),
-                      clickableText("1M", () {}),
-                      clickableText("1y", () {}),
-                      clickableText("MAX", () {}),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Icon(Icons.fullscreen),
-                      SizedBox(width: 10),
-                      Icon(Icons.bar_chart),
-                    ],
-                  ),
-                )
-              ],
-            ),
+
             SizedBox(height: 20),
             //maket indices
             Container(
