@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:stock_companion/utils/utils.dart';
 
 processIndexTitle(String title) {
@@ -61,4 +62,11 @@ double getCapitalGainTax(
 int getEpochFromDate(DateTime now, int days) {
   var oldDate = now.subtract(Duration(days: days));
   return oldDate.millisecondsSinceEpoch;
+}
+
+/// format date to yyyy-mm-dd format
+String formatDate(DateTime date) {
+  var format = DateFormat("yyyy-MM-dd");
+
+  return format.format(date);
 }
