@@ -1,22 +1,13 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stock_companion/bloc/index_graph/index_graph_bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
 import 'package:stock_companion/widgets/index_graph.dart';
-import '../../utils/utils.dart';
 
 class Market extends StatefulWidget {
   @override
   _MarketState createState() => _MarketState();
 }
-
-// class IndexData {
-//   final int timestamp;
-//   final double indexValue;
-//   const IndexData({this.timestamp, this.indexValue});
-// }
 
 class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
   @override
@@ -25,10 +16,7 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
 
     BlocProvider.of<MarketSummaryCubit>(context).add(FetchNepseIndices());
     BlocProvider.of<MarketSummaryCubit>(context).add(FetchSubIndices());
-
-    Timer(Duration(seconds: 8), () {
-      BlocProvider.of<IndexGraphBloc>(context).add(GetGraph(index: 58));
-    });
+    BlocProvider.of<IndexGraphBloc>(context).add(GetGraph(index: 58));
   }
 
   @override
@@ -36,11 +24,6 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
     final theme = Theme.of(context);
     final primaryColor = theme.primaryColor;
     final textSelctionColor = theme.textSelectionColor;
-
-    clickableText(String text, Function onPressed) {
-      return InkWell(
-          onTap: onPressed, child: Text(text, style: TextStyle(color: blackC)));
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -87,19 +70,7 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
               ],
             ),
             SizedBox(height: 10),
-
-            // Container(
-            //   height: 10,
-            //   width: 500,
-            //   child: WebView(
-            //       javascriptMode: JavascriptMode.unrestricted,
-            //       initialUrl: "https://www.nepsealpha.com/trading/chart"),
-            // ),
-
-            SizedBox(height: 20),
-            //maket indices
             Container(
-              // color: Colors.red,
               height: 350,
               child: IndexGraph(),
             )
