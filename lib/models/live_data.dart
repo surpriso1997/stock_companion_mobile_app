@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+import 'models.dart';
+
 class LiveData {
   LiveData({
     @required this.securityId,
@@ -93,4 +95,17 @@ class LiveData {
         "lastTradedVolume": lastTradedVolume,
         "previousClose": previousClose,
       };
+  CompanyListModel gCompanyFromStockPrice() {
+    return CompanyListModel(
+        id: int.parse(this.securityId),
+        companyName: this.securityName,
+        symbol: symbol,
+        securityName: this.securityName,
+        status: "",
+        companyEmail: "",
+        website: "",
+        sectorName: "",
+        regulatoryBody: "",
+        instrumentType: "");
+  }
 }

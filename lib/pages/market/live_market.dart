@@ -6,6 +6,7 @@ import 'package:stock_companion/bloc/bloc/common_event.dart';
 import 'package:stock_companion/bloc/bloc/common_state.dart';
 import 'package:stock_companion/bloc/live_market/live_market_bloc.dart';
 import 'package:stock_companion/models/live_data.dart';
+import 'package:stock_companion/pages/company/company_details.dart';
 import 'package:stock_companion/utils/scaling.dart';
 import 'package:stock_companion/utils/utils.dart';
 import 'package:stock_companion/widgets/fucntional_widgets.dart';
@@ -18,6 +19,7 @@ class LiveMarket extends StatefulWidget {
 class _LiveMarketState extends State<LiveMarket> {
   ScrollController _controller;
   bool _isPaginateLoading = false;
+  bool _isRefreshing = false;
   @override
   void initState() {
     super.initState();
@@ -41,6 +43,7 @@ class _LiveMarketState extends State<LiveMarket> {
     final _tableTheme = _theme.dataTableTheme;
     final _tableTitleStyle = _theme.textTheme.button
         .copyWith(color: selectColor, fontWeight: FontWeight.w600);
+    final _style = TextStyle(color: whiteC, fontSize: 16);
 
     return Scaffold(
       floatingActionButton: CircleAvatar(
@@ -100,6 +103,7 @@ class _LiveMarketState extends State<LiveMarket> {
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: DataTable(
+                          showCheckboxColumn: false,
                           columns: [
                             DataColumn(label: Text('SY')),
                             DataColumn(label: Text('High')),
@@ -111,14 +115,42 @@ class _LiveMarketState extends State<LiveMarket> {
                           rows: List.generate(state.listItems.length, (index) {
                             LiveData item = state.listItems[index];
 
-                            return DataRow(cells: [
-                              DataCell(Text(item.symbol)),
-                              DataCell(Text(item.highPrice.toString())),
-                              DataCell(Text(item.lastTradedPrice.toString())),
-                              DataCell(Text(item.lowPrice.toString())),
-                              DataCell(Text(item.percentageChange.toString())),
-                              DataCell(Text(item.previousClose.toString())),
-                            ]);
+                            return DataRow(
+                                onSelectChanged: (a) {
+                                  Navigator.push(
+                                      context,
+                                      CupertinoPageRoute(
+                                          builder: (_) => CompanyDetails(
+                                                company: item
+                                                    .gCompanyFromStockPrice(),
+                                              )));
+                                },
+                                color: MaterialStateProperty.resolveWith<Color>(
+                                    (Set<MaterialState> states) {
+                                  return item.lastTradedPrice ==
+                                          item.previousClose
+                                      ? Colors.grey
+                                      : item.lastTradedPrice >
+                                              item.previousClose
+                                          ? Colors.green
+                                          : Color(0xffb00000);
+                                }),
+                                cells: [
+                                  DataCell(Text(item.symbol,
+                                      style:
+                                          _style.copyWith(fontWeight: bold))),
+                                  DataCell(Text(item.highPrice.toString(),
+                                      style: _style)),
+                                  DataCell(Text(item.lastTradedPrice.toString(),
+                                      style: _style)),
+                                  DataCell(Text(item.lowPrice.toString(),
+                                      style: _style)),
+                                  DataCell(Text(
+                                      item.percentageChange.toStringAsFixed(2),
+                                      style: _style)),
+                                  DataCell(Text(item.previousClose.toString(),
+                                      style: _style)),
+                                ]);
                           }),
                         ),
                       ),
