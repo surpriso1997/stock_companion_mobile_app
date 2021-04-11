@@ -26,6 +26,7 @@ dependencies:
   equatable:
 
   path_provider:
+  web_scraper: 
 
 
   flutter_screenutil: ^3.2.0
