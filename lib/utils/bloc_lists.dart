@@ -7,6 +7,7 @@ import 'package:stock_companion/bloc/floorsheet/floorsheet_bloc.dart';
 import 'package:stock_companion/bloc/index_graph/index_graph_bloc.dart';
 import 'package:stock_companion/bloc/live_market/live_market_bloc.dart';
 import 'package:stock_companion/bloc/market_depth/bloc/market_depth_bloc.dart';
+import 'package:stock_companion/bloc/market_details/market_details.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_indices.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_subindices.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
@@ -19,7 +20,8 @@ import 'package:stock_companion/data/repository/floorsheet_repo.dart';
 import 'package:stock_companion/data/repository/index_graph_repository.dart';
 import 'package:stock_companion/data/repository/live_market_repo.dart';
 import 'package:stock_companion/data/repository/market_depth_repo.dart';
-import 'package:stock_companion/data/repository/market_repository.dart';
+import 'package:stock_companion/data/repository/market/market_repository.dart';
+import 'package:stock_companion/data/repository/market_summary_repo.dart';
 import 'package:stock_companion/data/repository/stock_price_repo.dart';
 import 'package:stock_companion/data/repository/top_trades.dart';
 import 'package:stock_companion/utils/utils.dart';
@@ -58,6 +60,8 @@ class MultiBlocProviders extends StatelessWidget {
         IIndexGraphRepository(baseUrl: appconfig.baseUrl);
 
     final _imarketRepository = IMarketReposity(baseUrl: appconfig.baseUrl);
+    final _iMarketSummaryRepository =
+        IMarketSummaryRepository(baseUrl: appconfig.baseUrl);
 
     return MultiRepositoryProvider(
       providers: [
@@ -113,6 +117,9 @@ class MultiBlocProviders extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   MarketSubIndicesBloc(repository: _imarketRepository)),
+          BlocProvider(
+              create: (context) =>
+                  MarketDetailsBloc(repository: _iMarketSummaryRepository)),
         ],
         child: child,
       ),
