@@ -12,7 +12,7 @@ class IMarketSummaryRepository {
   List get summary => _summary;
 
   getMarketSummary({bool isRefreshRequest = false}) async {
-    var url = _baseUrl + "/nots/marrket-summary";
+    var url = _baseUrl + "/nots/market-summary";
 
     try {
       List res = await getRequest(url: url);

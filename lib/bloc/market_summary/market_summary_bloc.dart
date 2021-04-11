@@ -22,11 +22,15 @@ class MarketSummaryCubit extends Bloc<MarketSummaryEvent, MarketSummaryState> {
 
       try {
         var res = await _marketRepo.getNepseIndex();
-        if (res != null) yield MIndicesFetched(index: res);
+        if (res != null) {
+          yield MIndicesFetched(index: res);
+        }
       } on ApiException catch (e) {
         yield MIndicesError(error: e.message);
       }
-    } else if (event is FetchSubIndices) {
+    }
+    ////
+    else if (event is FetchSubIndices) {
       yield MSubIndicesLoading();
       try {
         var res = await _marketRepo.getSubIndices();
@@ -36,9 +40,4 @@ class MarketSummaryCubit extends Bloc<MarketSummaryEvent, MarketSummaryState> {
       }
     }
   }
-
-  void getMarketOpenSatatus() async {}
-  void getSummary() async {}
-
-  void refreshMarketData() async {}
 }
