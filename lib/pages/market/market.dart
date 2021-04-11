@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stock_companion/bloc/bloc/common_event.dart';
+import 'package:stock_companion/bloc/bloc/common_state.dart' as c;
 import 'package:stock_companion/bloc/index_graph/index_graph_bloc.dart';
+import 'package:stock_companion/bloc/market_details/market_details.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_indices.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_subindices.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
+import 'package:stock_companion/models/market_summary.dart';
 import 'package:stock_companion/utils/utils.dart';
+import 'package:stock_companion/widgets/fucntional_widgets.dart';
 import 'package:stock_companion/widgets/index_graph.dart';
 
 class Market extends StatefulWidget {
@@ -22,6 +26,7 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
     BlocProvider.of<MarketSubIndicesBloc>(context).add(FetchItems());
     BlocProvider.of<IndexGraphBloc>(context).add(GetGraph(index: 58));
     BlocProvider.of<MarketSummaryCubit>(context).add(FetchNepseIndices());
+    BlocProvider.of<MarketDetailsBloc>(context).add(FetchItems());
   }
 
   @override
@@ -85,6 +90,64 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
             Container(
               height: 350,
               child: IndexGraph(),
+            ),
+            BlocBuilder<MarketDetailsBloc, c.CommonState>(
+              builder: (context, state) {
+                if (state is c.FetchingItemsState) {
+                  return progressIndicator();
+                } else if (state is c.ErrorState) {
+                  return Text(
+                    state.message,
+                    style: TextStyle(color: Colors.black),
+                  );
+                } else if (state is c.FetchedItemsState ||
+                    state is c.RefreshingItems) {
+                  return Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Text("Market Totals",
+                          style: TextStyle(color: blackC, fontSize: 18)),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.listItems.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, childAspectRatio: 2.5),
+                        itemBuilder: (context, index) {
+                          MarketSummary item = state.listItems[index];
+                          return Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 5),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 5,
+                                      offset: Offset(5, 5),
+                                      color: Colors.black.withOpacity(0.3))
+                                ],
+                                border: Border.all(color: Colors.grey)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  item.detail.split("Total").last,
+                                  style: TextStyle(color: blackC),
+                                ),
+                                Text(
+                                  item.value.toString(),
+                                  style: TextStyle(color: blackC),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  );
+                } else
+                  return Container();
+              },
             )
           ],
         ),
