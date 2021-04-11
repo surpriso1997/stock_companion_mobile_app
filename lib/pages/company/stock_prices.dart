@@ -18,6 +18,8 @@ class StockPrices extends StatefulWidget {
 class _StockPricesState extends State<StockPrices> {
   ScrollController _controller;
   bool _isPaginateLoading = false;
+  final _style = TextStyle(color: whiteC, fontSize: 16);
+
   @override
   void initState() {
     super.initState();
@@ -93,8 +95,6 @@ class _StockPricesState extends State<StockPrices> {
                               rows: List.generate(state.listItems.length,
                                   (index) {
                                 StockPrice _item = state.listItems[index];
-                                final _style =
-                                    TextStyle(color: whiteC, fontSize: 16);
 
                                 return DataRow(
                                   color:
