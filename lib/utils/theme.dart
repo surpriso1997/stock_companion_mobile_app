@@ -11,6 +11,7 @@ final whiteC = Colors.white;
 final blackC = Colors.black;
 final greenC = Colors.green;
 final selectionC = primary_text_highlight_color;
+final rhoodGreen = Color(0xff5acf9a);
 
 final _baseTextStyle = TextStyle(fontFamily: font_family, color: Colors.white);
 
