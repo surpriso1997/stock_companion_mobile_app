@@ -6,11 +6,11 @@ import 'package:stock_companion/utils/utils.dart';
 class ICompanyAnalysisRepository {
   final vmIp = "52.148.96.72";
 
-  List<CompanyAnalysis> _buy = [];
-  List<CompanyAnalysis> get buy => _buy;
+  List<CompanyAnaylisModel> _buy = [];
+  List<CompanyAnaylisModel> get buy => _buy;
 
-  List<CompanyAnalysis> _sell = [];
-  List<CompanyAnalysis> get sell => _sell;
+  List<CompanyAnaylisModel> _sell = [];
+  List<CompanyAnaylisModel> get sell => _sell;
 
   getBuyAnalytics(int companyId) async {
     var url = "$vmIp/";
@@ -19,7 +19,7 @@ class ICompanyAnalysisRepository {
     try {
       // final res = await getRequest(url: url, params: params);
       final res = companay_analysis_data;
-      var data = res.map((e) => CompanyAnalysis.fromJson(e)).toList();
+      var data = res.map((e) => CompanyAnaylisModel.fromJson(e)).toList();
       _buy = data;
     } on CustomApiExcception catch (e) {
       throw ApiException(message: e.message);
@@ -35,7 +35,7 @@ class ICompanyAnalysisRepository {
 
     try {
       final res = getRequest(url: url, params: params);
-      var data = res.map((e) => CompanyAnalysis.fromJson(e)).toList();
+      var data = res.map((e) => CompanyAnaylisModel.fromJson(e)).toList();
       _sell = data;
     } on CustomApiExcception catch (e) {
       throw ApiException(message: e.message);
