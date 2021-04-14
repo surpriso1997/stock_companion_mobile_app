@@ -58,7 +58,7 @@ class IStockPriceRepo {
       _totalItems = res['totalElements'];
 
       _companies.forEach((element) {});
-      DataRepository().setCompaniesList(_companies);
+      // DataRepository().setCompaniesList(_companies);
 
       Timer(Duration(seconds: 5), () async {
         await DbHelper().addAllCompanies(companies);
