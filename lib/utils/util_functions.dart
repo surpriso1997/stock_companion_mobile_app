@@ -1,6 +1,11 @@
 import 'package:intl/intl.dart';
 import 'package:stock_companion/utils/utils.dart';
 
+const ARBA = 1000000000;
+const KHARBA = 100000000000;
+const CRORE = 10000000;
+const LAKH = 100000;
+
 processIndexTitle(String title) {
   if (title.contains("Index")) {
     var item = title.split("Index");
@@ -69,4 +74,20 @@ String formatDate(DateTime date) {
   var format = DateFormat("yyyy-MM-dd");
 
   return format.format(date);
+}
+
+String getArba(double value) {
+  return (value / ARBA).toStringAsFixed(3);
+}
+
+String getKharba(double value) {
+  return (value / KHARBA).toStringAsFixed(3);
+}
+
+String getCrore(double value) {
+  return (value / CRORE).toStringAsFixed(3);
+}
+
+String getLakhs(double value) {
+  return (value / LAKH).toStringAsFixed(3);
 }
