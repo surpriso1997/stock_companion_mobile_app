@@ -56,7 +56,7 @@ class DbHelper {
     }
   }
 
-  listAllCompanies() async {
+  Future<List<Map<String, dynamic>>> listAllCompanies() async {
     try {
       var _db = await db;
       final res = await _db.query(stocks_table);
@@ -70,15 +70,34 @@ class DbHelper {
     try {
       var _db = await db;
       final res = await _db.insert(portfolio_stocks, map);
+
+      var data = await _db.query(portfolio_stocks);
+      print(data);
+
       return res;
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
   }
 
-  listAllPortfolioCompanies() async {
+  Future<List<Map<String, dynamic>>> listAllPortfolioCompanies() async {
     try {
       var _db = await db;
-      final res = await _db.query(stocks_table);
+      final res = await _db.query(portfolio_stocks);
       return res;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  updatePortfolio() {}
+
+  deletePortfolioCompany({int portfolioId}) async {
+    try {
+      var _db = await db;
+
+      final res = await _db
+          .delete(portfolio_stocks, where: "id=?", whereArgs: [portfolioId]);
     } catch (e) {
       print(e);
     }
