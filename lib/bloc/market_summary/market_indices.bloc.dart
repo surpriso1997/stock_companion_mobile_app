@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stock_companion/bloc/bloc/common_event.dart';
 import 'package:stock_companion/bloc/bloc/common_state.dart';
+import 'package:stock_companion/data/repository/data_repository.dart';
 import 'package:stock_companion/data/repository/market_repository.dart';
 import 'package:stock_companion/utils/utils.dart';
 
@@ -16,6 +17,8 @@ class MarketIndicesBloc extends Bloc<CommonEvent, CommonState> {
       yield FetchingItemsState();
 
       try {
+        await DataRepository().getDataOfAllCompanies();
+
         var res = await _marketRepo.getNepseIndex();
         if (res != null) {
           yield FetchedItemsState(items: res);
