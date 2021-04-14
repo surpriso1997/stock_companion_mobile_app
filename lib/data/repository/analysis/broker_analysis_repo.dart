@@ -4,7 +4,7 @@ import 'package:stock_companion/models/analysis/broker_analysis_model.dart';
 import 'package:stock_companion/utils/utils.dart';
 
 class IBrokerAnalysisRepository {
-  final vmIp = "52.148.96.72";
+  final vmIp = "http://13.76.102.39/";
 
   List<BrokerAnalysisModel> _buy = [];
   List<BrokerAnalysisModel> get buy => _buy;

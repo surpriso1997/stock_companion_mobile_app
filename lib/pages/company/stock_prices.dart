@@ -61,7 +61,7 @@ class _StockPricesState extends State<StockPrices> {
             } else if (state is ErrorState) {
               return errorWidget(state.message, () {});
             } else if (state is NoDataState) {
-              return noDataFound();
+              return noDataFound(message: "No data available");
             } else if (state is FetchingMoreItemsState ||
                 state is FetchedItemsState) {
               print(state);
