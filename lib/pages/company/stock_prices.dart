@@ -115,6 +115,7 @@ class _StockPricesState extends State<StockPrices> {
                                             builder: (_) => CompanyDetails(
                                                   company: _item
                                                       .gCompanyFromStockPrice(),
+                                                  stockPrice: _item,
                                                 )));
                                   },
                                   cells: [
