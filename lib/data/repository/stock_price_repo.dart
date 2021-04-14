@@ -1,4 +1,5 @@
 import 'package:stock_companion/data/provider/api.dart';
+import 'package:stock_companion/data/provider/database.dart';
 import 'package:stock_companion/models/models.dart';
 import 'package:stock_companion/utils/custom_exceptions.dart';
 import 'package:stock_companion/utils/utils.dart';
@@ -28,7 +29,7 @@ class IStockPriceRepo {
 
     try {
       Map<String, dynamic> _params = {
-        "size": 50,
+        "size": 100,
         "page": _currentPage,
       };
 
@@ -51,6 +52,9 @@ class IStockPriceRepo {
 
       _totalPages = res['totalPages'];
       _totalItems = res['totalElements'];
+
+      _companies.forEach((element) {});
+      await DbHelper().addAllCompanies(companies);
 
       return _companies;
     } on CustomApiExcception catch (e) {
