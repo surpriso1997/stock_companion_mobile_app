@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
+import 'package:stock_companion/bloc/analysis/broker_analysis_bloc.dart';
+import 'package:stock_companion/bloc/analysis/company_analysis_bloc.dart';
 import 'package:stock_companion/bloc/brokers/brokers_bloc.dart';
 import 'package:stock_companion/bloc/company/company_bloc.dart';
 import 'package:stock_companion/bloc/floorsheet/floorsheet_bloc.dart';
@@ -14,6 +16,8 @@ import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
 import 'package:stock_companion/bloc/stock_price/stock_price.dart';
 import 'package:stock_companion/bloc/theme_cubit/theme_cubit.dart';
 import 'package:stock_companion/bloc/top_trades/top_trades_blocs.dart';
+import 'package:stock_companion/data/repository/analysis/broker_analysis_repo.dart';
+import 'package:stock_companion/data/repository/analysis/company_analysis_repo.dart';
 import '../data/repository/repository.dart';
 
 import 'package:stock_companion/utils/utils.dart';
@@ -54,6 +58,10 @@ class MultiBlocProviders extends StatelessWidget {
     final _imarketRepository = IMarketReposity(baseUrl: appconfig.baseUrl);
     final _iMarketSummaryRepository =
         IMarketSummaryRepository(baseUrl: appconfig.baseUrl);
+
+    final _iCompAnyAnalysisRepository = ICompanyAnalysisRepository();
+
+    final _iBrokerAnalysisRepository = IBrokerAnalysisRepository();
 
     return MultiRepositoryProvider(
       providers: [
@@ -112,6 +120,12 @@ class MultiBlocProviders extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   MarketDetailsBloc(repository: _iMarketSummaryRepository)),
+          BlocProvider(
+              create: (context) =>
+                  BrokerAnalysisBloc(repository: _iBrokerAnalysisRepository)),
+          BlocProvider(
+              create: (context) =>
+                  CompanyAnalysisBloc(repository: _iCompAnyAnalysisRepository)),
         ],
         child: child,
       ),
