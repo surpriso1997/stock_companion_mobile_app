@@ -1,5 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:stock_companion/models/company.dart';
+import 'package:stock_companion/models/stock_price.dart';
 
 class DataRepository {
   static DataRepository _instance = DataRepository._private();
@@ -8,5 +7,10 @@ class DataRepository {
 
   factory DataRepository() => _instance;
 
-  ValueNotifier<List<Company>> companiesList = ValueNotifier([]);
+  List<StockPrice> _companiesList = [];
+  List<StockPrice> get companies => _companiesList;
+
+  setCompaniesList(List<StockPrice> items) {
+    _companiesList = items;
+  }
 }
