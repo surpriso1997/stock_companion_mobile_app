@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:stock_companion/data/provider/api.dart';
 import 'package:stock_companion/data/provider/database.dart';
 import 'package:stock_companion/pages/news/news.dart';
 import 'package:stock_companion/pages/pages.dart';
@@ -15,6 +16,11 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
     openDatabasee();
+    someRAndom();
+  }
+
+  someRAndom() async {
+    // await postRequest();
   }
 
   openDatabasee() async {
@@ -62,10 +68,7 @@ class _HomepageState extends State<Homepage> {
             return Wishlist();
 
             break;
-          case 4:
-            return More();
 
-            break;
           default:
             return Container();
             break;
@@ -105,7 +108,6 @@ class _HomepageState extends State<Homepage> {
             _buildBottomNavItem(2, icon: Icons.dashboard, text: "Dashboard"),
             _buildBottomNavItem(3,
                 icon: Icons.favorite_outline, text: "Wishlist"),
-            _buildBottomNavItem(4, icon: Feather.menu, text: "More")
           ],
         ),
       ),
