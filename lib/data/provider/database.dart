@@ -94,16 +94,15 @@ class DbHelper {
 
     final int _dbVersion = migrationScripts.length;
 
-    _db = await openDatabase(_dbPath, version: _dbVersion,
-        onOpen: (version) async {
-      print("db version: $_dbVersion");
+    _db = await openDatabase(_dbPath, version: _dbVersion, onOpen: (db) async {
+      print("db db: $_dbVersion");
 
       for (int i = 1; i <= _dbVersion; i++) {
         print(migrationScripts[i]);
         print("\n");
         print(i.toString());
 
-        await _runDbQueryWithTryCatch(migrationScripts[i], version);
+        await _runDbQueryWithTryCatch(migrationScripts[i], db);
       }
     }, onUpgrade: (db, oldVersion, newVersion) async {
       // for (int i = oldVersion + 1; i < _dbVersion; i++) {
