@@ -72,6 +72,7 @@ class _MarketDepthState extends State<MarketDepth> {
                     print(_date);
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         !_isMarketOpen
                             ? Text(
@@ -151,19 +152,19 @@ class _MarketDepthState extends State<MarketDepth> {
                 },
               ),
             ),
-            TextField(
-              controller: _textController,
-              onSubmitted: (value) {
-                if (value != null) {
-                  BlocProvider.of<MarketDepthBloc>(context)
-                      .add(GetMarketDepth(1));
-                  FocusScope.of(context).unfocus();
-                }
-              },
-              decoration: InputDecoration(
-                hintText: "Enter symbol",
-              ),
-            ),
+            // TextField(
+            //   controller: _textController,
+            //   onSubmitted: (value) {
+            //     if (value != null) {
+            //       BlocProvider.of<MarketDepthBloc>(context)
+            //           .add(GetMarketDepth(1));
+            //       FocusScope.of(context).unfocus();
+            //     }
+            //   },
+            //   decoration: InputDecoration(
+            //     hintText: "Enter symbol",
+            //   ),
+            // ),
           ],
         ),
       ),
