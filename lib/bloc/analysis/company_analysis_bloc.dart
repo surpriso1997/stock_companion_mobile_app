@@ -17,8 +17,8 @@ class CompanyAnalysisBloc extends Bloc<AnalysisEvent, CommonState> {
       yield FetchingItemsState();
 
       try {
-        await _repository.getBuyAnalytics(event.companyId);
-        await _repository.getSellAnalytics(event.companyId);
+        await _repository.getBuyAnalytics(event.scripSymbol);
+        await _repository.getSellAnalytics(event.scripSymbol);
 
         if (_repository.buy.isNotEmpty || _repository.sell.isNotEmpty) {
           yield FetchedItemsState(items: [
