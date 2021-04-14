@@ -6,7 +6,7 @@ class Constants {
   static const secondary_base_url_prod = '';
 
   /// error message
-  static const error_msg_404 = "Something is wrong";
+  static const error_msg_404 = "Something is wrong 404";
   static const error_msg_500 = "Server could not process the request.";
   static const error_msg_401 = "Usser is not authnticated";
   static const error_msg_408 = "Connection Timeout occured!";

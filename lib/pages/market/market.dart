@@ -7,7 +7,9 @@ import 'package:stock_companion/bloc/market_details/market_details.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_indices.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_subindices.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
+import 'package:stock_companion/bloc/stock_price/stock_price.dart';
 import 'package:stock_companion/models/market_summary.dart';
+import 'package:stock_companion/utils/util_functions.dart';
 import 'package:stock_companion/utils/utils.dart';
 import 'package:stock_companion/widgets/fucntional_widgets.dart';
 import 'package:stock_companion/widgets/index_graph.dart';
@@ -27,6 +29,8 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
     BlocProvider.of<IndexGraphBloc>(context).add(GetGraph(index: 58));
     BlocProvider.of<MarketSummaryCubit>(context).add(FetchNepseIndices());
     BlocProvider.of<MarketDetailsBloc>(context).add(FetchItems());
+
+    // BlocProvider.of<StockPriceBloc>(context).add(FetchItems());
   }
 
   @override
@@ -114,6 +118,26 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
                             crossAxisCount: 2, childAspectRatio: 2.5),
                         itemBuilder: (context, index) {
                           MarketSummary item = state.listItems[index];
+
+                          String value = item.value.toString();
+                          String detail = item.detail.split("Total").last;
+
+                          if (index == 0) {
+                            value = getCrore(item.value) + "(Cr)";
+                          }
+                          if (index == 1) {
+                            value = getLakhs(item.value) + "(Lakh)";
+                          }
+
+                          if (index == 4) {
+                            detail = "Market Cap(Kharab)";
+                            value = getKharba(item.value) + "(Kharab)";
+                          }
+                          if (index == 5) {
+                            detail = " Float Market Cap";
+                            value = getKharba(item.value) + "(Kharab)";
+                          }
+
                           return Container(
                             margin: EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 5),
@@ -131,11 +155,12 @@ class _MarketState extends State<Market> with AutomaticKeepAliveClientMixin {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  item.detail.split("Total").last,
+                                  detail,
                                   style: TextStyle(color: blackC),
                                 ),
+                                SizedBox(height: 10),
                                 Text(
-                                  item.value.toString(),
+                                  value,
                                   style: TextStyle(color: blackC),
                                 ),
                               ],
