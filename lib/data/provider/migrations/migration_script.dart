@@ -68,7 +68,6 @@ CREATE TABLE "$stocks_table"(
   sectorId INTEGER,
   lastUpdatedPrice VARCHAR,
   change NUMERIC,
-
   changePercent DECIMAL
 
 )
@@ -76,6 +75,7 @@ CREATE TABLE "$stocks_table"(
 
 final _create_porfolio_stocks = '''
 CREATE TABLE "$portfolio_stocks"(
+  id INTEGER  PRIMARY KEY,
   companyId INTEGER,
   symbol VARCHAR,
   sectorName VARCHAR,
