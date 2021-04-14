@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 abstract class AnalysisEvent extends Equatable {}
 
 class GetBrokerData extends AnalysisEvent {
-  int brokerId;
+  final int brokerId;
   GetBrokerData({this.brokerId});
   @override
   List<Object> get props => [];
@@ -15,8 +15,8 @@ class GetBrokerData extends AnalysisEvent {
 // }
 
 class GetCompanyData extends AnalysisEvent {
-  int companyId;
-  GetCompanyData({this.companyId});
+  final String scripSymbol;
+  GetCompanyData({this.scripSymbol});
   @override
   List<Object> get props => [];
 }
