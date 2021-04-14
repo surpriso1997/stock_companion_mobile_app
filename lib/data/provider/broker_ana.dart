@@ -1,0 +1,222 @@
+final broker_analsis_data = [
+  {
+    "Rank": 1,
+    "Scrip Symbol": "NABIL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 56769,
+    "Percent of Total Qty": 27.11,
+    "Amount": 77862815,
+    "Shares Traded": 56769,
+    "Average Price": 1372
+  },
+  {
+    "Rank": 2,
+    "Scrip Symbol": "NBB",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 70207,
+    "Percent of Total Qty": 14.74,
+    "Amount": 27232762,
+    "Shares Traded": 70207,
+    "Average Price": 388
+  },
+  {
+    "Rank": 3,
+    "Scrip Symbol": "KBL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 69547,
+    "Percent of Total Qty": 15.48,
+    "Amount": 22541905,
+    "Shares Traded": 69547,
+    "Average Price": 324
+  },
+  {
+    "Rank": 4,
+    "Scrip Symbol": "NBL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 48534,
+    "Percent of Total Qty": 7.74,
+    "Amount": 22133693,
+    "Shares Traded": 48534,
+    "Average Price": 456
+  },
+  {
+    "Rank": 5,
+    "Scrip Symbol": "EBL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 19174,
+    "Percent of Total Qty": 15.98,
+    "Amount": 15061778,
+    "Shares Traded": 19174,
+    "Average Price": 786
+  },
+  {
+    "Rank": 6,
+    "Scrip Symbol": "CHCL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 20669,
+    "Percent of Total Qty": 23.68,
+    "Amount": 13542396,
+    "Shares Traded": 20669,
+    "Average Price": 655
+  },
+  {
+    "Rank": 7,
+    "Scrip Symbol": "BOKL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 42291,
+    "Percent of Total Qty": 29.53,
+    "Amount": 13339522,
+    "Shares Traded": 42291,
+    "Average Price": 315
+  },
+  {
+    "Rank": 8,
+    "Scrip Symbol": "HDL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 2849,
+    "Percent of Total Qty": 28.75,
+    "Amount": 12568055,
+    "Shares Traded": 2849,
+    "Average Price": 4411
+  },
+  {
+    "Rank": 9,
+    "Scrip Symbol": "LBBL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 42713,
+    "Percent of Total Qty": 14.2,
+    "Amount": 11842779,
+    "Shares Traded": 42713,
+    "Average Price": 277
+  },
+  {
+    "Rank": 10,
+    "Scrip Symbol": "PCBL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 26562,
+    "Percent of Total Qty": 16.61,
+    "Amount": 11743336,
+    "Shares Traded": 26562,
+    "Average Price": 442
+  },
+  {
+    "Rank": 11,
+    "Scrip Symbol": "UPPER",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 12616,
+    "Percent of Total Qty": 8.12,
+    "Amount": 11160525,
+    "Shares Traded": 12616,
+    "Average Price": 885
+  },
+  {
+    "Rank": 12,
+    "Scrip Symbol": "RHPL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 22325,
+    "Percent of Total Qty": 17.28,
+    "Amount": 10938395,
+    "Shares Traded": 22325,
+    "Average Price": 490
+  },
+  {
+    "Rank": 13,
+    "Scrip Symbol": "CZBIL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 28440,
+    "Percent of Total Qty": 12.27,
+    "Amount": 9262049,
+    "Shares Traded": 28440,
+    "Average Price": 326
+  },
+  {
+    "Rank": 14,
+    "Scrip Symbol": "MEGA",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 27790,
+    "Percent of Total Qty": 6.78,
+    "Amount": 8750453,
+    "Shares Traded": 27790,
+    "Average Price": 315
+  },
+  {
+    "Rank": 15,
+    "Scrip Symbol": "NIFRA",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 13689,
+    "Percent of Total Qty": 3.79,
+    "Amount": 8004131,
+    "Shares Traded": 13689,
+    "Average Price": 585
+  },
+  {
+    "Rank": 16,
+    "Scrip Symbol": "KSBBL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 21896,
+    "Percent of Total Qty": 10.25,
+    "Amount": 7680402,
+    "Shares Traded": 21896,
+    "Average Price": 351
+  },
+  {
+    "Rank": 17,
+    "Scrip Symbol": "NIL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 3349,
+    "Percent of Total Qty": 5.69,
+    "Amount": 5580482,
+    "Shares Traded": 3349,
+    "Average Price": 1666
+  },
+  {
+    "Rank": 18,
+    "Scrip Symbol": "HGI",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 7118,
+    "Percent of Total Qty": 12.53,
+    "Amount": 5578487,
+    "Shares Traded": 7118,
+    "Average Price": 784
+  },
+  {
+    "Rank": 19,
+    "Scrip Symbol": "MBL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 17267,
+    "Percent of Total Qty": 12.46,
+    "Amount": 5522131,
+    "Shares Traded": 17267,
+    "Average Price": 320
+  },
+  {
+    "Rank": 20,
+    "Scrip Symbol": "SBL",
+    "Order Type": "Buy",
+    "Broker": "58",
+    "Quantity": 10171,
+    "Percent of Total Qty": 4.74,
+    "Amount": 4473530,
+    "Shares Traded": 10171,
+    "Average Price": 440
+  }
+];
