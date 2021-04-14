@@ -38,5 +38,10 @@ Widget errorWidget(String message, Function onPressed) {
 }
 
 Widget noDataFound({String message}) {
-  return Text(message ?? "No data available");
+  return Center(
+    child: Text(
+      message ?? "No data available",
+      style: TextStyle(color: blackC),
+    ),
+  );
 }
