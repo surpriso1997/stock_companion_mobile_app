@@ -7,6 +7,7 @@ import 'package:stock_companion/bloc/brokers/brokers_bloc.dart';
 import 'package:stock_companion/models/brokers.model.dart';
 import 'package:stock_companion/pages/broker/broker_summary.dart';
 import 'package:stock_companion/utils/utils.dart';
+import 'package:stock_companion/widgets/broker_analysis_widget.dart';
 import 'package:stock_companion/widgets/fucntional_widgets.dart';
 
 class Brokers extends StatefulWidget {
@@ -44,9 +45,9 @@ class _BrokersState extends State<Brokers> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                              builder: (_) => BrokerSummary(
-                                    broker: state.listItems[index],
-                                  )),
+                            builder: (_) =>
+                                BrokerAnalysis(brokerId: item.id, broker: item),
+                          ),
                         );
                       },
                       child: Container(
