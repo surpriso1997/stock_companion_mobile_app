@@ -4,6 +4,7 @@ import 'package:stock_companion/bloc/bloc/common_event.dart';
 import 'package:stock_companion/bloc/bloc/common_state.dart';
 import 'package:stock_companion/data/provider/api.dart';
 import 'package:stock_companion/models/company_graph_data_model.dart';
+import 'package:stock_companion/utils/utils.dart';
 
 class CompanyGraphBloc extends Bloc<CommonEvent, CommonState> {
   CompanyGraphBloc() : super(FetchingItemsState());
@@ -13,7 +14,8 @@ class CompanyGraphBloc extends Bloc<CommonEvent, CommonState> {
     if (event is FetchedItemsState) {
       yield FetchingItemsState();
       try {
-        final res = await getRequest(url: "https://nots/market/graphdata/131");
+        final res = await getRequest(
+            url: "${Constants.base_url_prod}/nots/market/graphdata/131");
 
         if (res.isNotEmpty) {
           var data = res.map((e) => CompanyGraphModel.fromJson(e)).toList();
