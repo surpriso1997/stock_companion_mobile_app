@@ -27,3 +27,8 @@ class FilterItems<T> extends CommonEvent {
   final Map<String, dynamic> filters;
   const FilterItems({this.filters});
 }
+
+class FetchGraph<T> extends CommonEvent {
+  final int id;
+  const FetchGraph({this.id});
+}
