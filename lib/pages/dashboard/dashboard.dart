@@ -5,6 +5,7 @@ import 'package:stock_companion/data/provider/database.dart';
 import 'package:stock_companion/pages/company/brokers.dart';
 import 'package:stock_companion/pages/market/market_indices.dart';
 import 'package:stock_companion/pages/market_depth/market_depth.dart';
+import 'package:stock_companion/pages/portfolio/portfolio_page.dart';
 import 'package:stock_companion/utils/utils.dart';
 
 class Dashboard extends StatefulWidget {
@@ -77,19 +78,17 @@ class _DashboardState extends State<Dashboard> {
           _buildGridViewItem(
               icon: Icons.business_center,
               title: 'My Portfolio',
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.push(
+                    context, CupertinoPageRoute(builder: (_) => Portfolio()));
+              }),
           _buildGridViewItem(
               icon: MaterialCommunityIcons.timer_sand,
               title: 'Live Nepse',
               onPressed: () {
                 Navigator.pushNamed(context, Routes.live_marekt);
               }),
-          _buildGridViewItem(
-              icon: Icons.analytics,
-              title: 'Analysis',
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.calculator);
-              }),
+
           _buildGridViewItem(
               icon: AntDesign.barchart,
               title: 'Top Trades',
@@ -164,13 +163,13 @@ class _DashboardState extends State<Dashboard> {
           //     onPressed: () {}),
           _buildGridViewItem(
               icon: FontAwesome.institution,
-              title: 'Listed Stocks',
+              title: 'Stocks Analysis',
               onPressed: () {
                 Navigator.pushNamed(context, Routes.companies_list);
               }),
           _buildGridViewItem(
               icon: MaterialCommunityIcons.office_building,
-              title: 'Listed Brokers',
+              title: 'Brokers Analysis',
               onPressed: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => Brokers()));
