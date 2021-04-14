@@ -25,13 +25,13 @@ class _BrokerAnalysisState extends State<BrokerAnalysis> {
     super.initState();
 
     BlocProvider.of<BrokerAnalysisBloc>(context)
-        .add(GetBrokerData(brokerId: widget.brokerId));
+        .add(GetBrokerData(brokerId: int.tryParse(widget.broker.memberCode)));
   }
-
-  List _tabs = ["Top Buy", "Top Sell"];
 
   @override
   Widget build(BuildContext context) {
+    List _tabs = ["Top Buy ", "Top Sell"];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -71,7 +71,8 @@ class _BrokerAnalysisState extends State<BrokerAnalysis> {
                         width: MediaQuery.of(context).size.width,
                         child: Center(
                           child: Text(
-                            pageViewIndex == 0 ? "Top Buy" : "Top sell",
+                            _tabs[pageViewIndex],
+                            // pageViewIndex == 0 ?  : "Top sell",
                             style: TextStyle(
                               fontWeight: bold,
                               fontSize: 18,
@@ -94,6 +95,7 @@ class _BrokerAnalysisState extends State<BrokerAnalysis> {
                               columns: [
                                 DataColumn(label: Text('Rank')),
                                 DataColumn(label: Text('Symbol')),
+                                DataColumn(label: Text('Broker')),
                                 DataColumn(label: Text('Qty')),
                                 DataColumn(label: Text('Amount')),
                                 DataColumn(label: Text('Shares\n Traded')),
@@ -110,6 +112,8 @@ class _BrokerAnalysisState extends State<BrokerAnalysis> {
                                   DataCell(Text(_item.rank.toString(),
                                       style: _style)),
                                   DataCell(Text(_item.scripSymbol.toString(),
+                                      style: _style)),
+                                  DataCell(Text(_item.broker.toString(),
                                       style: _style)),
                                   DataCell(Text(_item.quantity.toString(),
                                       style: _style)),

@@ -23,7 +23,7 @@ class _CompanyAnalysisState extends State<CompanyAnalysis> {
     super.initState();
 
     BlocProvider.of<CompanyAnalysisBloc>(context)
-        .add(GetCompanyData(companyId: widget.commpanyId));
+        .add(GetCompanyData(scripSymbol: widget.company.symbol));
   }
 
   List _tabs = ["Top Buyers", "Top sellers"];
@@ -83,7 +83,7 @@ class _CompanyAnalysisState extends State<CompanyAnalysis> {
                                 .copyWith(color: whiteC),
                             columns: [
                               DataColumn(label: Text('Rank')),
-                              DataColumn(label: Text('Symbol')),
+                              DataColumn(label: Text('Broker')),
                               DataColumn(label: Text('Qty')),
                               DataColumn(label: Text('Amount')),
                               DataColumn(label: Text('Shares\n Traded')),
@@ -99,7 +99,7 @@ class _CompanyAnalysisState extends State<CompanyAnalysis> {
                               return DataRow(cells: [
                                 DataCell(
                                     Text(_item.rank.toString(), style: _style)),
-                                DataCell(Text(_item.scripSymbol.toString(),
+                                DataCell(Text(_item.broker.toString(),
                                     style: _style)),
                                 DataCell(Text(_item.quantity.toString(),
                                     style: _style)),
