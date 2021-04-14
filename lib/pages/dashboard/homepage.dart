@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:stock_companion/data/provider/database.dart';
 import 'package:stock_companion/pages/news/news.dart';
 import 'package:stock_companion/pages/pages.dart';
 
@@ -10,6 +11,15 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   int _currentIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    openDatabasee();
+  }
+
+  openDatabasee() async {
+    var db = await DbHelper().db;
+  }
 
   Widget _buildBottomNavItem(int index, {IconData icon, String text}) {
     var theme = Theme.of(context);
