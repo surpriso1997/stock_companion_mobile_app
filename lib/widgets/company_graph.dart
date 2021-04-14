@@ -67,7 +67,8 @@ class _CmpanyGraphState extends State<CmpanyGraph> {
                   xAxisName: "Time",
                   yAxisName: "Nepse"),
             ]);
-      }
+      } else
+        return Container();
     });
   }
 }
