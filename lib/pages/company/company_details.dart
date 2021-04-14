@@ -20,7 +20,8 @@ class _CompanyDetailsState extends State<CompanyDetails> {
   void initState() {
     super.initState();
 
-    BlocProvider.of<CompanyGraphBloc>(context).add(FetchItems());
+    BlocProvider.of<CompanyGraphBloc>(context)
+        .add(FetchGraph(id: widget.stockPrice.securityId));
   }
 
   TextStyle _style = TextStyle(color: blackC, fontSize: 16);
@@ -56,8 +57,7 @@ class _CompanyDetailsState extends State<CompanyDetails> {
       body: ListView(
         children: [
           Container(
-            height: 300,
-            // color: Colors.pink,
+            height: 350,
             child: CmpanyGraph(),
           ),
           Column(

@@ -11,16 +11,19 @@ class CompanyGraphBloc extends Bloc<CommonEvent, CommonState> {
   List<CompanyGraphModel> graphData = [];
   @override
   Stream<CommonState> mapEventToState(CommonEvent event) async* {
-    if (event is FetchedItemsState) {
+    if (event is FetchGraph) {
       yield FetchingItemsState();
       try {
-        final res = await getRequest(
-            url: "${Constants.base_url_prod}/nots/market/graphdata/131");
+        var url =
+            "${Constants.base_url_prod}/nots/market/graphdata/${event.id}";
+        final res = await getRequest(url: url);
 
         if (res.isNotEmpty) {
-          var data = res.map((e) => CompanyGraphModel.fromJson(e)).toList();
+          List<CompanyGraphModel> data = res
+              .map<CompanyGraphModel>((e) => CompanyGraphModel.fromJson(e))
+              .toList();
           graphData = data;
-          yield FetchedItemsState(items: data);
+          yield FetchedItemsState(items: graphData);
         }
       } catch (e) {
         yield ErrorState(message: "Could not fetch company graph data");
