@@ -1,5 +1,5 @@
-class BrokerAnalysis {
-  BrokerAnalysis({
+class BrokerAnalysisModel {
+  BrokerAnalysisModel({
     this.rank,
     this.scripSymbol,
     this.orderType,
@@ -21,7 +21,8 @@ class BrokerAnalysis {
   int sharesTraded;
   int averagePrice;
 
-  factory BrokerAnalysis.fromJson(Map<String, dynamic> json) => BrokerAnalysis(
+  factory BrokerAnalysisModel.fromJson(Map<String, dynamic> json) =>
+      BrokerAnalysisModel(
         rank: json["Rank"],
         scripSymbol: json["Scrip Symbol"],
         orderType: json["Order Type"],

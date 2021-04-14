@@ -1,5 +1,5 @@
-class CompanyAnalysis {
-  CompanyAnalysis({
+class CompanyAnaylisModel {
+  CompanyAnaylisModel({
     this.rank,
     this.scripSymbol,
     this.orderType,
@@ -21,8 +21,8 @@ class CompanyAnalysis {
   int sharesTraded;
   int averagePrice;
 
-  factory CompanyAnalysis.fromJson(Map<String, dynamic> json) =>
-      CompanyAnalysis(
+  factory CompanyAnaylisModel.fromJson(Map<String, dynamic> json) =>
+      CompanyAnaylisModel(
         rank: json["Rank"],
         scripSymbol: json["Scrip Symbol"],
         orderType: json["Order Type"],
