@@ -34,7 +34,8 @@ class ICompanyAnalysisRepository {
     var params = {"buy_type": "sell", "Company_no": companyId};
 
     try {
-      final res = getRequest(url: url, params: params);
+      // final res = getRequest(url: url, params: params);
+      final res = companay_analysis_data;
       var data = res.map((e) => CompanyAnaylisModel.fromJson(e)).toList();
       _sell = data;
     } on CustomApiExcception catch (e) {

@@ -7,6 +7,7 @@ import 'package:stock_companion/bloc/company/company_bloc.dart';
 import 'package:stock_companion/models/company_list_model.dart';
 import 'package:stock_companion/pages/company/company_details.dart';
 import 'package:stock_companion/utils/utils.dart';
+import 'package:stock_companion/widgets/company_analysis_widget.dart';
 import 'package:stock_companion/widgets/fucntional_widgets.dart';
 
 class Company extends StatefulWidget {
@@ -48,8 +49,9 @@ class _CompanyState extends State<Company> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => CompanyDetails(
+                              builder: (_) => CompanyAnalysis(
                                     company: _item,
+                                    commpanyId: _item.id,
                                   )));
                     },
                     title: Text(
