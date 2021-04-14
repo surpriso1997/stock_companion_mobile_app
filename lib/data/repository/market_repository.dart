@@ -19,7 +19,7 @@ class IMarketReposity {
     print("lol");
     try {
       var res = (await getRequest(url: _url)) as List;
-      print(res);
+      // print(res);
       var _indices =
           res.map<NepseIndex>((item) => NepseIndex.fromJson(item)).toList();
       return _indices;
