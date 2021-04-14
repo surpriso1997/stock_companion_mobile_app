@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:stock_companion/models/models.dart';
 
@@ -78,5 +79,17 @@ class StockPrice {
         sectorName: "",
         regulatoryBody: "",
         instrumentType: "");
+  }
+
+  Map<String, dynamic> toDbMap() {
+    return {
+      "companyId": this.securityId,
+      "symbol": this.symbol,
+      "sectorName": " ",
+      "sectorId": -1,
+      "change": 11,
+      "changePercent": 1.1,
+      "name": this.securityName
+    };
   }
 }
