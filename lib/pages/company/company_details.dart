@@ -80,14 +80,16 @@ class _CompanyDetailsState extends State<CompanyDetails> {
                   Text("As of:" + widget.stockPrice.lastUpdatedTime,
                       style: _style),
                   Text(
-                      "Last Update Price:" +
+                      "Last Update Price: Rs." +
                           widget.stockPrice.lastUpdatedPrice.toString(),
                       style: _style),
                   Text(
-                      "Closing Price:" +
+                      "Closing Price: Rs." +
                           widget.stockPrice.closePrice.toString(),
                       style: _style),
-                  Text("Open Price: " + widget.stockPrice.openPrice.toString(),
+                  Text(
+                      "Open Price: Rs." +
+                          widget.stockPrice.openPrice.toString(),
                       style: _style),
                   Text(
                       "Total Traded Quantity:" +
