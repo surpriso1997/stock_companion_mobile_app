@@ -14,11 +14,13 @@ import 'package:stock_companion/bloc/market_details/market_details.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_indices.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_subindices.bloc.dart';
 import 'package:stock_companion/bloc/market_summary/market_summary_bloc.dart';
+import 'package:stock_companion/bloc/news_cubit/news_cubit.dart';
 import 'package:stock_companion/bloc/stock_price/stock_price.dart';
 import 'package:stock_companion/bloc/theme_cubit/theme_cubit.dart';
 import 'package:stock_companion/bloc/top_trades/top_trades_blocs.dart';
 import 'package:stock_companion/data/repository/analysis/broker_analysis_repo.dart';
 import 'package:stock_companion/data/repository/analysis/company_analysis_repo.dart';
+import 'package:stock_companion/data/repository/news_repository.dart';
 import '../data/repository/repository.dart';
 
 import 'package:stock_companion/utils/utils.dart';
@@ -63,6 +65,7 @@ class MultiBlocProviders extends StatelessWidget {
     final _iCompAnyAnalysisRepository = ICompanyAnalysisRepository();
 
     final _iBrokerAnalysisRepository = IBrokerAnalysisRepository();
+    final _newsRepository = INewsRepoesitory();
 
     return MultiRepositoryProvider(
       providers: [
@@ -128,6 +131,9 @@ class MultiBlocProviders extends StatelessWidget {
               create: (context) =>
                   CompanyAnalysisBloc(repository: _iCompAnyAnalysisRepository)),
           BlocProvider(create: (context) => CompanyGraphBloc()),
+          BlocProvider(
+            create: (context) => NewsBloc(repository: _newsRepository),
+          ),
         ],
         child: child,
       ),
