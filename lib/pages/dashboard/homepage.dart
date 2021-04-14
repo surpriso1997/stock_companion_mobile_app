@@ -55,18 +55,11 @@ class _HomepageState extends State<Homepage> {
           case 0:
             return Market();
             break;
-
           case 1:
-            return News();
-            break;
-
-          case 2:
             return Dashboard();
             break;
-
-          case 3:
-            return Wishlist();
-
+          case 2:
+            return News();
             break;
 
           default:
@@ -104,10 +97,8 @@ class _HomepageState extends State<Homepage> {
           children: <Widget>[
             _buildBottomNavItem(0,
                 icon: MaterialCommunityIcons.google_analytics, text: "Market"),
-            _buildBottomNavItem(1, icon: Entypo.news, text: "News"),
-            _buildBottomNavItem(2, icon: Icons.dashboard, text: "Dashboard"),
-            _buildBottomNavItem(3,
-                icon: Icons.favorite_outline, text: "Wishlist"),
+            _buildBottomNavItem(1, icon: Icons.dashboard, text: "Dashboard"),
+            _buildBottomNavItem(2, icon: Entypo.news, text: "News"),
           ],
         ),
       ),
