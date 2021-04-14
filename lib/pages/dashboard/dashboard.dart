@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:stock_companion/data/provider/database.dart';
 import 'package:stock_companion/pages/company/brokers.dart';
 import 'package:stock_companion/pages/market/market_indices.dart';
 import 'package:stock_companion/pages/market_depth/market_depth.dart';
@@ -82,6 +83,12 @@ class _DashboardState extends State<Dashboard> {
               title: 'Live Nepse',
               onPressed: () {
                 Navigator.pushNamed(context, Routes.live_marekt);
+              }),
+          _buildGridViewItem(
+              icon: Icons.analytics,
+              title: 'Analysis',
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.calculator);
               }),
           _buildGridViewItem(
               icon: AntDesign.barchart,
