@@ -6,6 +6,7 @@ import 'package:stock_companion/bloc/analysis/company_analysis_bloc.dart';
 import 'package:stock_companion/bloc/brokers/brokers_bloc.dart';
 import 'package:stock_companion/bloc/company/company_bloc.dart';
 import 'package:stock_companion/bloc/floorsheet/floorsheet_bloc.dart';
+import 'package:stock_companion/bloc/index_graph/company_graph.dart';
 import 'package:stock_companion/bloc/index_graph/index_graph_bloc.dart';
 import 'package:stock_companion/bloc/live_market/live_market_bloc.dart';
 import 'package:stock_companion/bloc/market_depth/bloc/market_depth_bloc.dart';
@@ -126,6 +127,7 @@ class MultiBlocProviders extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   CompanyAnalysisBloc(repository: _iCompAnyAnalysisRepository)),
+          BlocProvider(create: (context) => CompanyGraphBloc()),
         ],
         child: child,
       ),
