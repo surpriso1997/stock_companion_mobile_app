@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:stock_companion/data/provider/api.dart';
 import 'package:stock_companion/data/provider/database.dart';
 import 'package:stock_companion/models/models.dart';
 import 'package:stock_companion/utils/custom_exceptions.dart';
 import 'package:stock_companion/utils/utils.dart';
+
+import 'data_repository.dart';
 
 class IStockPriceRepo {
   final String _baseUrl;
@@ -29,7 +33,7 @@ class IStockPriceRepo {
 
     try {
       Map<String, dynamic> _params = {
-        "size": 100,
+        "size": 150,
         "page": _currentPage,
       };
 
@@ -54,7 +58,11 @@ class IStockPriceRepo {
       _totalItems = res['totalElements'];
 
       _companies.forEach((element) {});
-      await DbHelper().addAllCompanies(companies);
+      DataRepository().setCompaniesList(_companies);
+
+      Timer(Duration(seconds: 5), () async {
+        await DbHelper().addAllCompanies(companies);
+      });
 
       return _companies;
     } on CustomApiExcception catch (e) {
