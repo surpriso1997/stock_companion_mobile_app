@@ -6,19 +6,20 @@ import 'package:stock_companion/utils/utils.dart';
 class IBrokerAnalysisRepository {
   final vmIp = "52.148.96.72";
 
-  List<BrokerAnalysis> _buy = [];
-  List<BrokerAnalysis> get buy => _buy;
+  List<BrokerAnalysisModel> _buy = [];
+  List<BrokerAnalysisModel> get buy => _buy;
 
-  List<BrokerAnalysis> _sell = [];
-  List<BrokerAnalysis> get sell => _sell;
+  List<BrokerAnalysisModel> _sell = [];
+  List<BrokerAnalysisModel> get sell => _sell;
 
   getBuyAnalytics(int brokerId) async {
     var url = "$vmIp/";
     var params = {"buy_type": "buy", "broker_no": brokerId};
 
     try {
-      final res = await getRequest(url: url, params: params);
-      var data = res.map((e) => BrokerAnalysis.fromJson(e)).toList();
+      // final res = await getRequest(url: url, params: params);
+      final res = broker_analsis_data;
+      var data = res.map((e) => BrokerAnalysisModel.fromJson(e)).toList();
       _buy = data;
     } on CustomApiExcception catch (e) {
       throw ApiException(message: e.message);
@@ -36,7 +37,7 @@ class IBrokerAnalysisRepository {
       // final res = getRequest(url: url, params: params);
       final res = broker_analsis_data;
 
-      var data = res.map((e) => BrokerAnalysis.fromJson(e)).toList();
+      var data = res.map((e) => BrokerAnalysisModel.fromJson(e)).toList();
       _sell = data;
     } on CustomApiExcception catch (e) {
       throw ApiException(message: e.message);
