@@ -12,14 +12,14 @@ class CompanyGraphModel {
   });
 
   String businessDate;
-  int openPrice;
-  int highPrice;
-  int lowPrice;
-  int previousDayClosePrice;
-  int fiftyTwoWeekHigh;
-  int lastTradedPrice;
-  int totalTradedQuantity;
-  int closePrice;
+  var openPrice;
+  var highPrice;
+  var lowPrice;
+  var previousDayClosePrice;
+  var fiftyTwoWeekHigh;
+  var lastTradedPrice;
+  var totalTradedQuantity;
+  var closePrice;
 
   factory CompanyGraphModel.fromJson(Map<String, dynamic> json) =>
       CompanyGraphModel(
