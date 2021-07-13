@@ -3,7 +3,7 @@ import 'package:stock_companion/models/brokers.model.dart';
 import 'package:stock_companion/pages/company/brokers.dart';
 
 class BrokerSummary extends StatefulWidget {
-  const BrokerSummary({this.broker});
+  const BrokerSummary({required this.broker});
 
   final BrokersModel broker;
 

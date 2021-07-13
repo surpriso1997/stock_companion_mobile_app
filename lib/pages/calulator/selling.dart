@@ -9,7 +9,9 @@ class Selling extends StatefulWidget {
   final TextEditingController buyController, sellController, unitsController;
 
   const Selling(
-      {this.buyController, this.sellController, this.unitsController});
+      {required this.buyController,
+      required this.sellController,
+      required this.unitsController});
   @override
   _SellingState createState() => _SellingState();
 }

@@ -13,15 +13,15 @@ class FetchingGraph extends IndexGraphState {}
 
 class FetchedGraph extends IndexGraphState {
   final List<List<num>> data;
-  const FetchedGraph({this.data});
+  const FetchedGraph({required this.data});
 }
 
 class CandleGraphState extends IndexGraphState {
   final data;
-  const CandleGraphState({this.data});
+  const CandleGraphState({required this.data});
 }
 
 class ErrorState extends IndexGraphState {
   final message;
-  const ErrorState({this.message});
+  const ErrorState({required this.message});
 }

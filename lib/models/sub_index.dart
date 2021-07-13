@@ -6,7 +6,7 @@ class SubIndex {
   double currentValue;
 
   SubIndex(
-      {this.id, this.index, this.change, this.perChange, this.currentValue});
+      {required this.id, required this.index, required this.change, required this.perChange, required this.currentValue});
 
   SubIndex.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -18,11 +18,11 @@ class SubIndex {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['index'] = this.index;
-    data['change'] = this.change;
-    data['perChange'] = this.perChange;
-    data['currentValue'] = this.currentValue;
+    data['id'] = required this.id;
+    data['index'] = required this.index;
+    data['change'] = required this.change;
+    data['perChange'] = required this.perChange;
+    data['currentValue'] = required this.currentValue;
     return data;
   }
 }

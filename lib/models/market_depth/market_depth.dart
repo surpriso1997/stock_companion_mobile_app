@@ -1,8 +1,8 @@
 class MarketDepthData {
   MarketDepthData({
-    this.totalBuyQty,
-    this.marketDepth,
-    this.totalSellQty,
+    required this.totalBuyQty,
+    required this.marketDepth,
+    required this.totalSellQty,
   });
 
   int totalBuyQty;
@@ -25,8 +25,8 @@ class MarketDepthData {
 
 class MarketDepthClass {
   MarketDepthClass({
-    this.buyMarketDepthList,
-    this.sellMarketDepthList,
+    required this.buyMarketDepthList,
+    required this.sellMarketDepthList,
   });
 
   List<MarketDepthList> buyMarketDepthList;
@@ -51,11 +51,11 @@ class MarketDepthClass {
 
 class MarketDepthList {
   MarketDepthList({
-    this.stockId,
-    this.orderBookOrderPrice,
-    this.quantity,
-    this.orderCount,
-    this.isBuy,
+    required this.stockId,
+    required this.orderBookOrderPrice,
+    required this.quantity,
+    required this.orderCount,
+    required this.isBuy,
   });
 
   int stockId;

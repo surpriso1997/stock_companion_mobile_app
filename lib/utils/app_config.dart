@@ -8,11 +8,11 @@ class AppConfig extends InheritedWidget {
   final Widget child;
 
   AppConfig(
-      {this.appName,
-      this.flavor,
-      this.baseUrl,
-      this.secondaryBaseUrl,
-      this.child})
+      {required this.appName,
+      required this.flavor,
+      required this.baseUrl,
+      required this.secondaryBaseUrl,
+      required this.child})
       : super(child: child);
 
   static AppConfig of(BuildContext context) {

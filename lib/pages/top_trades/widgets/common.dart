@@ -19,7 +19,11 @@ class PaddingChild extends StatelessWidget {
   final Widget child;
   final double horizontal;
   final double vertical;
-  const PaddingChild({Key key, this.child, this.horizontal, this.vertical})
+  const PaddingChild(
+      {Key key,
+      required this.child,
+      required this.horizontal,
+      required this.vertical})
       : super(key: key);
 
   @override

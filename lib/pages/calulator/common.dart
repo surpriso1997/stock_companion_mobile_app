@@ -5,7 +5,7 @@ class CalculatorRow extends StatelessWidget {
   final String text;
   final String value;
 
-  const CalculatorRow({this.text, this.value});
+  const CalculatorRow({required this.text, required this.value});
 
   @override
   Widget build(BuildContext context) {

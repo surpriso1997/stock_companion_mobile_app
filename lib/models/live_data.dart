@@ -4,19 +4,19 @@ import 'models.dart';
 
 class LiveData {
   LiveData({
-    @required this.securityId,
-    @required this.securityName,
-    @required this.symbol,
-    @required this.indexId,
-    @required this.openPrice,
-    @required this.highPrice,
-    @required this.lowPrice,
-    @required this.totalTradeQuantity,
-    @required this.lastTradedPrice,
-    @required this.percentageChange,
-    @required this.lastUpdatedDateTime,
-    @required this.lastTradedVolume,
-    @required this.previousClose,
+    @required required this.securityId,
+    @required required this.securityName,
+    @required required this.symbol,
+    @required required this.indexId,
+    @required required this.openPrice,
+    @required required this.highPrice,
+    @required required this.lowPrice,
+    @required required this.totalTradeQuantity,
+    @required required this.lastTradedPrice,
+    @required required this.percentageChange,
+    @required required this.lastUpdatedDateTime,
+    @required required this.lastTradedVolume,
+    @required required this.previousClose,
   });
 
   String securityId;
@@ -49,19 +49,19 @@ class LiveData {
     int previousClose,
   }) =>
       LiveData(
-        securityId: securityId ?? this.securityId,
-        securityName: securityName ?? this.securityName,
-        symbol: symbol ?? this.symbol,
-        indexId: indexId ?? this.indexId,
-        openPrice: openPrice ?? this.openPrice,
-        highPrice: highPrice ?? this.highPrice,
-        lowPrice: lowPrice ?? this.lowPrice,
-        totalTradeQuantity: totalTradeQuantity ?? this.totalTradeQuantity,
-        lastTradedPrice: lastTradedPrice ?? this.lastTradedPrice,
-        percentageChange: percentageChange ?? this.percentageChange,
-        lastUpdatedDateTime: lastUpdatedDateTime ?? this.lastUpdatedDateTime,
-        lastTradedVolume: lastTradedVolume ?? this.lastTradedVolume,
-        previousClose: previousClose ?? this.previousClose,
+        securityId: securityId ?? required this.securityId,
+        securityName: securityName ?? required this.securityName,
+        symbol: symbol ?? required this.symbol,
+        indexId: indexId ?? required this.indexId,
+        openPrice: openPrice ?? required this.openPrice,
+        highPrice: highPrice ?? required this.highPrice,
+        lowPrice: lowPrice ?? required this.lowPrice,
+        totalTradeQuantity: totalTradeQuantity ?? required this.totalTradeQuantity,
+        lastTradedPrice: lastTradedPrice ?? required this.lastTradedPrice,
+        percentageChange: percentageChange ?? required this.percentageChange,
+        lastUpdatedDateTime: lastUpdatedDateTime ?? required this.lastUpdatedDateTime,
+        lastTradedVolume: lastTradedVolume ?? required this.lastTradedVolume,
+        previousClose: previousClose ?? required this.previousClose,
       );
 
   factory LiveData.fromJson(Map<String, dynamic> json) => LiveData(
@@ -97,10 +97,10 @@ class LiveData {
       };
   CompanyListModel gCompanyFromStockPrice() {
     return CompanyListModel(
-        id: int.parse(this.securityId),
-        companyName: this.securityName,
+        id: int.parse(required this.securityId),
+        companyName: required this.securityName,
         symbol: symbol,
-        securityName: this.securityName,
+        securityName: required this.securityName,
         status: "",
         companyEmail: "",
         website: "",

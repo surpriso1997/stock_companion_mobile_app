@@ -1,7 +1,12 @@
 class NewsModel {
   var url, date, sn, image, title;
 
-  NewsModel({this.url, this.date, this.sn, this.image, this.title});
+  NewsModel(
+      {required this.url,
+      required this.date,
+      required this.sn,
+      required this.image,
+      required this.title});
 
   factory NewsModel.fromJson(Map json) {
     return NewsModel(

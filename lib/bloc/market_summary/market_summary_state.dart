@@ -13,20 +13,20 @@ class MSubIndicesLoading extends MarketSummaryState {}
 
 class MIndicesFetched extends MarketSummaryState {
   final List<NepseIndex> index;
-  const MIndicesFetched({this.index});
+  const MIndicesFetched({required this.index});
 }
 
 class MSubIndicesFetched extends MarketSummaryState {
   final List<SubIndex> subIndices;
-  const MSubIndicesFetched({this.subIndices});
+  const MSubIndicesFetched({required this.subIndices});
 }
 
 class MIndicesError extends MarketSummaryState {
   final String error;
-  const MIndicesError({this.error});
+  const MIndicesError({required this.error});
 }
 
 class MSubIndicesError extends MarketSummaryState {
   final String error;
-  const MSubIndicesError({this.error});
+  const MSubIndicesError({required this.error});
 }

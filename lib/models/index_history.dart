@@ -2,17 +2,17 @@ import 'package:meta/meta.dart';
 
 class IndexHistory {
   IndexHistory({
-    @required this.content,
-    @required this.pageable,
-    @required this.totalPages,
-    @required this.totalElements,
-    @required this.last,
-    @required this.number,
-    @required this.size,
-    @required this.numberOfElements,
-    @required this.sort,
-    @required this.first,
-    @required this.empty,
+    @required required this.content,
+    @required required this.pageable,
+    @required required this.totalPages,
+    @required required this.totalElements,
+    @required required this.last,
+    @required required this.number,
+    @required required this.size,
+    @required required this.numberOfElements,
+    @required required this.sort,
+    @required required this.first,
+    @required required this.empty,
   });
 
   final List<Content> content;
@@ -41,17 +41,17 @@ class IndexHistory {
     bool empty,
   }) =>
       IndexHistory(
-        content: content ?? this.content,
-        pageable: pageable ?? this.pageable,
-        totalPages: totalPages ?? this.totalPages,
-        totalElements: totalElements ?? this.totalElements,
-        last: last ?? this.last,
-        number: number ?? this.number,
-        size: size ?? this.size,
-        numberOfElements: numberOfElements ?? this.numberOfElements,
-        sort: sort ?? this.sort,
-        first: first ?? this.first,
-        empty: empty ?? this.empty,
+        content: content ?? required this.content,
+        pageable: pageable ?? required this.pageable,
+        totalPages: totalPages ?? required this.totalPages,
+        totalElements: totalElements ?? required this.totalElements,
+        last: last ?? required this.last,
+        number: number ?? required this.number,
+        size: size ?? required this.size,
+        numberOfElements: numberOfElements ?? required this.numberOfElements,
+        sort: sort ?? required this.sort,
+        first: first ?? required this.first,
+        empty: empty ?? required this.empty,
       );
 
   factory IndexHistory.fromJson(Map<String, dynamic> json) => IndexHistory(
@@ -86,15 +86,15 @@ class IndexHistory {
 
 class Content {
   Content({
-    @required this.id,
-    @required this.businessDate,
-    @required this.exchangeIndexMaster,
-    @required this.closingIndex,
-    @required this.openIndex,
-    @required this.highIndex,
-    @required this.lowIndex,
-    @required this.fiftyTwoWeekHigh,
-    @required this.fiftyTwoWeekLow,
+    @required required this.id,
+    @required required this.businessDate,
+    @required required this.exchangeIndexMaster,
+    @required required this.closingIndex,
+    @required required this.openIndex,
+    @required required this.highIndex,
+    @required required this.lowIndex,
+    @required required this.fiftyTwoWeekHigh,
+    @required required this.fiftyTwoWeekLow,
   });
 
   final int id;
@@ -119,15 +119,15 @@ class Content {
     double fiftyTwoWeekLow,
   }) =>
       Content(
-        id: id ?? this.id,
-        businessDate: businessDate ?? this.businessDate,
-        exchangeIndexMaster: exchangeIndexMaster ?? this.exchangeIndexMaster,
-        closingIndex: closingIndex ?? this.closingIndex,
-        openIndex: openIndex ?? this.openIndex,
-        highIndex: highIndex ?? this.highIndex,
-        lowIndex: lowIndex ?? this.lowIndex,
-        fiftyTwoWeekHigh: fiftyTwoWeekHigh ?? this.fiftyTwoWeekHigh,
-        fiftyTwoWeekLow: fiftyTwoWeekLow ?? this.fiftyTwoWeekLow,
+        id: id ?? required this.id,
+        businessDate: businessDate ?? required this.businessDate,
+        exchangeIndexMaster: exchangeIndexMaster ?? required this.exchangeIndexMaster,
+        closingIndex: closingIndex ?? required this.closingIndex,
+        openIndex: openIndex ?? required this.openIndex,
+        highIndex: highIndex ?? required this.highIndex,
+        lowIndex: lowIndex ?? required this.lowIndex,
+        fiftyTwoWeekHigh: fiftyTwoWeekHigh ?? required this.fiftyTwoWeekHigh,
+        fiftyTwoWeekLow: fiftyTwoWeekLow ?? required this.fiftyTwoWeekLow,
       );
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
@@ -159,14 +159,14 @@ class Content {
 
 class ExchangeIndexMaster {
   ExchangeIndexMaster({
-    @required this.id,
-    @required this.indexCode,
-    @required this.indexName,
-    @required this.description,
-    @required this.sectorMaster,
-    @required this.activeStatus,
-    @required this.keyIndexFlag,
-    @required this.baseYearMarketCapitalization,
+    @required required this.id,
+    @required required this.indexCode,
+    @required required this.indexName,
+    @required required this.description,
+    @required required this.sectorMaster,
+    @required required this.activeStatus,
+    @required required this.keyIndexFlag,
+    @required required this.baseYearMarketCapitalization,
   });
 
   final int id;
@@ -189,15 +189,15 @@ class ExchangeIndexMaster {
     double baseYearMarketCapitalization,
   }) =>
       ExchangeIndexMaster(
-        id: id ?? this.id,
-        indexCode: indexCode ?? this.indexCode,
-        indexName: indexName ?? this.indexName,
-        description: description ?? this.description,
-        sectorMaster: sectorMaster ?? this.sectorMaster,
-        activeStatus: activeStatus ?? this.activeStatus,
-        keyIndexFlag: keyIndexFlag ?? this.keyIndexFlag,
+        id: id ?? required this.id,
+        indexCode: indexCode ?? required this.indexCode,
+        indexName: indexName ?? required this.indexName,
+        description: description ?? required this.description,
+        sectorMaster: sectorMaster ?? required this.sectorMaster,
+        activeStatus: activeStatus ?? required this.activeStatus,
+        keyIndexFlag: keyIndexFlag ?? required this.keyIndexFlag,
         baseYearMarketCapitalization:
-            baseYearMarketCapitalization ?? this.baseYearMarketCapitalization,
+            baseYearMarketCapitalization ?? required this.baseYearMarketCapitalization,
       );
 
   factory ExchangeIndexMaster.fromJson(Map<String, dynamic> json) =>
@@ -250,10 +250,10 @@ final keyIndexFlagValues = EnumValues({"N": KeyIndexFlag.N});
 
 class SectorMaster {
   SectorMaster({
-    @required this.id,
-    @required this.sectorDescription,
-    @required this.activeStatus,
-    @required this.regulatoryBody,
+    @required required this.id,
+    @required required this.sectorDescription,
+    @required required this.activeStatus,
+    @required required this.regulatoryBody,
   });
 
   final int id;
@@ -268,10 +268,10 @@ class SectorMaster {
     RegulatoryBody regulatoryBody,
   }) =>
       SectorMaster(
-        id: id ?? this.id,
-        sectorDescription: sectorDescription ?? this.sectorDescription,
-        activeStatus: activeStatus ?? this.activeStatus,
-        regulatoryBody: regulatoryBody ?? this.regulatoryBody,
+        id: id ?? required this.id,
+        sectorDescription: sectorDescription ?? required this.sectorDescription,
+        activeStatus: activeStatus ?? required this.activeStatus,
+        regulatoryBody: regulatoryBody ?? required this.regulatoryBody,
       );
 
   factory SectorMaster.fromJson(Map<String, dynamic> json) => SectorMaster(
@@ -302,12 +302,12 @@ final sectorDescriptionValues =
 
 class Pageable {
   Pageable({
-    @required this.sort,
-    @required this.pageSize,
-    @required this.pageNumber,
-    @required this.offset,
-    @required this.paged,
-    @required this.unpaged,
+    @required required this.sort,
+    @required required this.pageSize,
+    @required required this.pageNumber,
+    @required required this.offset,
+    @required required this.paged,
+    @required required this.unpaged,
   });
 
   final Sort sort;
@@ -326,12 +326,12 @@ class Pageable {
     bool unpaged,
   }) =>
       Pageable(
-        sort: sort ?? this.sort,
-        pageSize: pageSize ?? this.pageSize,
-        pageNumber: pageNumber ?? this.pageNumber,
-        offset: offset ?? this.offset,
-        paged: paged ?? this.paged,
-        unpaged: unpaged ?? this.unpaged,
+        sort: sort ?? required this.sort,
+        pageSize: pageSize ?? required this.pageSize,
+        pageNumber: pageNumber ?? required this.pageNumber,
+        offset: offset ?? required this.offset,
+        paged: paged ?? required this.paged,
+        unpaged: unpaged ?? required this.unpaged,
       );
 
   factory Pageable.fromJson(Map<String, dynamic> json) => Pageable(
@@ -355,9 +355,9 @@ class Pageable {
 
 class Sort {
   Sort({
-    @required this.sorted,
-    @required this.unsorted,
-    @required this.empty,
+    @required required this.sorted,
+    @required required this.unsorted,
+    @required required this.empty,
   });
 
   final bool sorted;
@@ -370,9 +370,9 @@ class Sort {
     bool empty,
   }) =>
       Sort(
-        sorted: sorted ?? this.sorted,
-        unsorted: unsorted ?? this.unsorted,
-        empty: empty ?? this.empty,
+        sorted: sorted ?? required this.sorted,
+        unsorted: unsorted ?? required this.unsorted,
+        empty: empty ?? required this.empty,
       );
 
   factory Sort.fromJson(Map<String, dynamic> json) => Sort(
@@ -392,7 +392,7 @@ class EnumValues<T> {
   Map<String, T> map;
   Map<T, String> reverseMap;
 
-  EnumValues(this.map);
+  EnumValues(required this.map);
 
   Map<T, String> get reverse {
     if (reverseMap == null) {

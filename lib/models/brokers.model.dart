@@ -8,13 +8,13 @@ class BrokersModel {
   String isDealer;
 
   BrokersModel({
-    this.id,
-    this.activeStatus,
-    this.memberCode,
-    this.memberName,
-    this.authorizedContactPersonNumber,
-    this.tmsLink,
-    this.isDealer,
+    required this.id,
+    required this.activeStatus,
+    required this.memberCode,
+    required this.memberName,
+    required this.authorizedContactPersonNumber,
+    required this.tmsLink,
+    required this.isDealer,
   });
 
   factory BrokersModel.fromJson(Map<String, dynamic> json) {

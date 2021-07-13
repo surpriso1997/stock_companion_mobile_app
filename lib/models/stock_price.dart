@@ -4,25 +4,25 @@ import 'package:stock_companion/models/models.dart';
 
 class StockPrice {
   StockPrice({
-    @required this.id,
-    @required this.businessDate,
-    @required this.securityId,
-    @required this.symbol,
-    @required this.securityName,
-    @required this.openPrice,
-    @required this.highPrice,
-    @required this.lowPrice,
-    @required this.closePrice,
-    @required this.totalTradedQuantity,
-    @required this.totalTradedValue,
-    @required this.previousDayClosePrice,
-    @required this.fiftyTwoWeekHigh,
-    @required this.fiftyTwoWeekLow,
-    @required this.lastUpdatedTime,
-    @required this.lastUpdatedPrice,
-    @required this.totalTrades,
-    @required this.averageTradedPrice,
-    @required this.marketCapitalization,
+    @required required this.id,
+    @required required this.businessDate,
+    @required required this.securityId,
+    @required required this.symbol,
+    @required required this.securityName,
+    @required required this.openPrice,
+    @required required this.highPrice,
+    @required required this.lowPrice,
+    @required required this.closePrice,
+    @required required this.totalTradedQuantity,
+    @required required this.totalTradedValue,
+    @required required this.previousDayClosePrice,
+    @required required this.fiftyTwoWeekHigh,
+    @required required this.fiftyTwoWeekLow,
+    @required required this.lastUpdatedTime,
+    @required required this.lastUpdatedPrice,
+    @required required this.totalTrades,
+    @required required this.averageTradedPrice,
+    @required required this.marketCapitalization,
   });
 
   final dynamic id;
@@ -69,10 +69,10 @@ class StockPrice {
 
   CompanyListModel gCompanyFromStockPrice() {
     return CompanyListModel(
-        id: this.id,
-        companyName: this.securityName,
+        id: required this.id,
+        companyName: required this.securityName,
         symbol: symbol,
-        securityName: this.securityName,
+        securityName: required this.securityName,
         status: "",
         companyEmail: "",
         website: "",
@@ -83,13 +83,13 @@ class StockPrice {
 
   Map<String, dynamic> toDbMap() {
     return {
-      "companyId": this.securityId,
-      "symbol": this.symbol,
+      "companyId": required this.securityId,
+      "symbol": required this.symbol,
       "sectorName": " ",
       "sectorId": -1,
       "change": 11,
       "changePercent": 1.1,
-      "name": this.securityName
+      "name": required this.securityName
     };
   }
 }

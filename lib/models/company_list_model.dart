@@ -2,16 +2,16 @@ import 'package:meta/meta.dart';
 
 class CompanyListModel {
   CompanyListModel({
-    @required this.id,
-    @required this.companyName,
-    @required this.symbol,
-    @required this.securityName,
-    @required this.status,
-    @required this.companyEmail,
-    @required this.website,
-    @required this.sectorName,
-    @required this.regulatoryBody,
-    @required this.instrumentType,
+    @required required this.id,
+    @required required this.companyName,
+    @required required this.symbol,
+    @required required this.securityName,
+    @required required this.status,
+    @required required this.companyEmail,
+    @required required this.website,
+    @required required this.sectorName,
+    @required required this.regulatoryBody,
+    @required required this.instrumentType,
   });
 
   final int id;

@@ -2,17 +2,17 @@ import 'package:meta/meta.dart';
 
 class NepseIndex {
   NepseIndex({
-    @required this.id,
-    @required this.index,
-    @required this.close,
-    @required this.high,
-    @required this.low,
-    @required this.previousClose,
-    @required this.change,
-    @required this.perChange,
-    @required this.fiftyTwoWeekHigh,
-    @required this.fiftyTwoWeekLow,
-    @required this.currentValue,
+    @required required this.id,
+    @required required this.index,
+    @required required this.close,
+    @required required this.high,
+    @required required this.low,
+    @required required this.previousClose,
+    @required required this.change,
+    @required required this.perChange,
+    @required required this.fiftyTwoWeekHigh,
+    @required required this.fiftyTwoWeekLow,
+    @required required this.currentValue,
   });
 
   final int id;
@@ -41,17 +41,17 @@ class NepseIndex {
     double currentValue,
   }) =>
       NepseIndex(
-        id: id ?? this.id,
-        index: index ?? this.index,
-        close: close ?? this.close,
-        high: high ?? this.high,
-        low: low ?? this.low,
-        previousClose: previousClose ?? this.previousClose,
-        change: change ?? this.change,
-        perChange: perChange ?? this.perChange,
-        fiftyTwoWeekHigh: fiftyTwoWeekHigh ?? this.fiftyTwoWeekHigh,
-        fiftyTwoWeekLow: fiftyTwoWeekLow ?? this.fiftyTwoWeekLow,
-        currentValue: currentValue ?? this.currentValue,
+        id: id ?? required this.id,
+        index: index ?? required this.index,
+        close: close ?? required this.close,
+        high: high ?? required this.high,
+        low: low ?? required this.low,
+        previousClose: previousClose ?? required this.previousClose,
+        change: change ?? required this.change,
+        perChange: perChange ?? required this.perChange,
+        fiftyTwoWeekHigh: fiftyTwoWeekHigh ?? required this.fiftyTwoWeekHigh,
+        fiftyTwoWeekLow: fiftyTwoWeekLow ?? required this.fiftyTwoWeekLow,
+        currentValue: currentValue ?? required this.currentValue,
       );
 
   factory NepseIndex.fromJson(Map<String, dynamic> json) => NepseIndex(
