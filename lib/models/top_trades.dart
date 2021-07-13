@@ -2,17 +2,17 @@ import 'package:meta/meta.dart';
 
 class TopItem {
   TopItem({
-    this.totalTrades,
-    this.closingPrice,
-    this.turnover,
-    this.shareTraded,
-    this.lastTradedPrice,
-    this.symbol,
-    this.ltp,
-    this.pointChange,
-    this.percentageChange,
-    this.securityName,
-    this.securityId,
+    required this.totalTrades,
+    required this.closingPrice,
+    required this.turnover,
+    required this.shareTraded,
+    required this.lastTradedPrice,
+    required this.symbol,
+    required this.ltp,
+    required this.pointChange,
+    required this.percentageChange,
+    required this.securityName,
+    required this.securityId,
   });
 
   final String symbol;

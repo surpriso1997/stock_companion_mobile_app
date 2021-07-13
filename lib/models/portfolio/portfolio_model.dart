@@ -10,15 +10,15 @@ class PortfolioModel {
   var buyingDate;
 
   PortfolioModel({
-    this.id,
-    this.companyId,
-    this.sectorId,
-    this.sectorName,
-    this.buyingDate,
-    this.buyingPrice,
-    this.lastTradedPrice,
-    this.symbol,
-    this.buyingUnits,
+    required this.id,
+    required this.companyId,
+    required this.sectorId,
+    required this.sectorName,
+    required this.buyingDate,
+    required this.buyingPrice,
+    required this.lastTradedPrice,
+    required this.symbol,
+    required this.buyingUnits,
   });
 
   factory PortfolioModel.fromJson(Map json) {

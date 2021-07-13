@@ -1,14 +1,14 @@
 class BrokerAnalysisModel {
   BrokerAnalysisModel({
-    this.rank,
-    this.scripSymbol,
-    this.orderType,
-    this.broker,
-    this.quantity,
-    this.percentOfTotalQty,
-    this.amount,
-    this.sharesTraded,
-    this.averagePrice,
+    required this.rank,
+    required this.scripSymbol,
+    required this.orderType,
+    required this.broker,
+    required this.quantity,
+    required this.percentOfTotalQty,
+    required this.amount,
+    required this.sharesTraded,
+    required this.averagePrice,
   });
 
   int rank;

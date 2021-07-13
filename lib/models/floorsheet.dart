@@ -4,7 +4,7 @@ class FloorSheetData {
   final PageInfo pageInfo;
   final List<Details> details;
 
-  const FloorSheetData({this.pageInfo, this.details});
+  const FloorSheetData({required this.pageInfo, required this.details});
 
   factory FloorSheetData.fromJson(Map json) {
     return FloorSheetData(
@@ -19,7 +19,7 @@ class TotalInfo {
   final totalAmount;
   final totalQty;
   final totalTrades;
-  const TotalInfo({this.totalAmount, this.totalQty, this.totalTrades});
+  const TotalInfo({required this.totalAmount, required this.totalQty, required this.totalTrades});
 
   factory TotalInfo.fromJson(Map json) {
     return TotalInfo(
@@ -40,13 +40,13 @@ class PageInfo {
   final sorted;
 
   const PageInfo({
-    this.totalElements,
-    this.totalPages,
-    this.last,
-    this.size,
-    this.sorted,
-    this.number,
-    this.numberOfElements,
+    required this.totalElements,
+    required this.totalPages,
+    required this.last,
+    required this.size,
+    required this.sorted,
+    required this.number,
+    required this.numberOfElements,
   });
 
   factory PageInfo.fromJsons(Map json) {
@@ -80,21 +80,21 @@ class Details {
   final contractAmount;
 
   const Details({
-    this.id,
-    this.contractId,
-    this.contractQuantity,
-    this.contracyType,
-    this.stockSymbol,
-    this.buyerMemberId,
-    this.sellerMemberId,
-    this.contractRate,
-    this.businessDate,
-    this.tradeBookId,
-    this.stockId,
-    this.buyerBrokerName,
-    this.sellerBrokerName,
-    this.securityName,
-    this.contractAmount,
+    required this.id,
+    required this.contractId,
+    required this.contractQuantity,
+    required this.contracyType,
+    required this.stockSymbol,
+    required this.buyerMemberId,
+    required this.sellerMemberId,
+    required this.contractRate,
+    required this.businessDate,
+    required this.tradeBookId,
+    required this.stockId,
+    required this.buyerBrokerName,
+    required this.sellerBrokerName,
+    required this.securityName,
+    required this.contractAmount,
   });
 
   factory Details.fromJson(Map json) {
@@ -119,10 +119,10 @@ class Details {
 
   CompanyListModel get toCompany {
     return CompanyListModel(
-      id: this.id,
-      companyName: this.securityName,
-      symbol: this.stockSymbol,
-      securityName: this.securityName,
+      id: required this.id,
+      companyName: required this.securityName,
+      symbol: required this.stockSymbol,
+      securityName: required this.securityName,
       status: "",
       companyEmail: "",
       website: "",

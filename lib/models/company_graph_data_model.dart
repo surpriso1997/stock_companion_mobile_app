@@ -1,14 +1,14 @@
 class CompanyGraphModel {
   CompanyGraphModel({
-    this.businessDate,
-    this.openPrice,
-    this.highPrice,
-    this.lowPrice,
-    this.previousDayClosePrice,
-    this.fiftyTwoWeekHigh,
-    this.lastTradedPrice,
-    this.totalTradedQuantity,
-    this.closePrice,
+    required this.businessDate,
+    required this.openPrice,
+    required this.highPrice,
+    required this.lowPrice,
+    required this.previousDayClosePrice,
+    required this.fiftyTwoWeekHigh,
+    required this.lastTradedPrice,
+    required this.totalTradedQuantity,
+    required this.closePrice,
   });
 
   String businessDate;

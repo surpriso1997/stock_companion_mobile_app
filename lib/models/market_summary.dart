@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 
 class MarketSummary {
   MarketSummary({
-    @required this.detail,
-    @required this.value,
+    @required required this.detail,
+    @required required this.value,
   });
 
   final String detail;
@@ -14,8 +14,8 @@ class MarketSummary {
     double value,
   }) =>
       MarketSummary(
-        detail: detail ?? this.detail,
-        value: value ?? this.value,
+        detail: detail ?? required this.detail,
+        value: value ?? required this.value,
       );
 
   factory MarketSummary.fromJson(Map<String, dynamic> json) => MarketSummary(

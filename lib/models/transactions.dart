@@ -2,11 +2,11 @@ import 'package:meta/meta.dart';
 
 class Transactions {
   Transactions({
-    @required this.securityId,
-    @required this.totalTrades,
-    @required this.lastTradedPrice,
-    @required this.securityName,
-    @required this.symbol,
+    @required required this.securityId,
+    @required required this.totalTrades,
+    @required required this.lastTradedPrice,
+    @required required this.securityName,
+    @required required this.symbol,
   });
 
   final int securityId;
@@ -23,11 +23,11 @@ class Transactions {
     String symbol,
   }) =>
       Transactions(
-        securityId: securityId ?? this.securityId,
-        totalTrades: totalTrades ?? this.totalTrades,
-        lastTradedPrice: lastTradedPrice ?? this.lastTradedPrice,
-        securityName: securityName ?? this.securityName,
-        symbol: symbol ?? this.symbol,
+        securityId: securityId ?? required this.securityId,
+        totalTrades: totalTrades ?? required this.totalTrades,
+        lastTradedPrice: lastTradedPrice ?? required this.lastTradedPrice,
+        securityName: securityName ?? required this.securityName,
+        symbol: symbol ?? required this.symbol,
       );
 
   factory Transactions.fromJson(Map<String, dynamic> json) => Transactions(
