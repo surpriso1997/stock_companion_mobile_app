@@ -7,7 +7,7 @@ import 'common.dart';
 class Buying extends StatefulWidget {
   final TextEditingController priceController, unitsController;
 
-  const Buying({this.priceController, this.unitsController});
+  const Buying({required this.priceController, required this.unitsController});
   @override
   _BuyingState createState() => _BuyingState();
 }

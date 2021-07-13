@@ -12,7 +12,7 @@ import 'package:stock_companion/utils/theme.dart';
 import 'fucntional_widgets.dart';
 
 class BrokerAnalysis extends StatefulWidget {
-  BrokerAnalysis({this.brokerId, this.broker});
+  BrokerAnalysis({required this.brokerId, required this.broker});
   final int brokerId;
   final BrokersModel broker;
   @override

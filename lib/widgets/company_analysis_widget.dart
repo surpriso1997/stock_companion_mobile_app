@@ -10,7 +10,7 @@ import 'package:stock_companion/utils/utils.dart';
 import 'package:stock_companion/widgets/fucntional_widgets.dart';
 
 class CompanyAnalysis extends StatefulWidget {
-  const CompanyAnalysis({this.commpanyId, this.company});
+  const CompanyAnalysis({required this.commpanyId, required this.company});
   final int commpanyId;
   final CompanyListModel company;
   @override

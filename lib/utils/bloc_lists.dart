@@ -29,7 +29,7 @@ class MultiBlocProviders extends StatelessWidget {
   final Widget child;
 
   MultiBlocProviders({
-    this.child,
+    required this.child,
   });
 
   @override

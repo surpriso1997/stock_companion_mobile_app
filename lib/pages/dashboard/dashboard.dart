@@ -190,5 +190,6 @@ class DashboardItem {
   final String title;
   final IconData icon;
   final String routeName;
-  const DashboardItem({this.title, this.icon, this.routeName});
+  const DashboardItem(
+      {required this.title, required this.icon, required this.routeName});
 }

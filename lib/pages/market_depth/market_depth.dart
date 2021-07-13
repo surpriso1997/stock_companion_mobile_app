@@ -9,7 +9,7 @@ import 'package:stock_companion/widgets/fucntional_widgets.dart';
 class MarketDepth extends StatefulWidget {
   final int companyId;
 
-  const MarketDepth({this.companyId});
+  const MarketDepth({required this.companyId});
 
   @override
   _MarketDepthState createState() => _MarketDepthState();

@@ -10,7 +10,7 @@ import 'package:stock_companion/widgets/company_graph.dart';
 class CompanyDetails extends StatefulWidget {
   final CompanyListModel company;
   final StockPrice stockPrice;
-  const CompanyDetails({this.company, this.stockPrice});
+  const CompanyDetails({required this.company, required this.stockPrice});
   @override
   _CompanyDetailsState createState() => _CompanyDetailsState();
 }
