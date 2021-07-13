@@ -108,7 +108,7 @@ class IIndexGraphRepository {
 class TimeStampIndex {
   final time;
   final index;
-  const TimeStampIndex({this.time, this.index});
+  const TimeStampIndex({required this.time, required this.index});
   factory TimeStampIndex.fromList(List list) {
     return TimeStampIndex(time: list[0], index: list[1]);
   }
@@ -123,7 +123,12 @@ class IndexData {
   final List<num> value;
 
   const IndexData(
-      {this.time, this.open, this.high, this.low, this.close, this.value});
+      {required this.time,
+      required this.open,
+      required this.high,
+      required this.low,
+      required this.close,
+      required this.value});
 
   factory IndexData.fromJson(Map json) {
     return IndexData(
@@ -144,17 +149,17 @@ class LineGraphData {
   final num time;
 
   const LineGraphData(
-      {@required this.open,
-      @required this.close,
-      @required this.low,
-      @required this.high,
-      @required this.value,
-      @required this.time});
+      {@required required this.open,
+      @required required this.close,
+      @required required this.low,
+      @required required this.high,
+      @required required this.value,
+      @required required this.time});
 }
 
 class NepseLineGraphData {
   final num value;
   final num time;
 
-  const NepseLineGraphData({this.value, this.time});
+  const NepseLineGraphData({required this.value, required this.time});
 }
