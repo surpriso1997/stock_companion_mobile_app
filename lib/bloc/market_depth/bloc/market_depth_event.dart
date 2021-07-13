@@ -9,12 +9,12 @@ abstract class MarketDepthEvent extends Equatable {
 
 class GetMarketDepth extends MarketDepthEvent {
   final int companyId;
-  const GetMarketDepth(this.companyId);
+  const GetMarketDepth(required this.companyId);
 }
 
 class ResetMarketDepth extends MarketDepthEvent {}
 
 class RefreshMarketDepth extends MarketDepthEvent {
   final int companyId;
-  const RefreshMarketDepth(this.companyId);
+  const RefreshMarketDepth(required this.companyId);
 }

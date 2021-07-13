@@ -12,17 +12,18 @@ class GetGraph extends IndexGraphEvent {
   final String startDate;
   final String endDate;
 
-  const GetGraph({this.index, this.startDate, this.endDate});
+  const GetGraph(
+      {required this.index, required this.startDate, required this.endDate});
 }
 
 class RefreshGraph extends IndexGraphEvent {
   final int index;
 
-  const RefreshGraph({this.index});
+  const RefreshGraph({required this.index});
 }
 
 class ConvertGraphToCandle extends IndexGraphEvent {
   final int index;
 
-  const ConvertGraphToCandle({this.index});
+  const ConvertGraphToCandle({required this.index});
 }

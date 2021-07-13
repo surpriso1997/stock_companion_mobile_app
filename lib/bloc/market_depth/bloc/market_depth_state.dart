@@ -2,7 +2,7 @@ part of 'market_depth_bloc.dart';
 
 abstract class MarketDepthState extends Equatable {
   final MarketDepthData data;
-  const MarketDepthState({this.data});
+  const MarketDepthState({required this.data});
 
   @override
   List<Object> get props => [];
@@ -14,17 +14,17 @@ class MarketDepthLoading extends MarketDepthState {}
 
 class MarketDepthRefreshing extends MarketDepthState {
   final MarketDepthData data;
-  const MarketDepthRefreshing({this.data}) : super(data: data);
+  const MarketDepthRefreshing({required this.data}) : super(data: data);
 }
 
 class MarketDepthFetched extends MarketDepthState {
   final MarketDepthData data;
-  const MarketDepthFetched({this.data}) : super(data: data);
+  const MarketDepthFetched({required this.data}) : super(data: data);
 }
 
 class MarketDepthError extends MarketDepthState {
   final String errorMessage;
-  const MarketDepthError({this.errorMessage});
+  const MarketDepthError({required this.errorMessage});
 }
 
 class MarketClosedState extends MarketDepthState {}
