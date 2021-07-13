@@ -6,8 +6,8 @@ import './utils/utils.dart';
 
 void main() {
   var configApp = AppConfig(
-      appName: "Stock Companion DEV",
-      flavor: "dev",
+      appName: "Stock Companion",
+      flavor: "prod",
       baseUrl: Constants.base_url_prod,
       secondaryBaseUrl: Constants.secondary_base_url_prod,
       child: MyApp());
