@@ -121,24 +121,24 @@ class _DashboardState extends State<Dashboard> {
                 Navigator.push(
                     context, CupertinoPageRoute(builder: (_) => MarketDepth()));
               }),
-          _buildGridViewItem(
-              icon: AntDesign.eyeo, title: 'Watchlist', onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: AntDesign.eyeo, title: 'Watchlist', onPressed: () {}),
           // _buildGridViewItem(
           //     icon: Icons.notification_important_outlined,
           //     title: 'Stock Alert',
           //     onPressed: () {}),
           // _buildGridViewItem(
           //     icon: SimpleLineIcons.notebook, title: 'Notes', onPressed: () {}),
-          _buildGridViewItem(
-              icon: MaterialIcons.next_week,
-              title: 'Proposed',
-              onPressed: () {}),
-          _buildGridViewItem(
-              icon: MaterialCommunityIcons.door,
-              title: 'Openings',
-              onPressed: () {}),
-          _buildGridViewItem(
-              icon: Feather.globe, title: 'SEBON Issues', onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: MaterialIcons.next_week,
+          //     title: 'Proposed',
+          //     onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: MaterialCommunityIcons.door,
+          //     title: 'Openings',
+          //     onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: Feather.globe, title: 'SEBON Issues', onPressed: () {}),
           // _buildGridViewItem(
           //     icon: Icons.forum, title: 'Forum', onPressed: () {}),
           // _buildGridViewItem(
@@ -147,8 +147,8 @@ class _DashboardState extends State<Dashboard> {
           //     icon: FontAwesome.mortar_board,
           //     title: 'Stock Education',
           //     onPressed: () {}),
-          _buildGridViewItem(
-              icon: AntDesign.notification, title: 'Notices', onPressed: () {}),
+          // _buildGridViewItem(
+          //     icon: AntDesign.notification, title: 'Notices', onPressed: () {}),
           // _buildGridViewItem(
           //     icon: FontAwesome.handshake_o,
           //     title: 'Mero Share',

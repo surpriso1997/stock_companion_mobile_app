@@ -92,6 +92,10 @@ class _LiveMarketState extends State<LiveMarket> {
             if (state is FetchingItemsState) {
               return progressIndicator();
             } else if (state is ErrorState) {
+              return Text(
+                state.message ?? "An error occurrd",
+                style: TextStyle(color: blackC),
+              );
             } else if (state is FetchedItemsState ||
                 state is RefreshingItems ||
                 state is FetchingMoreItemsState) {
